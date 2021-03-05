@@ -1,0 +1,59 @@
+{
+	"name": "travel-app",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@craco/craco": "^6.1.1",
+		"@material-ui/core": "^4.11.3",
+		"@testing-library/jest-dom": "^5.11.9",
+		"@testing-library/react": "^11.2.5",
+		"@testing-library/user-event": "^12.8.1",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-redux": "^7.2.2",
+		"react-scripts": "4.0.3",
+		"redux": "^4.0.5",
+		"web-vitals": "^1.1.0"
+	},
+	"scripts": {
+		"start": "craco start",
+		"build": "craco build",
+		"test": "craco test"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+			"prettier --write"
+		]
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"craco-sass-resources-loader": "^1.1.0",
+		"eslint": "^7.21.0",
+		"husky": "^5.1.3",
+		"lint-staged": "^10.5.4",
+		"node-sass": "^5.0.0",
+		"prettier": "^2.2.1"
+	}
+}
