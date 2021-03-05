@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -10,39 +10,47 @@ import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles(() => ({
-    flexContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 0,
-    }
-}))
+	flexContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		padding: 0,
+	},
+}));
 
 const Footer = () => {
-    const classes = useStyles();
+	const classes = useStyles();
 
-    return (
-        <AppBar position="static" color="primary">
-            <Container>
-                <Toolbar>
-                    <List className={classes.flexContainer}>
-                        <ListItem>
-                            <Link href="#" color="inherit"><GitHubIcon /></Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link href="#" color="inherit"><GitHubIcon /></Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link href="#" color="inherit"><GitHubIcon /></Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link href="#" color="inherit"><GitHubIcon /></Link>
-                        </ListItem>
-                    </List>
-                </Toolbar>
-            </Container>
-        </AppBar >
-    )
-}
+	return (
+		<AppBar position="static" color="primary">
+			<Container>
+				<Toolbar>
+					<List className={classes.flexContainer}>
+						<ListItem>
+							<Link href="#" color="inherit">
+								<GitHubIcon />
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="#" color="inherit">
+								<GitHubIcon />
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="#" color="inherit">
+								<GitHubIcon />
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="#" color="inherit">
+								<GitHubIcon />
+							</Link>
+						</ListItem>
+					</List>
+				</Toolbar>
+			</Container>
+		</AppBar>
+	);
+};
 
 export default Footer;
