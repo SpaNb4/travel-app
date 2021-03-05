@@ -14,11 +14,11 @@ function App() {
 			<Header />
 			<Router>
 				<Switch>
-					<Route>
-						<Home exact to="/" />
+					<Route exact path="/">
+						<Home />
 					</Route>
-					<Route>
-						<Country exact to="/:id" />
+					<Route exact path="/country">
+						<Country />
 					</Route>
 				</Switch>
 			</Router>
