@@ -15,8 +15,21 @@ import Timer from '../Widgets/Timer/Timer';
 import Search from '../Search';
 
 const useStyles = makeStyles((theme) => ({
+	appBar: {
+		padding: '0 24px',
+	},
+	container: {
+		maxWidth: '100%',
+		padding: '0',
+	},
+	toolbar: {
+		flexWrap: 'wrap',
+		justifyContent: 'center',
+	},
 	grow: {
 		flexGrow: 1,
+		display: 'flex',
+		justifyContent: 'flex-end',
 	},
 	logoButton: {
 		marginRight: theme.spacing(2),
@@ -48,9 +61,9 @@ const Header = () => {
 	}
 
 	return (
-		<AppBar position="static">
-			<Container>
-				<Toolbar>
+		<AppBar position="static" className={classes.appBar}>
+			<Container className={classes.container}>
+				<Toolbar className={classes.toolbar}>
 					<Link href="#" color="inherit">
 						<TagFacesIcon />
 					</Link>
@@ -74,17 +87,23 @@ const Header = () => {
 						<MenuItem value="de">DE</MenuItem>
 						<MenuItem value="ru">RU</MenuItem>
 					</Select>
-
-					{auth && (
-						<IconButton
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							color="inherit"
-						>
-							<AccountCircleIcon />
+					
+					<div className={classes.grow}>
+						<IconButton aria-label="display language select" color="inherit">
+							<LanguageIcon />
 						</IconButton>
-					)}
+
+						{auth && (
+							<IconButton
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								color="inherit"
+							>
+								<AccountCircleIcon />
+							</IconButton>
+						)}
+					</div>
 				</Toolbar>
 				<ExchangeRates currency={'EUR'} />
 				<Timer timeZone={'Europe/Kiev'} lang={currLng} />

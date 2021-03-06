@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Paper, IconButton, TextField } from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import './Search.scss';
+import * as React from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Paper, IconButton, TextField } from '@material-ui/core'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import SearchIcon from '@material-ui/icons/Search'
+import ClearIcon from '@material-ui/icons/Clear';
+import './Search.scss'
 
 import { updateSearchValue } from '../../store/countries/actions';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 		marginRight: theme.spacing(2),
 		marginLeft: theme.spacing(2),
-		width: '100%',
+		minWidth: '240px',
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: theme.spacing(3),
 			width: 'auto',
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(1, 1, 1, 0),
 		paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
 		transition: theme.transitions.create('width'),
-		width: '100%',
+		maxWidth: '60%',
 		[theme.breakpoints.up('md')]: {
 			width: '20ch',
 		},
@@ -61,34 +62,52 @@ const Search = () => {
 		}
 	};
 
+  const handleClear = () => {
+    setSearchValue('')
+    dispatch(updateSearchValue(searchValue))
+  }
+
 	useEffect(() => {
 		setPath(pathname);
 	}, [pathname]);
 
 	const show = path === '/';
-
-	return (
-		<React.Fragment>
-			{show && (
-				<Paper component="form" className={classes.search}>
-					<TextField
-						type="search"
-						autoFocus={true}
-						autoComplete="off"
-						placeholder={t('Search country')}
-						name="searchValue"
-						onChange={handleChange}
-						value={searchValue}
-						className={classes.input}
-						inputProps={{ 'aria-label': 'search' }}
-					/>
-					<IconButton type="submit" onSubmit={handleSubmit}>
-						<SearchIcon />
-					</IconButton>
-				</Paper>
-			)}
-		</React.Fragment>
-	);
-};
+  return (
+    <React.Fragment>
+      { 
+        show && (
+          <Paper
+            component='form'
+            className={classes.search}
+          >
+            <TextField
+              type="text"
+              autoFocus={true}
+              autoComplete='off'
+              placeholder='Search country'
+              name="searchValue"
+              onChange={handleChange}
+              value={searchValue}
+              className={classes.input}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+            <IconButton
+              type="button"
+              onClick={handleClear}
+            >
+              <ClearIcon />
+            </IconButton>
+            <IconButton
+              type="submit"
+              onClick={handleSubmit}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        )
+      }
+    </React.Fragment>
+  )
+}
 
 export default Search;
