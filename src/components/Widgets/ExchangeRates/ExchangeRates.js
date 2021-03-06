@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useState, useEffect } from 'react';
 import fx from 'money';
 import classes from './ExchangeRates.module.scss';
@@ -6,15 +7,30 @@ import { Typography } from '@material-ui/core';
 import { AttachMoney } from '@material-ui/icons';
 
 function ExchangeRates({ currency }) {
-	const [rateUSD, setRateUSD] = useState(0);
-	const [rateEUR, setRateEUR] = useState(0);
-	const [rateRUB, setRateRUB] = useState(0);
+	const DECIMAL_PLACES = 2;
+	const EXCHANGE_VALUE = 1;
+	const CURRENCY_USD = 'USD';
+	const CURRENCY_EUR = 'EUR';
+	const CURRENCY_RUB = 'RUB';
+
+	const [rates, setRates] = useState(null);
 
 	useEffect(() => {
 		let setCurrency = () => {
-			setRateUSD(fx(1).from(currency).to('USD').toFixed(2));
-			setRateEUR(fx(1).from(currency).to('EUR').toFixed(2));
-			setRateRUB(fx(1).from(currency).to('RUB').toFixed(2));
+			setRates([
+				{
+					currency: CURRENCY_USD,
+					exchangeRate: fx(EXCHANGE_VALUE).from(currency).to(CURRENCY_USD).toFixed(DECIMAL_PLACES),
+				},
+				{
+					currency: CURRENCY_EUR,
+					exchangeRate: fx(EXCHANGE_VALUE).from(currency).to(CURRENCY_EUR).toFixed(DECIMAL_PLACES),
+				},
+				{
+					currency: CURRENCY_RUB,
+					exchangeRate: fx(EXCHANGE_VALUE).from(currency).to(CURRENCY_RUB).toFixed(DECIMAL_PLACES),
+				},
+			]);
 		};
 
 		fetch('https://api.exchangerate.host/latest')
@@ -29,18 +45,16 @@ function ExchangeRates({ currency }) {
 				<AttachMoney />
 				Exchange Rates
 			</Typography>
-			<div className={classes.CurrencyContainer}>
-				<span className={classes.СurrencyName}>USD: </span>
-				<span className={classes.CurrencyValue}>{rateUSD}</span>
-			</div>
-			<div className={classes.CurrencyContainer}>
-				<span className={classes.СurrencyName}>EUR: </span>
-				<span className={classes.CurrencyValue}>{rateEUR}</span>
-			</div>
-			<div className={classes.CurrencyContainer}>
-				<span className={classes.СurrencyName}>RUB: </span>
-				<span className={classes.CurrencyValue}>{rateRUB}</span>
-			</div>
+			{rates
+				? rates.map((rate, index) => {
+						return (
+							<div key={index} className={classes.CurrencyContainer}>
+								<span className={classes.СurrencyName}>{rate.currency}: </span>
+								<span className={classes.CurrencyValue}>{rate.exchangeRate}</span>
+							</div>
+						);
+				  })
+				: null}
 		</div>
 	);
 }
