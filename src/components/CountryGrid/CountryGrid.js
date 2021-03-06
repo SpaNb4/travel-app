@@ -83,7 +83,7 @@ const Map = () => {
 	const classes = useStyles();
 
 	return (
-		<Grid item className={classes.blockContainer} xs={9}>
+		<Grid item className={classes.blockContainer} xs={12} sm={9}>
 			<Typography variant="h4" gutterBottom>
 				Map
 			</Typography>
@@ -95,7 +95,7 @@ const Widgets = () => {
 	const classes = useStyles();
 
 	return (
-		<Grid item className={classes.blockContainer} xs={3}>
+		<Grid item className={classes.blockContainer} xs={12} sm={3}>
 			<Typography variant="h4" gutterBottom>
 				W-s
 			</Typography>
