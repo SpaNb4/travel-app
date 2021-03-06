@@ -1,7 +1,8 @@
 import React from 'react';
+import CountryGrid from '../../components/CountryGrid';
 
 const Country = () => {
-	return <div>Country</div>;
+	return <CountryGrid />;
 };
 
 export default Country;
