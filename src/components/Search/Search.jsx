@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { Paper, IconButton, TextField } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import './Search.scss'
+
+import { updateSearchValue } from '../../store/countries/actions'
 
 const useStyles = makeStyles((theme) => ({
 	search: {
@@ -33,10 +35,29 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Search = (props) => {
+const Search = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
   const pathname = window.location.pathname
-  const [path, setPath] = useState(pathname);
+  const [path, setPath] = useState(pathname)
+  const [searchValue, setSearchValue] = useState()
+  const [valid, setValid] = useState(false)
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (valid) {
+      dispatch(updateSearchValue(searchValue))
+    }
+  }
+
+  const handleChange = (event) => {
+    const { value } = event.target
+    if (/\S/.exec(value) && !/^$/.exec(value)) {
+      setValid(true)
+      setSearchValue(value)
+    }
+  }
   
   useEffect(() => {
     setPath(pathname)
@@ -58,14 +79,14 @@ const Search = (props) => {
               autoComplete='off'
               placeholder='Search country'
               name="searchValue"
-              onChange={props.handleChange}
-              value={props.searchValue}
+              onChange={handleChange}
+              value={searchValue}
               className={classes.input}
               inputProps={{ 'aria-label': 'search' }}
             />
             <IconButton
               type="submit"
-              onSubmit={props.handleChange}
+              onSubmit={handleSubmit}
             >
               <SearchIcon />
             </IconButton>
@@ -74,11 +95,6 @@ const Search = (props) => {
       }
     </React.Fragment>
   )
-}
-
-Search.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired,
 }
 
 export default Search
