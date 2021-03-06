@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
 import Timer from '../Widgets/Timer/Timer';
 
 import Search from '../Search';
@@ -52,6 +53,7 @@ const Header = () => {
 						</IconButton>
 					)}
 				</Toolbar>
+				<ExchangeRates currency={'EUR'} />
 				<Timer timeZone={'Europe/Kiev'} lang={'ru-RU'} />
 			</Container>
 		</AppBar>
