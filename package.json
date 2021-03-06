@@ -49,6 +49,7 @@
 		]
 	},
 	"devDependencies": {
+		"core-js": "^3.9.1",
 		"craco-sass-resources-loader": "^1.1.0",
 		"eslint": "^7.21.0",
 		"husky": "^5.1.3",
