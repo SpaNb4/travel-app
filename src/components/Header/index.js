@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
+import Timer from '../Widgets/Timer/Timer';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -101,6 +102,7 @@ const Header = () => {
 					)}
 				</Toolbar>
 				<ExchangeRates currency={'EUR'} />
+				<Timer timeZone={'Europe/Kiev'} lang={'ru-RU'} />
 			</Container>
 		</AppBar>
 	);

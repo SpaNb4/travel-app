@@ -12,7 +12,7 @@ const GridItem = () => (
 export default function MainGrid() {
 	return (
 		<Container>
-			<Grid container spacing={1}>
+			<Grid container>
 				<GridItem />
 				<GridItem />
 				<GridItem />
