@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startGame } from './store/something1/actions1';
 import classes from './App.module.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -27,16 +25,4 @@ function App() {
 	);
 }
 
-function mapStateToProps(state) {
-	return {
-		isGameStart: state.reducer1.isGameStart,
-	};
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		startGame: () => dispatch(startGame()),
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

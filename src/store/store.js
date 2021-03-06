@@ -1,5 +1,8 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from './rootReducer';
+import { combineReducers } from 'redux';
+import countriesReducer from './countries/reducer';
+
+const rootReducer = combineReducers({ countriesReducer });
 
 const composeEnhancers =
 	typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

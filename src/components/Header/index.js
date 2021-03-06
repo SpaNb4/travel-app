@@ -1,16 +1,16 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
-import SearchIcon from '@material-ui/icons/Search';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Timer from '../Widgets/Timer/Timer';
+
+import Search from '../Search';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -18,43 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	logoButton: {
 		marginRight: theme.spacing(2),
-	},
-	search: {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: fade(theme.palette.common.white, 0.15),
-		'&:hover': {
-			backgroundColor: fade(theme.palette.common.white, 0.25),
-		},
-		marginRight: theme.spacing(2),
-		marginLeft: theme.spacing(2),
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft: theme.spacing(3),
-			width: 'auto',
-		},
-	},
-	searchIcon: {
-		padding: theme.spacing(0, 1),
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	inputRoot: {
-		color: 'inherit',
-	},
-	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	},
+	}
 }));
 
 const Header = () => {
@@ -69,19 +33,7 @@ const Header = () => {
 						<TagFacesIcon />
 					</Link>
 
-					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
-						<InputBase
-							placeholder="search"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div>
+					<Search />
 
 					<div className={classes.grow} />
 
