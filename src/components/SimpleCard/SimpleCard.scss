@@ -1,0 +1,21 @@
+.simple-card.MuiCard-root {
+	font-size: 10px;
+	color: inherit;
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	overflow: hidden;
+	padding: 1rem;
+	margin: 1rem auto;
+	width: 90%;
+	text-align: center;
+}
+
+.simple-card__content.MuiCardContent-root {
+	font-size: 1.6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 1rem;
+}
