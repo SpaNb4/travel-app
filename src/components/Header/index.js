@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -28,6 +28,10 @@ const Header = () => {
 	const [currLng, setCurrLng] = useState(localStorage.getItem('lng') || 'en');
 	const classes = useStyles();
 	const auth = true;
+
+	useEffect(() => {
+		i18n.changeLanguage(currLng);
+	}, []);
 
 	function changeLanguageHandler(event) {
 		setCurrLng(event.target.value);
