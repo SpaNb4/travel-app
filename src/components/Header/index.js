@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,46 +9,26 @@ import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
 import Timer from '../Widgets/Timer/Timer';
+import './Header.scss';
+
+import * as c from '../../common/constants';
 
 import Search from '../Search';
 
-const useStyles = makeStyles((theme) => ({
-	appBar: {
-		padding: '0 24px',
-	},
-	container: {
-		maxWidth: '100%',
-		padding: '0',
-	},
-	toolbar: {
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-	},
-	grow: {
-		flexGrow: 1,
-		display: 'flex',
-		justifyContent: 'flex-end',
-	},
-	logoButton: {
-		marginRight: theme.spacing(2),
-	},
-}));
-
 const Header = () => {
-	const classes = useStyles();
 	const auth = true;
 
 	return (
-		<AppBar position="static" className={classes.appBar}>
-			<Container className={classes.container}>
-				<Toolbar className={classes.toolbar}>
+		<AppBar position="static" className="header">
+			<Container className="header__container">
+				<Toolbar className="header__toolbar">
 					<Link href="#" color="inherit">
 						<TagFacesIcon />
 					</Link>
 
 					<Search />
 
-					<div className={classes.grow}>
+					<div className="header__toolbar_aside">
 						<IconButton aria-label="display language select" color="inherit">
 							<LanguageIcon />
 						</IconButton>
@@ -66,8 +45,8 @@ const Header = () => {
 						)}
 					</div>
 				</Toolbar>
-				<ExchangeRates currency={'EUR'} />
-				<Timer timeZone={'Europe/Kiev'} lang={'ru-RU'} />
+				<ExchangeRates currency={c.DEFAULT_CURRENCY} />
+				<Timer timeZone={c.DEFAULT_TIMEZONE} lang={c.DEFAULT_LANG} />
 			</Container>
 		</AppBar>
 	);
