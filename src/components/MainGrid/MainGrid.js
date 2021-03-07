@@ -1,26 +1,31 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
-import SimpleCard from './../SimpleCard';
 
-const GridItem = () => (
-	<Grid item xs={12} sm={6}>
-		<SimpleCard />
-	</Grid>
-);
+import GridItem from './GridItem';
+
+import countriesSlices from '../../store/countries/slices';
+import { fetchCountries } from '../../store/countries/actions';
 
 export default function MainGrid() {
+	const dispatch = useDispatch();
+	const countries = countriesSlices.countries();
+	const loading = countriesSlices.loading();
+
+	useEffect(() => {
+		dispatch(fetchCountries());
+	}, []);
+
+	const items = countries && countries.map((country) => <GridItem key={country.id} country={country} />);
+	const loader = loading && <CircularProgress />;
 	return (
 		<Container>
 			<Grid container>
-				<GridItem />
-				<GridItem />
-				<GridItem />
-				<GridItem />
-				<GridItem />
-				<GridItem />
-				<GridItem />
-				<GridItem />
+				{loader}
+				{items}
 			</Grid>
 		</Container>
 	);
