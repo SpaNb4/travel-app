@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import L from 'leaflet';
+// eslint-disable-next-line no-unused-vars
+import fullscreenControl from 'leaflet-fullscreen';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +20,9 @@ export default function Map() {
 	const classes = useStyles();
 
 	useEffect(() => {
-		const map = L.map(MAP_CONTAINER_ID).setView([51.505, -0.09], 13);
+		var map = new L.Map(MAP_CONTAINER_ID, {
+			fullscreenControl: true,
+		}).setView([51.505, -0.09], 13);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 			maxZoom: 18,
