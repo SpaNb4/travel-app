@@ -13,33 +13,13 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
 import Timer from '../Widgets/Timer/Timer';
 import Search from '../Search';
+import './Header.scss';
 
-const useStyles = makeStyles((theme) => ({
-	appBar: {
-		padding: '0 24px',
-	},
-	container: {
-		maxWidth: '100%',
-		padding: '0',
-	},
-	toolbar: {
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-	},
-	grow: {
-		flexGrow: 1,
-		display: 'flex',
-		justifyContent: 'flex-end',
-	},
-	logoButton: {
-		marginRight: theme.spacing(2),
-	},
-}));
+import * as c from '../../common/constants';
 
 const Header = () => {
 	const [isLngOpen, setIsLngOpen] = useState(false);
 	const [currLng, setCurrLng] = useState(localStorage.getItem('lng') || 'en');
-	const classes = useStyles();
 	const auth = true;
 
 	useEffect(() => {
@@ -61,37 +41,31 @@ const Header = () => {
 	}
 
 	return (
-		<AppBar position="static" className={classes.appBar}>
-			<Container className={classes.container}>
-				<Toolbar className={classes.toolbar}>
+		<AppBar position="static" className="header">
+			<Container className="header__container">
+				<Toolbar className="header__toolbar">
 					<Link href="#" color="inherit">
 						<TagFacesIcon />
 					</Link>
 
 					<Search />
-
-					<div className={classes.grow} />
-
-					<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
-						<LanguageIcon />
-					</IconButton>
-					<Select
-						id="select"
-						open={isLngOpen}
-						onChange={changeLanguageHandler}
-						onClose={handleLngClose}
-						onOpen={handleLngOpen}
-						value={currLng}
-					>
-						<MenuItem value="en">EN</MenuItem>
-						<MenuItem value="de">DE</MenuItem>
-						<MenuItem value="ru">RU</MenuItem>
-					</Select>
 					
-					<div className={classes.grow}>
-						<IconButton aria-label="display language select" color="inherit">
+					<div className="header__toolbar_aside">
+						<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
 							<LanguageIcon />
 						</IconButton>
+						<Select
+							id="select"
+							open={isLngOpen}
+							onChange={changeLanguageHandler}
+							onClose={handleLngClose}
+							onOpen={handleLngOpen}
+							value={currLng}
+						>
+							<MenuItem value="en">EN</MenuItem>
+							<MenuItem value="de">DE</MenuItem>
+							<MenuItem value="ru">RU</MenuItem>
+						</Select>
 
 						{auth && (
 							<IconButton
@@ -105,8 +79,8 @@ const Header = () => {
 						)}
 					</div>
 				</Toolbar>
-				<ExchangeRates currency={'EUR'} />
-				<Timer timeZone={'Europe/Kiev'} lang={currLng} />
+				<ExchangeRates currency={c.DEFAULT_CURRENCY} />
+				<Timer timeZone={c.DEFAULT_TIMEZONE} lang={currLng} />
 			</Container>
 		</AppBar>
 	);
