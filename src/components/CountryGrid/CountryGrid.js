@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SimpleCard from './../SimpleCard';
 import { Typography } from '@material-ui/core';
+import Map from './Map/Map';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -79,23 +80,11 @@ const Sights = () => {
 	);
 };
 
-const Map = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12} sm={9}>
-			<Typography variant="h4" gutterBottom>
-				Map
-			</Typography>
-		</Grid>
-	);
-};
-
 const Widgets = () => {
 	const classes = useStyles();
 
 	return (
-		<Grid item className={classes.blockContainer} xs={12} sm={3}>
+		<Grid item className={classes.blockContainer} xs={12}>
 			<Typography variant="h4" gutterBottom>
 				W-s
 			</Typography>
