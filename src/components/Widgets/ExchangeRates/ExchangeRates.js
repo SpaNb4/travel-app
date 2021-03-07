@@ -1,5 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import fx from 'money';
 import classes from './ExchangeRates.module.scss';
 import { PropTypes } from 'prop-types';
@@ -14,6 +15,7 @@ function ExchangeRates({ currency }) {
 	const CURRENCY_RUB = 'RUB';
 
 	const [rates, setRates] = useState(null);
+	const [t] = useTranslation();
 
 	useEffect(() => {
 		let setCurrency = () => {
@@ -43,7 +45,7 @@ function ExchangeRates({ currency }) {
 		<div className={classes.ExchangeRates}>
 			<Typography className={classes.ExchangeTitle}>
 				<AttachMoney />
-				Exchange Rates
+				{t('Exchange Rates')}
 			</Typography>
 			{rates
 				? rates.map((rate, index) => {
