@@ -25,13 +25,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
 	const [isLngOpen, setIsLngOpen] = useState(false);
-	const [currLng, setCurrLng] = useState('en');
+	const [currLng, setCurrLng] = useState(localStorage.getItem('lng') || 'en');
 	const classes = useStyles();
 	const auth = true;
 
 	function changeLanguageHandler(event) {
 		setCurrLng(event.target.value);
 		i18n.changeLanguage(event.target.value);
+		localStorage.setItem('lng', event.target.value);
 	}
 
 	function handleLngClose() {
