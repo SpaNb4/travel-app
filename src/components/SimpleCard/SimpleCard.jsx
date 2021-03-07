@@ -8,7 +8,10 @@ import './SimpleCard.scss'
 
 const SimpleCard = ({ country }) => {
 	return (
-		<Card className="simple-card">
+		<Card
+			className="simple-card"
+			style={{ backgroundImage: `url( ${process.env.PUBLIC_URL + '/images/' + country.imageUrl } )` }}
+		>
 			<CardContent className="simple-card__content">
 				{country.countryName.en}
 				<CardActions>
@@ -26,6 +29,7 @@ SimpleCard.propTypes = {
 			ru: PropTypes.string,
 			de: PropTypes.string,
 		}),
+		imageUrl: PropTypes.string,
 	}).isRequired,
 }
 
