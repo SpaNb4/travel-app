@@ -2,8 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import SimpleCard from './../SimpleCard';
 import { Typography } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import countriesSlices from '../../store/countries/slices';
+
+import Overview from '../Overview/';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -41,21 +44,9 @@ const useStyles = makeStyles((theme) => ({
 
 const SightsItem = () => (
 	<Grid item xs={12} sm={6}>
-		<SimpleCard />
+		SimpleCard
 	</Grid>
 );
-
-const Overview = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12}>
-			<Typography variant="h4" gutterBottom>
-				Country
-			</Typography>
-		</Grid>
-	);
-};
 
 const Sights = () => {
 	const classes = useStyles();
@@ -115,45 +106,39 @@ const Video = () => {
 	);
 };
 
-const ColumnLeft = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} sm={8} className={classes.columnLeft}>
-			<Container className={classes.contentGrid}>
-				<Grid container spacing={4}>
-					<Overview />
-					<Sights />
-				</Grid>
-			</Container>
-		</Grid>
-	);
-};
-
-const ColumnRight = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} sm={4} className={classes.columnRight}>
-			<Container className={classes.contentGrid}>
-				<Grid container spacing={4}>
-					<Map />
-					<Widgets />
-					<Video />
-				</Grid>
-			</Container>
-		</Grid>
-	);
-};
-
 export function CountryGrid() {
 	const classes = useStyles();
+
+	const loading = countriesSlices.loading();
+	const countries = countriesSlices.countries();
+	const currentId = countriesSlices.currentId();
+
+	const country = countries.find((country) => country.id === currentId);
+
+	const overview = country && <Overview country={country} />;
+	const loader = loading && <CircularProgress />;
 
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
-				<ColumnLeft />
-				<ColumnRight />
+				<Grid item xs={12} sm={8} className={classes.columnLeft}>
+					<Container className={classes.contentGrid}>
+						<Grid container spacing={4}>
+							{loader}
+							{overview}
+							<Sights />
+						</Grid>
+					</Container>
+				</Grid>
+				<Grid item xs={12} sm={4} className={classes.columnRight}>
+					<Container className={classes.contentGrid}>
+						<Grid container spacing={4}>
+							<Map />
+							<Widgets />
+							<Video />
+						</Grid>
+					</Container>
+				</Grid>
 			</Grid>
 		</Container>
 	);
