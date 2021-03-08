@@ -2,9 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import SimpleCard from './../SimpleCard';
 import { Typography } from '@material-ui/core';
 import Map from './Map/Map';
+import ImageGallery from './ImageGallery/ImageGallery';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -40,12 +40,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const SightsItem = () => (
-	<Grid item xs={12} sm={6}>
-		<SimpleCard />
-	</Grid>
-);
-
 const Overview = () => {
 	const classes = useStyles();
 
@@ -54,28 +48,6 @@ const Overview = () => {
 			<Typography variant="h4" gutterBottom>
 				Country
 			</Typography>
-		</Grid>
-	);
-};
-
-const Sights = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} className={classes.sightContainer}>
-			<Typography variant="h4" gutterBottom>
-				Sights
-			</Typography>
-			<Container className={classes.sightGrid}>
-				<Grid container spacing={4}>
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-				</Grid>
-			</Container>
 		</Grid>
 	);
 };
@@ -112,7 +84,7 @@ const ColumnLeft = () => {
 			<Container className={classes.contentGrid}>
 				<Grid container spacing={4}>
 					<Overview />
-					<Sights />
+					<ImageGallery />
 				</Grid>
 			</Container>
 		</Grid>

@@ -1,0 +1,21 @@
+.header.MuiAppBar-root {
+  font-size: 10px;
+  padding: 0 2.4rem;
+}
+
+.header__container.MuiContainer-root {
+  max-width: 100%;
+  padding: 0;
+}
+
+.header__toolbar.MuiToolbar-root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header__toolbar_aside {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 2;
+}
