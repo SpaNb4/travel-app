@@ -60,6 +60,7 @@ const Search = () => {
         show && (
           <Paper
             component="form"
+            className="form"
           >
             <TextField
               type="text"
