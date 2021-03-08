@@ -9,4 +9,4 @@ const GridItem = (props) => (
 	</Grid>
 );
 
-export default GridItem;
+export default React.memo(GridItem);
