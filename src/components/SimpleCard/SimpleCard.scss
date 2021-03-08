@@ -1,24 +1,80 @@
-.simple-card.MuiCard-root {
-	font-size: 10px;
-	color: inherit;
-	position: relative;
-	display: flex;
-	align-items: flex-end;
-	overflow: hidden;
-	padding: 1rem;
-	margin: 1rem auto;
-	width: 90%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	text-align: center;
+@import '../../assets/scss/variables';
+
+.simple-card {
+	&.simple-card_basic {
+		cursor: pointer;
+		color: $color-white;
+		font-size: 10px;
+		color: inherit;
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		overflow: hidden;
+		padding: 1rem;
+		margin: 1rem auto;
+		width: 90%;
+		text-align: center;
+		background-color: transparent;
+	
+		&::after {
+			content: "";
+			display: block;
+			margin-top: 70%;
+		}
+	
+		&:hover {
+			transform: translateX(0);
+			box-shadow: 0 2.8px 2.2px $color-primary, 0 2.8px 2.2px $color-primary,
+									0 12.5px 10px $color-primary, 0 12.5px 10px $color-primary,
+									0 12.8px 90px $color-primary, 0 12.8px 90px $color-primary;
+				
+		}
+	}
 }
 
-.simple-card__content.MuiCardContent-root {
+.simple-card__img {
+	&.simple-card__img_basic {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.simple-card__content.simple-card__content_basic {
+	z-index: 2;
+	color: $color-white;
+	position: relative;
+	padding: 1rem;
 	font-size: 1.6rem;
+	font-weight: 600;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	padding: 1rem;
+
+	&::after {
+		content: "";
+		border-radius: .4rem;
+		display: block;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background: $color-black;
+		opacity: .5;
+	}
+
+	& .content__title.content__title_basic {
+		font-size: 1.8rem;
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+
+	& .content__subtitle.content__subtitle_basic {
+		font-weight: 500;
+	}
 }

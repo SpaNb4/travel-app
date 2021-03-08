@@ -7,16 +7,18 @@ import ClearIcon from '@material-ui/icons/Clear';
 import './Search.scss';
 
 const EMPTY_LINE = /^$/;
+const WITHOUT_SPACES = /\S/;
+
 import { updateSearchValue } from '../../store/countries/actions';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
 	const pathname = window.location.pathname;
 	const [path, setPath] = useState(pathname);
-	const [searchValue, setSearchValue] = useState();
-	const [valid, setValid] = useState(false);
-	// const [t] = useTranslation();
+	const [searchValue, setSearchValue] = useState('');
+	const [valid, setValid] = useState();
+	const [t] = useTranslation();
 
   const handleSubmit = useCallback(
     (event) => {
@@ -26,23 +28,23 @@ const Search = () => {
         dispatch(updateSearchValue(searchValue.trim()))
       }
     },
-    [valid]
+    [valid, searchValue]
   )
 
   const handleChange = useCallback(
     (event) => {
       const { value } = event.target
       setSearchValue(value)
-      if (!EMPTY_LINE.exec(value)) {
+      if (WITHOUT_SPACES.exec(value) && !EMPTY_LINE.exec(value)) {
         setValid(true)
+        dispatch(updateSearchValue(value.trim()))
       }
     })
 
   const handleClear = useCallback(
     () => {
       setSearchValue('')
-      setValid(false)
-      dispatch(updateSearchValue(searchValue))
+      dispatch(updateSearchValue(''))
     })
   
   useEffect(() => {
@@ -66,7 +68,7 @@ const Search = () => {
               type="text"
               autoFocus={true}
               autoComplete="off"
-              placeholder="Search country"
+              placeholder={t('Search country')}
               name="searchValue"
               onChange={handleChange}
               value={searchValue}
