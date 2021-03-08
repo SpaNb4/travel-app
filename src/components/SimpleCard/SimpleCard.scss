@@ -1,5 +1,9 @@
 @import '../../assets/scss/variables';
 
+.link_simple-card {
+	text-decoration: none;
+}
+
 .simple-card {
 	&.simple-card_basic {
 		cursor: pointer;
