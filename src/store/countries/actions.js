@@ -1,5 +1,5 @@
 import * as t from './action-types';
-import { default as uniqid } from 'uniqid';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 const COUNTRIES_URL = 'https://kovalenkoiryna15.github.io/countries/countries-ira.json';
@@ -33,7 +33,7 @@ const extendCountriesWithIds = (data) =>
 			key,
 			{
 				...value,
-				id: uniqid(),
+				id: uuidv4(),
 			},
 		])
 	);
