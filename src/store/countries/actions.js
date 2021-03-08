@@ -1,56 +1,9 @@
-import * as t from './action-types';
-import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios';
+import * as types from './action-types';
+import { createAction } from '@reduxjs/toolkit';
 
-const COUNTRIES_URL = 'https://kovalenkoiryna15.github.io/countries/countries-ira.json';
-
-export const updateSearchValue = (value) => ({
-	type: t.UPDATE_SEARCH_VALUE,
-	payload: { value },
-});
-
-export const fetchCountriesSuccess = (countries) => ({
-	type: t.FETCH_COUNTRIES_SUCCESS,
-	payload: countries,
-});
-
-export const fetchCountriesFailure = (error) => ({
-	type: t.FETCH_COUNTRIES_FAILURE,
-	payload: error,
-});
-
-export const showLoader = () => ({
-	type: t.SHOW_LOADER,
-});
-
-export const hideLoader = () => ({
-	type: t.HIDE_LOADER,
-});
-
-const extendCountriesWithIds = (data) =>
-	Object.fromEntries(
-		Object.entries(data).map(([key, value]) => [
-			key,
-			{
-				...value,
-				id: uuidv4(),
-			},
-		])
-	);
-
-export const fetchCountries = () => async (dispatch) => {
-	try {
-		dispatch(showLoader());
-		const response = await axios(COUNTRIES_URL);
-		const countriesWithIds = Object.values(extendCountriesWithIds(response.data));
-		dispatch(fetchCountriesSuccess(countriesWithIds));
-		dispatch(hideLoader());
-	} catch (error) {
-		dispatch(fetchCountriesFailure(error));
-	}
-};
-
-export const getCountryId = (id) => ({
-	type: t.GET_COUNTRY_ID,
-	payload: id,
-});
+export const updateSearchValue = createAction(types.UPDATE_SEARCH_VALUE);
+export const fetchCountriesSuccess = createAction(types.FETCH_COUNTRIES_SUCCESS);
+export const fetchCountriesFailure = createAction(types.FETCH_COUNTRIES_FAILURE);
+export const showLoader = createAction(types.SHOW_LOADER);
+export const hideLoader = createAction(types.HIDE_LOADER);
+export const getCountryId = createAction(types.GET_COUNTRY_ID);

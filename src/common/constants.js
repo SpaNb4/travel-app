@@ -1,4 +1,9 @@
 // EXCHANGE RATE WIDGETS
 export const DEFAULT_CURRENCY = 'EUR';
 export const DEFAULT_TIMEZONE = 'Europe/Kiev';
-export const DEFAULT_LANG = 'ru-RU';
+
+// Lang
+export const DEFAULT_LANGUAGE = 'en';
+
+// URLs
+export const COUNTRIES_URL = 'https://kovalenkoiryna15.github.io/countries/countries-ira.json';

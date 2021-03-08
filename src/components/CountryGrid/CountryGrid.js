@@ -1,10 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import countriesSlices from '../../store/countries/slices';
+import {
+	getCountriesLoading,
+	getCurrentId,
+	getAllCountries,
+} from '../../store/countries/slices';
 import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
 
@@ -72,9 +77,9 @@ const Video = () => {
 export function CountryGrid() {
 	const classes = useStyles();
 
-	const loading = countriesSlices.loading();
-	const countries = countriesSlices.countries();
-	const currentId = countriesSlices.currentId();
+	const countries = useSelector(getAllCountries);
+	const loading = useSelector(getCountriesLoading);
+	const currentId = useSelector(getCurrentId);
 
 	const country = countries.find((country) => country.id === currentId);
 

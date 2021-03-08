@@ -1,25 +1,30 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 
 import GridItem from './GridItem';
 
-import countriesSlices from '../../store/countries/slices';
-import { fetchCountries } from '../../store/countries/actions';
+import {
+	getCountriesLoading,
+	getSearchValue,
+	getFilteredCountries,
+	getAllCountries,
+} from '../../store/countries/slices';
 
 export default function MainGrid() {
-	const dispatch = useDispatch();
-	const countries = countriesSlices.countries();
-	const loading = countriesSlices.loading();
+	const countries = useSelector(getAllCountries);
+	const filteredCountries = useSelector(getFilteredCountries);
+	const loading = useSelector(getCountriesLoading);
+	const searchValue = useSelector(getSearchValue);
 
-	useEffect(() => {
-		dispatch(fetchCountries());
-	}, []);
-
-	const items = countries && countries.map((country) => <GridItem key={country.id} country={country} />);
+	const items =
+		(searchValue &&
+			filteredCountries.length &&
+			filteredCountries.map((country) => <GridItem key={country.id} country={country} />)) ||
+		(searchValue && !filteredCountries.length && <p>No countries found</p>) ||
+		(countries && countries.map((country) => <GridItem key={country.id} country={country} />));
 	const loader = loading && <CircularProgress />;
 	return (
 		<Container>

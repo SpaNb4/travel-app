@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,20 +16,22 @@ import Search from '../Search';
 import './Header.scss';
 
 import * as constants from '../../common/constants';
+import { updateCurrLng } from '../../store/app/actions';
+import { getCurrLng } from '../../store/app/slices';
 
 const Header = () => {
+	const dispatch = useDispatch();
 	const [isLngOpen, setIsLngOpen] = useState(false);
-	const [currLng, setCurrLng] = useState(localStorage.getItem('lng') || 'en');
+	const currLng = useSelector(getCurrLng);
 	const auth = true;
 
 	useEffect(() => {
 		i18n.changeLanguage(currLng);
-	}, []);
+	}, [currLng]);
 
 	function changeLanguageHandler(event) {
-		setCurrLng(event.target.value);
-		i18n.changeLanguage(event.target.value);
 		localStorage.setItem('lng', event.target.value);
+		dispatch(updateCurrLng(event.target.value));
 	}
 
 	function handleLngClose() {
