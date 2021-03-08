@@ -126,7 +126,7 @@ const ColumnRight = () => {
 		<Grid item xs={12} sm={4} className={classes.columnRight}>
 			<Container className={classes.contentGrid}>
 				<Grid container spacing={4}>
-					<Map />
+					<Map country={'Belarus'} />
 					<Widgets />
 					<Video />
 				</Grid>
