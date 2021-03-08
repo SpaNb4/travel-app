@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import countriesSlices from '../../store/countries/slices';
-
 import Overview from '../Overview/';
+import ImageGallery from './ImageGallery/ImageGallery';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -31,44 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'pink',
 		minHeight: 320,
 	},
-	sightContainer: {
-		border: '1px solid red',
-		backgroundColor: 'yellowgreen',
-	},
-	sightGrid: {
-		paddingRight: 0,
-		paddingLeft: 0,
-		minHeight: 320,
-	},
 }));
-
-const SightsItem = () => (
-	<Grid item xs={12} sm={6}>
-		SimpleCard
-	</Grid>
-);
-
-const Sights = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} className={classes.sightContainer}>
-			<Typography variant="h4" gutterBottom>
-				Sights
-			</Typography>
-			<Container className={classes.sightGrid}>
-				<Grid container spacing={4}>
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-					<SightsItem />
-				</Grid>
-			</Container>
-		</Grid>
-	);
-};
 
 const Map = () => {
 	const classes = useStyles();
@@ -126,7 +89,7 @@ export function CountryGrid() {
 						<Grid container spacing={4}>
 							{loader}
 							{overview}
-							<Sights />
+							<ImageGallery />
 						</Grid>
 					</Container>
 				</Grid>
