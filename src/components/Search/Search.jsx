@@ -70,10 +70,8 @@ const Search = () => {
               onChange={handleChange}
               value={searchValue}
               className="form__input"
-              inputProps={{ 'aria-label': 'search' }}
             />
             <IconButton
-              type="button"
               onClick={handleClear}
             >
               <ClearIcon />
