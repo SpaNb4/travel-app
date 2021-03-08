@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,26 +17,28 @@ const SimpleCard = ({ country }) => {
 	const [t] = useTranslation();
 
 	return (
-		<Card className="simple-card simple-card_basic">
-			<img
-				className="simple-card__img simple-card__img_basic"
-				src={`/images/${country.imageUrl}`}
-				alt="country image"
-			/>
-			<CardContent className="simple-card__content simple-card__content_basic">
-				<Typography gutterBottom className="content__title content__title_basic">
-					{country.countryName[currLng]}
-				</Typography>
-				<Typography gutterBottom className="content__subtitle content__subtitle_basic">
-					{country.capitalName[currLng]}
-				</Typography>
-				<CardActions>
-					<Button size="small" color="primary" variant="contained">
-						{t('Learn More')}
-					</Button>
-				</CardActions>
-			</CardContent>			
-		</Card>
+		<Link to={`/country/${country.id}`} className="link_simple-card">
+			<Card className="simple-card simple-card_basic">
+				<img
+					className="simple-card__img simple-card__img_basic"
+					src={`/images/${country.imageUrl}`}
+					alt="country image"
+				/>
+				<CardContent className="simple-card__content simple-card__content_basic">
+					<Typography gutterBottom className="content__title content__title_basic">
+						{country.countryName[currLng]}
+					</Typography>
+					<Typography gutterBottom className="content__subtitle content__subtitle_basic">
+						{country.capitalName[currLng]}
+					</Typography>
+					<CardActions>
+						<Button size="small" color="primary" variant="contained">
+							{t('Learn More')}
+						</Button>
+					</CardActions>
+				</CardContent>			
+			</Card>
+		</Link>
 	);
 };
 
