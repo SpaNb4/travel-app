@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -22,46 +23,35 @@ const useStyles = makeStyles((theme) => ({
 
 const Overview = ({ country }) => {
 	const classes = useStyles();
+	const { t } = useTranslation();
 
 	return (
 		<Grid item className={classes.root} xs={12}>
 			<Typography variant="h4" gutterBottom>
-				{country.countryName.en}
+				{t(country.countryName.en)}
 			</Typography>
 			<Typography variant="subtitle1" paragraph className={classes.subtitle}>
 				<LocationCityIcon />
-				<span>{country.capitalName.en}</span>
+				<span>{t(country.capitalName.en)}</span>
 			</Typography>
 			<Typography variant="body2" gutterBottom>
-				{country.description.en}
+				{t(country.description.en)}
 			</Typography>
 		</Grid>
 	);
 };
 
-// const MultiPropTypes = PropTypes.shape({
-//     en: PropTypes.string,
-//     ru: PropTypes.string,
-//     de: PropTypes.string,
-// }),
+const MultiPropTypes = PropTypes.shape({
+	en: PropTypes.string,
+	ru: PropTypes.string,
+	de: PropTypes.string,
+});
 
 Overview.propTypes = {
 	country: PropTypes.shape({
-		countryName: PropTypes.shape({
-			en: PropTypes.string,
-			ru: PropTypes.string,
-			de: PropTypes.string,
-		}),
-		capitalName: PropTypes.shape({
-			en: PropTypes.string,
-			ru: PropTypes.string,
-			de: PropTypes.string,
-		}),
-		description: PropTypes.shape({
-			en: PropTypes.string,
-			ru: PropTypes.string,
-			de: PropTypes.string,
-		}),
+		countryName: MultiPropTypes,
+		capitalName: MultiPropTypes,
+		description: MultiPropTypes,
 	}).isRequired,
 };
 
