@@ -1,14 +1,14 @@
-import * as React from 'react'
-import { useEffect, useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { Paper, IconButton, TextField } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import ClearIcon from '@material-ui/icons/Clear'
-import './Search.scss'
+import * as React from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { Paper, IconButton, TextField } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import ClearIcon from '@material-ui/icons/Clear';
+import './Search.scss';
 
-const EMPTY_LINE = /^$/
+const EMPTY_LINE = /^$/;
 import { updateSearchValue } from '../../store/countries/actions';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Search = () => {
 	const [path, setPath] = useState(pathname);
 	const [searchValue, setSearchValue] = useState();
 	const [valid, setValid] = useState(false);
-	const [t] = useTranslation();
+	// const [t] = useTranslation();
 
   const handleSubmit = useCallback(
     (event) => {
@@ -59,18 +59,17 @@ const Search = () => {
       { 
         show && (
           <Paper
-            component='form'
-            className='form'
+            component="form"
           >
             <TextField
               type="text"
               autoFocus={true}
-              autoComplete='off'
-              placeholder='Search country'
+              autoComplete="off"
+              placeholder="Search country"
               name="searchValue"
               onChange={handleChange}
               value={searchValue}
-              className='form__input'
+              className="form__input"
               inputProps={{ 'aria-label': 'search' }}
             />
             <IconButton

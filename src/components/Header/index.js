@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,7 +14,7 @@ import Timer from '../Widgets/Timer/Timer';
 import Search from '../Search';
 import './Header.scss';
 
-import * as c from '../../common/constants';
+import * as constants from '../../common/constants';
 
 const Header = () => {
 	const [isLngOpen, setIsLngOpen] = useState(false);
@@ -49,7 +48,7 @@ const Header = () => {
 					</Link>
 
 					<Search />
-					
+
 					<div className="header__toolbar_aside">
 						<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
 							<LanguageIcon />
@@ -79,8 +78,8 @@ const Header = () => {
 						)}
 					</div>
 				</Toolbar>
-				<ExchangeRates currency={c.DEFAULT_CURRENCY} />
-				<Timer timeZone={c.DEFAULT_TIMEZONE} lang={currLng} />
+				<ExchangeRates currency={constants.DEFAULT_CURRENCY} />
+				<Timer timeZone={constants.DEFAULT_TIMEZONE} lang={currLng} />
 			</Container>
 		</AppBar>
 	);
