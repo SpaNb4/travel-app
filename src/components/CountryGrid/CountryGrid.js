@@ -3,13 +3,10 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
+import Map from './Map/Map';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {
-	getCountriesLoading,
-	getCurrentId,
-	getAllCountries,
-} from '../../store/countries/slices';
+import { getCountriesLoading, getCurrentId, getAllCountries } from '../../store/countries/slices';
 import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
 
@@ -38,23 +35,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Map = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12} sm={9}>
-			<Typography variant="h4" gutterBottom>
-				Map
-			</Typography>
-		</Grid>
-	);
-};
-
 const Widgets = () => {
 	const classes = useStyles();
 
 	return (
-		<Grid item className={classes.blockContainer} xs={12} sm={3}>
+		<Grid item className={classes.blockContainer} xs={12}>
 			<Typography variant="h4" gutterBottom>
 				W-s
 			</Typography>
