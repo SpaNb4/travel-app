@@ -51,8 +51,12 @@ function ExchangeRates({ currency }) {
 				? rates.map((rate, index) => {
 						return (
 							<div key={index} className={classes.CurrencyContainer}>
-								<span className={classes.СurrencyName}>{rate.currency}: </span>
-								<span className={classes.CurrencyValue}>{rate.exchangeRate}</span>
+								<Typography variant="inherit" className={classes.СurrencyName}>
+									{rate.currency}:
+								</Typography>
+								<Typography variant="inherit" className={classes.CurrencyValue}>
+									&nbsp;{rate.exchangeRate}
+								</Typography>
 							</div>
 						);
 				  })
