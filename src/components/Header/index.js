@@ -10,15 +10,10 @@ import IconButton from '@material-ui/core/IconButton';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
-import Timer from '../Widgets/Timer/Timer';
 import Search from '../Search';
-import './Header.scss';
-import Weather from '../Widgets/Weather/Weather';
-
-import * as constants from '../../common/constants';
 import { updateCurrLng } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
+import './Header.scss';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -82,9 +77,6 @@ const Header = () => {
 						)}
 					</div>
 				</Toolbar>
-				<ExchangeRates currency={constants.DEFAULT_CURRENCY} />
-				<Timer timeZone={constants.DEFAULT_TIMEZONE} lang={currLng} />
-				<Weather cityName={constants.DEFAULT_CITY} countryCode={constants.DEFAULT_COUNTRY} lang={currLng} />
 			</Container>
 		</AppBar>
 	);

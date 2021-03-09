@@ -4,17 +4,22 @@ import { retrieveWeather } from './WeatherProvider';
 import classes from './Weather.module.scss';
 import { useTranslation } from 'react-i18next';
 
-function Weather({ cityName, countryCode, lang }) {
+function Weather({ cityName, lang }) {
 	const [weatherData, setWeatherData] = useState();
+	const [t] = useTranslation();
+
 	useEffect(() => {
-		retrieveWeather(countryCode, cityName, lang).then((weatherData) => {
+		retrieveWeather(cityName, lang).then((weatherData) => {
 			setWeatherData(weatherData);
 		});
-	}, []);
-	const [t] = useTranslation();
+	}, [lang]);
+
 	if (!weatherData) return <div>{t('Loading')}</div>;
+
 	if (!('name' in weatherData)) return <div>{t('Failed to retrieve weather')}</div>;
+
 	const iconUrl = weatherData.iconURL;
+
 	return (
 		<div className={classes.Weather}>
 			<h1>
@@ -39,7 +44,6 @@ function Weather({ cityName, countryCode, lang }) {
 
 Weather.propTypes = {
 	cityName: PropTypes.string.isRequired,
-	countryCode: PropTypes.string.isRequired,
 	lang: PropTypes.string.isRequired,
 };
 export default Weather;

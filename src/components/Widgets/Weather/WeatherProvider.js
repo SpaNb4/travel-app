@@ -8,13 +8,15 @@ function makeWeatherIconURL(iconName) {
 	return `${assetsBaseURL}/${iconName}.${iconExtension}`;
 }
 
-export function retrieveWeather(countryCode, cityName, lang) {
-	const url = `${baseURL}?q=${cityName},${countryCode}&units=${units}&appid=${apiKey}&lang=${lang}`;
+export function retrieveWeather(cityName, lang) {
+	const url = `${baseURL}?q=${cityName}&units=${units}&appid=${apiKey}&lang=${lang}`;
+
 	return fetch(url)
 		.then((res) => (res.ok ? res.json() : null))
 		.then((json) => {
 			if (json !== null) {
 				const weather = json.weather[0];
+
 				return {
 					name: json.name,
 					temp: json.main.temp,

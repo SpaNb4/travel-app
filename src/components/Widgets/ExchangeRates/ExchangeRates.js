@@ -45,7 +45,7 @@ function ExchangeRates({ currency }) {
 		<div className={classes.ExchangeRates}>
 			<Typography className={classes.ExchangeTitle}>
 				<AttachMoney />
-				{t('Exchange Rates')}
+				{t('Exchange Rates') + ` ${currency}`}
 			</Typography>
 			{rates
 				? rates.map((rate, index) => {

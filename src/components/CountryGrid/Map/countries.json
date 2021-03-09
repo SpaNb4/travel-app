@@ -517,7 +517,7 @@
 		{
 			"type": "Feature",
 			"id": "GBR",
-			"properties": { "name": "United Kingdom" },
+			"properties": { "name": "Great Britain" },
 			"geometry": {
 				"type": "MultiPolygon",
 				"coordinates": [
