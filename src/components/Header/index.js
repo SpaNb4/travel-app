@@ -14,6 +14,7 @@ import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
 import Timer from '../Widgets/Timer/Timer';
 import Search from '../Search';
 import './Header.scss';
+import Weather from '../Widgets/Weather/Weather';
 
 import * as constants from '../../common/constants';
 import { updateCurrLng } from '../../store/app/actions';
@@ -83,6 +84,7 @@ const Header = () => {
 				</Toolbar>
 				<ExchangeRates currency={constants.DEFAULT_CURRENCY} />
 				<Timer timeZone={constants.DEFAULT_TIMEZONE} lang={currLng} />
+				<Weather cityName={constants.DEFAULT_CITY} countryCode={constants.DEFAULT_COUNTRY} lang={currLng} />
 			</Container>
 		</AppBar>
 	);

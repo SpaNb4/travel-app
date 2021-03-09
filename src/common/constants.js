@@ -7,3 +7,8 @@ export const DEFAULT_LANGUAGE = 'en';
 
 // URLs
 export const COUNTRIES_URL = 'https://kovalenkoiryna15.github.io/countries/countries-ira.json';
+
+// Temporary constants for weather
+export const DEFAULT_CITY = 'Tokyo';
+export const DEFAULT_COUNTRY = 'JP';
+
