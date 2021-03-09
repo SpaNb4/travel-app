@@ -4,6 +4,7 @@ const initialState = {
 	countries: [],
 	loading: false,
 	searchValue: '',
+	currentId: '',
 };
 
 const handlers = {
@@ -26,6 +27,10 @@ const handlers = {
 	[t.HIDE_LOADER]: (state) => ({
 		...state,
 		loading: false,
+	}),
+	[t.GET_COUNTRY_ID]: (state, { payload }) => ({
+		...state,
+		currentId: payload,
 	}),
 	DEFAULT: (state) => state,
 };

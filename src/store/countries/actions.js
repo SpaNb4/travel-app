@@ -49,3 +49,8 @@ export const fetchCountries = () => async (dispatch) => {
 		dispatch(fetchCountriesFailure(error));
 	}
 };
+
+export const getCountryId = (id) => ({
+	type: t.GET_COUNTRY_ID,
+	payload: id,
+});
