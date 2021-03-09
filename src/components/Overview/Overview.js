@@ -5,14 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { useTranslation } from 'react-i18next';
+const PATH = '/images/';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		position: 'relative',
 		padding: theme.spacing(4),
 		color: theme.palette.primary.contrastText,
-		background: 'url(https://images.unsplash.com/photo-1586785096421-54bc44db585f) rgba(0, 0, 0, 0.3)',
-		backgroundSize: 'cover',
+		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, 0.6) url(${PATH}${url})`,
 		backgroundBlendMode: 'multiply',
 	},
 	subtitle: {
@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Overview = ({ country }) => {
-	const classes = useStyles();
+	const url = country.imageUrl;
+	const classes = useStyles({ url });
 	const { t } = useTranslation();
 
 	return (
@@ -52,6 +53,7 @@ Overview.propTypes = {
 		countryName: MultiPropTypes,
 		capitalName: MultiPropTypes,
 		description: MultiPropTypes,
+		imageUrl: PropTypes.string,
 	}).isRequired,
 };
 
