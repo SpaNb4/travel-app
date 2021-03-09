@@ -25,7 +25,7 @@ const Search = () => {
       event.preventDefault()
       event.stopPropagation()
       if (valid) {
-        dispatch(updateSearchValue(searchValue.trim()))
+        dispatch(updateSearchValue(searchValue))
       }
     },
     [valid, searchValue]
@@ -37,7 +37,7 @@ const Search = () => {
       setSearchValue(value)
       if (WITHOUT_SPACES.exec(value) && !EMPTY_LINE.exec(value)) {
         setValid(true)
-        dispatch(updateSearchValue(value.trim()))
+        dispatch(updateSearchValue(value))
       }
     })
 

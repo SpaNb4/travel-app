@@ -10,7 +10,7 @@ import Home from './containers/home/';
 import Country from './containers/country/';
 
 import { updateCurrLng } from './store/app/actions';
-import { fetchCountries } from './common/services';
+import { fetchCountries } from './store/countries/actions';
 
 function App() {
 	const dispatch = useDispatch();

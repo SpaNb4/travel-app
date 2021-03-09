@@ -11,7 +11,7 @@ const initialState = {
 const reducer = createReducer(initialState, (builder) => {
 	builder
 		.addCase(actions.updateSearchValue, (state, action) => {
-			state.searchValue = action.payload;
+			state.searchValue = action.payload.trim();
 		})
 		.addCase(actions.fetchCountriesSuccess, (state, action) => {
 			state.countries = action.payload;
