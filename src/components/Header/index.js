@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Link from '@material-ui/core/Link';
-import { MenuItem, Select } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import IconButton from '@material-ui/core/IconButton';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
+import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExchangeRates from '../Widgets/ExchangeRates/ExchangeRates';
@@ -47,8 +48,8 @@ const Header = () => {
 		<AppBar position="static" className="header">
 			<Container className="header__container">
 				<Toolbar className="header__toolbar">
-					<Link href="#" color="inherit">
-						<TagFacesIcon />
+					<Link to="/">
+						<HomeIcon fontSize="large" />
 					</Link>
 
 					<Search />

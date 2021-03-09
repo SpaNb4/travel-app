@@ -5,14 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { useTranslation } from 'react-i18next';
-const PATH = '/images/';
+import { IMAGE_PATH } from '../../common/constants';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		position: 'relative',
 		padding: theme.spacing(4),
 		color: theme.palette.primary.contrastText,
-		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, 0.6) url(${PATH}${url})`,
+		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, 0.6) url(${IMAGE_PATH}${url})`,
 		backgroundBlendMode: 'multiply',
 	},
 	subtitle: {
