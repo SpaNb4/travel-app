@@ -84,7 +84,7 @@ const Header = () => {
 				</Toolbar>
 				<ExchangeRates currency={constants.DEFAULT_CURRENCY} />
 				<Timer timeZone={constants.DEFAULT_TIMEZONE} lang={currLng} />
-				<Weather cityName={constants.DEFAULT_CITY} countryCode={constants.DEFAULT_COUNTRY} />
+				<Weather cityName={constants.DEFAULT_CITY} countryCode={constants.DEFAULT_COUNTRY} lang={currLng} />
 			</Container>
 		</AppBar>
 	);

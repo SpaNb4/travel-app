@@ -8,8 +8,8 @@ function makeWeatherIconURL(iconName) {
 	return `${assetsBaseURL}/${iconName}.${iconExtension}`;
 }
 
-export function retrieveWeather(countryCode, cityName) {
-	const url = `${baseURL}?q=${cityName},${countryCode}&units=${units}&appid=${apiKey}`;
+export function retrieveWeather(countryCode, cityName, lang) {
+	const url = `${baseURL}?q=${cityName},${countryCode}&units=${units}&appid=${apiKey}&lang=${lang}`;
 	return fetch(url)
 		.then((res) => (res.ok ? res.json() : null))
 		.then((json) => {
@@ -22,8 +22,7 @@ export function retrieveWeather(countryCode, cityName) {
 					tempMin: json.main.temp_min,
 					windSpeed: json.wind.speed,
 					iconURL: makeWeatherIconURL(weather.icon),
-					mainDescription: weather.main,
-					description: json.weather.description,
+					description: weather.description,
 				};
 			}
 			return {};
