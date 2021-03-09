@@ -1,20 +1,25 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import logo from './../../assets/images/logo_rs.png';
 
 const useStyles = makeStyles(() => ({
 	flexContainer: {
 		display: 'flex',
-		flexDirection: 'row',
+		alignItems: 'center',
 		justifyContent: 'space-between',
-		padding: 0,
+	},
+	list: {
+		display: 'flex',
+		alignItems: 'center',
+	},
+	item: {
+		width: 'auto',
+		marginRight: 5,
 	},
 }));
 
@@ -22,34 +27,36 @@ const Footer = () => {
 	const classes = useStyles();
 
 	return (
-		<AppBar position="static" color="primary">
-			<Container>
-				<Toolbar>
-					<List className={classes.flexContainer}>
-						<ListItem>
-							<Link href="#" color="inherit">
-								<GitHubIcon />
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link href="#" color="inherit">
-								<GitHubIcon />
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link href="#" color="inherit">
-								<GitHubIcon />
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link href="#" color="inherit">
-								<GitHubIcon />
-							</Link>
-						</ListItem>
-					</List>
-				</Toolbar>
+		<footer>
+			<Container className={classes.flexContainer}>
+				<List className={classes.list}>
+					<ListItem className={classes.item}>© {new Date().getFullYear()}</ListItem>
+					<ListItem className={classes.item}>
+						<Link href="https://github.com/AlesyaKuptsova" color="inherit" target="_blank">
+							<GitHubIcon />
+						</Link>
+					</ListItem>
+					<ListItem className={classes.item}>
+						<Link href="https://github.com/magklax" color="inherit" target="_blank">
+							<GitHubIcon />
+						</Link>
+					</ListItem>
+					<ListItem className={classes.item}>
+						<Link href="https://github.com/kovalenkoiryna15" color="inherit" target="_blank">
+							<GitHubIcon />
+						</Link>
+					</ListItem>
+					<ListItem className={classes.item}>
+						<Link href="https://github.com/SpaNb4" color="inherit" target="_blank">
+							<GitHubIcon />
+						</Link>
+					</ListItem>
+				</List>
+				<Link href="https://rs.school/js/" color="inherit" target="_blank">
+					<img src={logo} alt="rs school logo" width={100} height={50} />
+				</Link>
 			</Container>
-		</AppBar>
+		</footer>
 	);
 };
 

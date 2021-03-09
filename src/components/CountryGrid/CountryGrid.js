@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import Map from './Map/Map';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { getCountriesLoading, getCurrentId, getAllCountries } from '../../store/countries/slices';
+import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,28 +33,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'pink',
 		minHeight: 320,
 	},
-	sightContainer: {
-		border: '1px solid red',
-		backgroundColor: 'yellowgreen',
-	},
-	sightGrid: {
-		paddingRight: 0,
-		paddingLeft: 0,
-		minHeight: 320,
-	},
 }));
-
-const Overview = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12}>
-			<Typography variant="h4" gutterBottom>
-				Country
-			</Typography>
-		</Grid>
-	);
-};
 
 const Widgets = () => {
 	const classes = useStyles();
@@ -76,45 +59,39 @@ const Video = () => {
 	);
 };
 
-const ColumnLeft = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} sm={8} className={classes.columnLeft}>
-			<Container className={classes.contentGrid}>
-				<Grid container spacing={4}>
-					<Overview />
-					<ImageGallery />
-				</Grid>
-			</Container>
-		</Grid>
-	);
-};
-
-const ColumnRight = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item xs={12} sm={4} className={classes.columnRight}>
-			<Container className={classes.contentGrid}>
-				<Grid container spacing={4}>
-					<Map country={'Belarus'} />
-					<Widgets />
-					<Video />
-				</Grid>
-			</Container>
-		</Grid>
-	);
-};
-
 export function CountryGrid() {
 	const classes = useStyles();
+
+	const countries = useSelector(getAllCountries);
+	const loading = useSelector(getCountriesLoading);
+	const currentId = useSelector(getCurrentId);
+
+	const country = countries.find((country) => country.id === currentId);
+
+	const overview = country && <Overview country={country} />;
+	const loader = loading && <CircularProgress />;
 
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
-				<ColumnLeft />
-				<ColumnRight />
+				<Grid item xs={12} sm={8} className={classes.columnLeft}>
+					<Container className={classes.contentGrid}>
+						<Grid container spacing={4}>
+							{loader}
+							{overview}
+							<ImageGallery />
+						</Grid>
+					</Container>
+				</Grid>
+				<Grid item xs={12} sm={4} className={classes.columnRight}>
+					<Container className={classes.contentGrid}>
+						<Grid container spacing={4}>
+							<Map />
+							<Widgets />
+							<Video />
+						</Grid>
+					</Container>
+				</Grid>
 			</Grid>
 		</Container>
 	);
