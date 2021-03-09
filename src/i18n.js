@@ -17,6 +17,7 @@ i18n.use(Backend)
 			useSuspense: false,
 			wait: true,
 		},
+		keySeparator: false,
 
 		backend: locizeOptions,
 	});

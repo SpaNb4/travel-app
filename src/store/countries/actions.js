@@ -1,7 +1,6 @@
 import * as types from './action-types';
 import { createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { extendWithIds } from '../../common/helpers';
 import { COUNTRIES_URL } from '../../common/constants';
 
 export const updateSearchValue = createAction(types.UPDATE_SEARCH_VALUE);
@@ -15,8 +14,8 @@ export const fetchCountries = () => async (dispatch) => {
 	try {
 		dispatch(showLoader());
 		const response = await axios(COUNTRIES_URL);
-		const countriesWithIds = Object.values(extendWithIds(response.data));
-		dispatch(fetchCountriesSuccess(countriesWithIds));
+		const countries = Object.values(response.data);
+		dispatch(fetchCountriesSuccess(countries));
 		dispatch(hideLoader());
 	} catch (error) {
 		dispatch(fetchCountriesFailure(error));
