@@ -4,12 +4,12 @@ import { retrieveWeather } from './WeatherProvider';
 import classes from './Weather.module.scss';
 import { useTranslation } from 'react-i18next';
 
-function Weather({ cityName, lang }) {
+function Weather({ cityName, lang, countryCode }) {
 	const [weatherData, setWeatherData] = useState();
 	const [t] = useTranslation();
 
 	useEffect(() => {
-		retrieveWeather(cityName, lang).then((weatherData) => {
+		retrieveWeather(cityName, lang, countryCode).then((weatherData) => {
 			setWeatherData(weatherData);
 		});
 	}, [lang]);
@@ -46,5 +46,6 @@ function Weather({ cityName, lang }) {
 Weather.propTypes = {
 	cityName: PropTypes.string.isRequired,
 	lang: PropTypes.string.isRequired,
+	countryCode: PropTypes.string.isRequired,
 };
 export default Weather;
