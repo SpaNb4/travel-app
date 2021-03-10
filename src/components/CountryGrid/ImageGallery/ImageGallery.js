@@ -19,7 +19,7 @@ function ImageGallery({ places }) {
 
 	const renderCustomControls = () => {
 		return refImg.current ? (
-			<h2 className={classes.PlaceName}>{places[refImg.current.getCurrentIndex()].name.en}</h2>
+			<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name.en)}</h2>
 		) : null;
 	};
 
