@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
 import Map from './Map/Map';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCountriesLoading, getCurrentId, getAllCountries } from '../../store/countries/slices';
 import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Widgets from '../Widgets/Widgets';
+import Video from './Video/Video';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -36,18 +36,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Video = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12}>
-			<Typography variant="h4" gutterBottom>
-				Video
-			</Typography>
-		</Grid>
-	);
-};
-
 export function CountryGrid() {
 	const classes = useStyles();
 
@@ -59,6 +47,7 @@ export function CountryGrid() {
 
 	const overview = country && <Overview country={country} />;
 	const loader = loading && <CircularProgress />;
+	const video = country && <Video videoUrl={country.videoUrl} />;
 
 	return (
 		<Container className={classes.columnGrid}>
@@ -79,7 +68,7 @@ export function CountryGrid() {
 								<Grid container spacing={4}>
 									<Map country={country.countryName.en} />
 									<Widgets country={country} />
-									<Video />
+									{video}
 								</Grid>
 							</Container>
 						</Grid>
