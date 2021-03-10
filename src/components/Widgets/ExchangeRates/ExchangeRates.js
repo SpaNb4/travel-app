@@ -8,7 +8,7 @@ import { Typography } from '@material-ui/core';
 import { AttachMoney } from '@material-ui/icons';
 
 function ExchangeRates({ currency }) {
-	const DECIMAL_PLACES = 2;
+	const DECIMAL_PLACES = 3;
 	const EXCHANGE_VALUE = 1;
 	const CURRENCY_USD = 'USD';
 	const CURRENCY_EUR = 'EUR';
