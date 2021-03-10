@@ -18,6 +18,7 @@ i18n.use(Backend)
 			wait: true,
 		},
 		keySeparator: false,
+		nsSeparator: false,
 
 		backend: locizeOptions,
 	});
