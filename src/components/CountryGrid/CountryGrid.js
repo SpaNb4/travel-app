@@ -63,28 +63,28 @@ export function CountryGrid() {
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
-				<Grid item xs={12} sm={8} className={classes.columnLeft}>
-					<Container className={classes.contentGrid}>
-						<Grid container spacing={4}>
-							{loader}
-							{overview}
-							<ImageGallery />
+				{country && (
+					<>
+						<Grid item xs={12} sm={8} className={classes.columnLeft}>
+							<Container className={classes.contentGrid}>
+								<Grid container spacing={4}>
+									{loader}
+									{overview}
+									<ImageGallery places={country.places} />
+								</Grid>
+							</Container>
 						</Grid>
-					</Container>
-				</Grid>
-				<Grid item xs={12} sm={4} className={classes.columnRight}>
-					<Container className={classes.contentGrid}>
-						<Grid container spacing={4}>
-							{country && (
-								<>
+						<Grid item xs={12} sm={4} className={classes.columnRight}>
+							<Container className={classes.contentGrid}>
+								<Grid container spacing={4}>
 									<Map country={country.countryName.en} />
 									<Widgets country={country} />
 									<Video />
-								</>
-							)}
+								</Grid>
+							</Container>
 						</Grid>
-					</Container>
-				</Grid>
+					</>
+				)}
 			</Grid>
 		</Container>
 	);

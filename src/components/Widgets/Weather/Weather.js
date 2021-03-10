@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { retrieveWeather } from './WeatherProvider';
 import classes from './Weather.module.scss';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '@material-ui/core';
 
 function Weather({ cityName, lang }) {
 	const [weatherData, setWeatherData] = useState();

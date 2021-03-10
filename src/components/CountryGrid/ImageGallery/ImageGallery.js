@@ -1,24 +1,25 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import Gallery from 'react-image-gallery';
+import { PropTypes } from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
-const images = [
-	{
-		original: 'https://picsum.photos/id/1018/1000/600/',
-		thumbnail: 'https://picsum.photos/id/1018/250/150/',
-		description: 'First image',
-	},
-	{
-		original: 'https://picsum.photos/id/1015/1000/600/',
-		thumbnail: 'https://picsum.photos/id/1015/250/150/',
-		description: 'Second image',
-	},
-	{
-		original: 'https://picsum.photos/id/1019/1000/600/',
-		thumbnail: 'https://picsum.photos/id/1019/250/150/',
-		description: 'Third image',
-	},
-];
+function ImageGallery({ places }) {
+	const [t] = useTranslation();
 
-export default function ImageGallery() {
+	const images = places.map((place) => {
+		return {
+			original: `${process.env.PUBLIC_URL}/images/${place.imageUrl}`,
+			thumbnail: `${process.env.PUBLIC_URL}/images/${place.imageUrl}`,
+			description: t(place.description.en),
+		};
+	});
+
 	return <Gallery items={images} />;
 }
+
+ImageGallery.propTypes = {
+	places: PropTypes.object.isRequred,
+};
+
+export default ImageGallery;
