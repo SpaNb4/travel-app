@@ -63,7 +63,7 @@ export function CountryGrid() {
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
-				{country && (
+				{country && window.location.href.includes(country.id) && (
 					<>
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
 							<Container className={classes.contentGrid}>
