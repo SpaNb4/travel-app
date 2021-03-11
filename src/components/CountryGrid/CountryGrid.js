@@ -9,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCountriesLoading, getCurrentId, getAllCountries } from '../../store/countries/slices';
 import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
+import Widgets from '../Widgets/Widgets';
 
 const useStyles = makeStyles((theme) => ({
 	columnGrid: {
@@ -34,18 +35,6 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: 320,
 	},
 }));
-
-const Widgets = () => {
-	const classes = useStyles();
-
-	return (
-		<Grid item className={classes.blockContainer} xs={12}>
-			<Typography variant="h4" gutterBottom>
-				W-s
-			</Typography>
-		</Grid>
-	);
-};
 
 const Video = () => {
 	const classes = useStyles();
@@ -74,24 +63,28 @@ export function CountryGrid() {
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
-				<Grid item xs={12} sm={8} className={classes.columnLeft}>
-					<Container className={classes.contentGrid}>
-						<Grid container spacing={4}>
-							{loader}
-							{overview}
-							<ImageGallery />
+				{country && window.location.href.includes(country.id) && (
+					<>
+						<Grid item xs={12} sm={8} className={classes.columnLeft}>
+							<Container className={classes.contentGrid}>
+								<Grid container spacing={4}>
+									{loader}
+									{overview}
+									<ImageGallery places={country.places} />
+								</Grid>
+							</Container>
 						</Grid>
-					</Container>
-				</Grid>
-				<Grid item xs={12} sm={4} className={classes.columnRight}>
-					<Container className={classes.contentGrid}>
-						<Grid container spacing={4}>
-							<Map />
-							<Widgets />
-							<Video />
+						<Grid item xs={12} sm={4} className={classes.columnRight}>
+							<Container className={classes.contentGrid}>
+								<Grid container spacing={4}>
+									<Map country={country.countryName.en} />
+									<Widgets country={country} />
+									<Video />
+								</Grid>
+							</Container>
 						</Grid>
-					</Container>
-				</Grid>
+					</>
+				)}
 			</Grid>
 		</Container>
 	);

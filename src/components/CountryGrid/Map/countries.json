@@ -478,7 +478,9 @@
 						]
 					]
 				]
-			}
+			},
+			"capitalName": "Beijing",
+			"capitalCoords": [39.9042, 116.407396]
 		},
 		{
 			"type": "Feature",
@@ -517,7 +519,7 @@
 		{
 			"type": "Feature",
 			"id": "GBR",
-			"properties": { "name": "United Kingdom" },
+			"properties": { "name": "Great Britain" },
 			"geometry": {
 				"type": "MultiPolygon",
 				"coordinates": [

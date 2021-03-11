@@ -8,7 +8,7 @@ import { Typography } from '@material-ui/core';
 import { AttachMoney } from '@material-ui/icons';
 
 function ExchangeRates({ currency }) {
-	const DECIMAL_PLACES = 2;
+	const DECIMAL_PLACES = 3;
 	const EXCHANGE_VALUE = 1;
 	const CURRENCY_USD = 'USD';
 	const CURRENCY_EUR = 'EUR';
@@ -45,14 +45,18 @@ function ExchangeRates({ currency }) {
 		<div className={classes.ExchangeRates}>
 			<Typography className={classes.ExchangeTitle}>
 				<AttachMoney />
-				{t('Exchange Rates')}
+				{t('Exchange Rates') + ` ${currency}`}
 			</Typography>
 			{rates
 				? rates.map((rate, index) => {
 						return (
 							<div key={index} className={classes.CurrencyContainer}>
-								<span className={classes.СurrencyName}>{rate.currency}: </span>
-								<span className={classes.CurrencyValue}>{rate.exchangeRate}</span>
+								<Typography variant="inherit" className={classes.СurrencyName}>
+									{rate.currency}:
+								</Typography>
+								<Typography variant="inherit" className={classes.CurrencyValue}>
+									&nbsp;{rate.exchangeRate}
+								</Typography>
 							</div>
 						);
 				  })
