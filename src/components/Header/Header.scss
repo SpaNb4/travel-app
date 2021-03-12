@@ -1,22 +1,27 @@
-@import '../../assets/scss/mixins';
-@import '../../assets/scss/variables';
-
 .header.header {
   font-size: 10px;
-  padding: 1rem 2.4rem;
+  padding: .1rem 2.4rem;
+
+  @include resolution(tablet) {
+    padding: .5rem 2.4rem;
+  }
 }
 
 .header__link.link_home {
   display: inline-block;
   position: relative;
-  flex-basis: 10%;
+  flex-basis: 25%;
   padding: .25rem;
   border: 1px solid transparent;
   border-radius: .5rem;
   text-align: center;
 
+  @include resolution(tablet) {
+    flex-basis: 30%;
+  }
+
   @include resolution(big-mobile) {
-    flex-basis: 100%;
+    flex-basis: 80%;
   }
 
   & .logo__img {
@@ -27,14 +32,7 @@
     transform: translateZ(0);
 
     @include resolution(big-mobile) {
-      width: 40%;
-      padding: 1rem 0;
-    }
-  }
-
-  &:hover {
-    & .logo__img {
-      box-shadow: 0 0 10px $color-black;
+      padding: .15rem 0;
     }
   }
 }
@@ -48,6 +46,7 @@
   text-align: center;
   
   @include resolution(big-mobile) {
+    justify-content: center;
     flex-wrap: wrap;
   }
 }
