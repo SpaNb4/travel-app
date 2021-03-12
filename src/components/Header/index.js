@@ -26,6 +26,12 @@ const Header = () => {
 	const [isAuth, setIsAuth] = useState(false);
 
 	useEffect(() => {
+		if (localStorage.getItem('username')) {
+			setIsAuth(true);
+		}
+	}, []);
+
+	useEffect(() => {
 		i18n.changeLanguage(currLng);
 	}, [currLng]);
 
@@ -88,22 +94,25 @@ const Header = () => {
 							</select>
 						</div>
 						<div>
-							<IconButton
-								onClick={handleRegisterOpen}
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								color="inherit"
-							>
-								<PersonAdd />
-							</IconButton>
-							<IconButton
-								onClick={handleLoginOpen}
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								color="inherit"
-							>
-								<AccountCircleIcon />
-							</IconButton>
+							{isAuth ? (
+								<IconButton
+									onClick={handleLoginOpen}
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									color="inherit"
+								>
+									<AccountCircleIcon />
+								</IconButton>
+							) : (
+								<IconButton
+									onClick={handleRegisterOpen}
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									color="inherit"
+								>
+									<PersonAdd />
+								</IconButton>
+							)}
 						</div>
 					</div>
 				</Toolbar>
