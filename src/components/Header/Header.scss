@@ -1,65 +1,65 @@
-.header.MuiAppBar-root {
-	font-size: 10px;
-	padding: 0 2.4rem;
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/variables';
+
+.header.header {
+  font-size: 10px;
+  padding: 1rem 2.4rem;
 }
 
-.header__container.MuiContainer-root {
-	max-width: 100%;
-	padding: 0;
+.header__link.link_home {
+  display: inline-block;
+  position: relative;
+  flex-basis: 10%;
+  padding: .25rem;
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  text-align: center;
+
+  @include resolution(big-mobile) {
+    flex-basis: 100%;
+  }
+
+  & .logo__img {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    transform: translateZ(0);
+
+    @include resolution(big-mobile) {
+      width: 40%;
+      padding: 1rem 0;
+    }
+  }
+
+  &:hover {
+    & .logo__img {
+      box-shadow: 0 0 10px $color-black;
+    }
+  }
 }
 
-.header__toolbar.MuiToolbar-root {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
+.header__container.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  
+  @include resolution(big-mobile) {
+    flex-wrap: wrap;
+  }
 }
 
-.header__toolbar_aside {
-	display: flex;
-	justify-content: flex-end;
-	flex-grow: 2;
-}
+.header__toolbar_list {
+  flex-basis: 90%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap-reverse;
 
-.selectWrapper {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 150px;
-
-	.select {
-		appearance: none;
-		display: block;
-		width: 100%;
-		max-width: 320px;
-		height: 40px;
-		float: right;
-		margin: 5px 0px;
-		padding: 0px 24px;
-		font-size: 16px;
-		background-image: none;
-		border: 1px solid #cccccc;
-		word-break: normal;
-		border-radius: 10px;
-		outline: none;
-		&:hover {
-			border: 2px solid lighten($color-primary, 10);
-		}
-		option {
-			font-family: 'Roboto', sans-serif;
-		}
-	}
-	&:after {
-		content: '<>';
-		font: 17px 'Consolas', monospace;
-		color: #333;
-		transform: rotate(90deg);
-		right: 11px;
-
-		padding: 0 0 2px;
-		border-bottom: 1px solid #999;
-
-		position: absolute;
-		pointer-events: none;
-	}
+  @include resolution(big-mobile) {
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
 }
