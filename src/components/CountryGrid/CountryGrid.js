@@ -23,7 +23,7 @@ export function CountryGrid() {
 	const video = country && <Video videoUrl={country.videoUrl} />;
 
 	return (
-		<Container disableGutters className={classes.columnGrid}>
+		<Container className={classes.columnGrid}>
 			<Grid container>
 				{country && window.location.href.includes(country.id) && (
 					<>

@@ -12,6 +12,11 @@
 .columnRight {
 	min-height: 320px;
 	padding-left: 20px;
+	padding-right: 20px;
+
+	@include resolution(tablet) {
+		margin-top: 20px !important;
+	}
 }
 .blockContainer {
 	padding: 30px;
