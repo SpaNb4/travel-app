@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -12,9 +11,10 @@ import { getCurrLng } from '../../store/app/slices';
 const useStyles = makeStyles((theme) => ({
 	blockContainer: {
 		padding: theme.spacing(4),
-		border: '1px solid red',
-		backgroundColor: 'pink',
+		background: '#54d2e9',
 		minHeight: 320,
+		borderRight: '1px solid #ffffff',
+		borderLeft: '1px solid #ffffff',
 	},
 }));
 

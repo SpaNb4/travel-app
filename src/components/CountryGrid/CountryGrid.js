@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Map from './Map/Map';
@@ -10,35 +9,9 @@ import Overview from '../Overview/';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Widgets from '../Widgets/Widgets';
 import Video from './Video/Video';
-
-const useStyles = makeStyles((theme) => ({
-	columnGrid: {
-		padding: theme.spacing(4),
-		backgroundColor: 'grey',
-	},
-	contentGrid: {
-		padding: theme.spacing(4),
-		backgroundColor: 'grey',
-	},
-	columnLeft: {
-		backgroundColor: 'purple',
-		minHeight: 320,
-	},
-	columnRight: {
-		backgroundColor: 'red',
-		minHeight: 320,
-	},
-	blockContainer: {
-		padding: theme.spacing(4),
-		border: '1px solid red',
-		backgroundColor: 'pink',
-		minHeight: 320,
-	},
-}));
+import classes from './CountryGrid.module.scss';
 
 export function CountryGrid() {
-	const classes = useStyles();
-
 	const countries = useSelector(getAllCountries);
 	const loading = useSelector(getCountriesLoading);
 	const currentId = useSelector(getCurrentId);
@@ -50,13 +23,13 @@ export function CountryGrid() {
 	const video = country && <Video videoUrl={country.videoUrl} />;
 
 	return (
-		<Container className={classes.columnGrid}>
-			<Grid container spacing={4}>
+		<Container disableGutters className={classes.columnGrid}>
+			<Grid container>
 				{country && window.location.href.includes(country.id) && (
 					<>
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
-							<Container className={classes.contentGrid}>
-								<Grid container spacing={4}>
+							<Container disableGutters className={classes.contentGrid}>
+								<Grid container>
 									{loader}
 									{overview}
 									<ImageGallery places={country.places} />
@@ -64,8 +37,8 @@ export function CountryGrid() {
 							</Container>
 						</Grid>
 						<Grid item xs={12} sm={4} className={classes.columnRight}>
-							<Container className={classes.contentGrid}>
-								<Grid container spacing={4}>
+							<Container disableGutters className={classes.contentGrid}>
+								<Grid container>
 									<Map country={country.countryName.en} />
 									<Widgets country={country} />
 									{video}

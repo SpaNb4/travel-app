@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.primary.contrastText,
 		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, 0.6) url(${IMAGE_PATH}${url})`,
 		backgroundBlendMode: 'multiply',
+		borderRadius: '10px 10px 0px 0px',
 	},
 	subtitle: {
 		verticalAlign: 'middle',

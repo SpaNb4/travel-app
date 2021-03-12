@@ -9,13 +9,13 @@ import { PropTypes } from 'prop-types';
 import marker from './img/marker.jpg';
 import markerShadow from './img/marker_shadow.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	blockContainer: {
-		padding: theme.spacing(4),
 		minHeight: 320,
 	},
 	map: {
 		height: 320,
+		borderRadius: '10px 10px 0 0',
 	},
 }));
 
