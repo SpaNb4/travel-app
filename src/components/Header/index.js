@@ -104,14 +104,24 @@ const Header = () => {
 									<AccountCircleIcon />
 								</IconButton>
 							) : (
-								<IconButton
-									onClick={handleRegisterOpen}
-									aria-controls="menu-appbar"
-									aria-haspopup="true"
-									color="inherit"
-								>
-									<PersonAdd />
-								</IconButton>
+								<>
+									<IconButton
+										onClick={handleRegisterOpen}
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										color="inherit"
+									>
+										<PersonAdd />
+									</IconButton>
+									<IconButton
+										onClick={handleLoginOpen}
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										color="inherit"
+									>
+										<AccountCircleIcon />
+									</IconButton>
+								</>
 							)}
 						</div>
 					</div>
