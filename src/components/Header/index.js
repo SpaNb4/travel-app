@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -22,7 +20,6 @@ import { PersonAdd } from '@material-ui/icons';
 
 const Header = () => {
 	const dispatch = useDispatch();
-	const [isLngOpen, setIsLngOpen] = useState(false);
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const currLng = useSelector(getCurrLng);
@@ -35,14 +32,6 @@ const Header = () => {
 	function changeLanguageHandler(event) {
 		localStorage.setItem('lng', event.target.value);
 		dispatch(updateCurrLng(event.target.value));
-	}
-
-	function handleLngClose() {
-		setIsLngOpen(false);
-	}
-
-	function handleLngOpen() {
-		setIsLngOpen(true);
 	}
 
 	function handleRegisterOpen() {
@@ -88,21 +77,16 @@ const Header = () => {
 					<Search />
 
 					<div className="header__toolbar_aside">
-						<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
+						<IconButton aria-label="display language select" color="inherit">
 							<LanguageIcon />
 						</IconButton>
-						<Select
-							id="select"
-							open={isLngOpen}
-							onChange={changeLanguageHandler}
-							onClose={handleLngClose}
-							onOpen={handleLngOpen}
-							value={currLng}
-						>
-							<MenuItem value="en">EN</MenuItem>
-							<MenuItem value="de">DE</MenuItem>
-							<MenuItem value="ru">RU</MenuItem>
-						</Select>
+						<div className="selectWrapper">
+							<select className="select" onChange={changeLanguageHandler} value={currLng}>
+								<option value="en">EN</option>
+								<option value="de">DE</option>
+								<option value="ru">RU</option>
+							</select>
+						</div>
 						<div>
 							<IconButton
 								onClick={handleRegisterOpen}
