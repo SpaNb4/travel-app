@@ -15,7 +15,6 @@ import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
-	// const pathname = window.location.pathname;
   const { pathname } = useLocation();
 	const [path, setPath] = useState(pathname);
 	const [searchValue, setSearchValue] = useState('');

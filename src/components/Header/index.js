@@ -13,7 +13,7 @@ import Search from '../Search';
 import { updateCurrLng } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import './Header.scss';
-import logo from '../../assets/images/travel-app-logo.jpg';
+import logo from '../../assets/images/travel-app-logo.png';
 
 const Header = () => {
 	const dispatch = useDispatch();
