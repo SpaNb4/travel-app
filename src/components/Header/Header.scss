@@ -1,21 +1,65 @@
 .header.MuiAppBar-root {
-  font-size: 10px;
-  padding: 0 2.4rem;
+	font-size: 10px;
+	padding: 0 2.4rem;
 }
 
 .header__container.MuiContainer-root {
-  max-width: 100%;
-  padding: 0;
+	max-width: 100%;
+	padding: 0;
 }
 
 .header__toolbar.MuiToolbar-root {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .header__toolbar_aside {
-  display: flex;
-  justify-content: flex-end;
-  flex-grow: 2;
+	display: flex;
+	justify-content: flex-end;
+	flex-grow: 2;
+}
+
+.selectWrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 150px;
+
+	.select {
+		appearance: none;
+		display: block;
+		width: 100%;
+		max-width: 320px;
+		height: 40px;
+		float: right;
+		margin: 5px 0px;
+		padding: 0px 24px;
+		font-size: 16px;
+		background-image: none;
+		border: 1px solid #cccccc;
+		word-break: normal;
+		border-radius: 10px;
+		outline: none;
+		&:hover {
+			border: 2px solid lighten($color-primary, 10);
+		}
+		option {
+			font-family: 'Roboto', sans-serif;
+		}
+	}
+	&:after {
+		content: '<>';
+		font: 17px 'Consolas', monospace;
+		color: #333;
+		transform: rotate(90deg);
+		right: 11px;
+
+		padding: 0 0 2px;
+		border-bottom: 1px solid #999;
+
+		position: absolute;
+		pointer-events: none;
+	}
 }

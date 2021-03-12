@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -15,12 +13,23 @@ import Search from '../Search';
 import { updateCurrLng } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import './Header.scss';
+import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
+import LoginForm from './AuthForm/LoginForm/LoginForm';
+import { AUTH_URL } from './../../common/constants';
+import { PersonAdd } from '@material-ui/icons';
 
 const Header = () => {
 	const dispatch = useDispatch();
-	const [isLngOpen, setIsLngOpen] = useState(false);
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const currLng = useSelector(getCurrLng);
-	const auth = true;
+	const [isAuth, setIsAuth] = useState(false);
+
+	useEffect(() => {
+		if (localStorage.getItem('username')) {
+			setIsAuth(true);
+		}
+	}, []);
 
 	useEffect(() => {
 		i18n.changeLanguage(currLng);
@@ -31,12 +40,36 @@ const Header = () => {
 		dispatch(updateCurrLng(event.target.value));
 	}
 
-	function handleLngClose() {
-		setIsLngOpen(false);
+	function handleRegisterOpen() {
+		setIsRegisterOpen(true);
 	}
 
-	function handleLngOpen() {
-		setIsLngOpen(true);
+	function handleRegisterClose() {
+		setIsRegisterOpen(false);
+	}
+
+	function handleLoginOpen() {
+		setIsLoginOpen(true);
+	}
+
+	function handleLoginClose() {
+		setIsLoginOpen(false);
+	}
+
+	function handleLogoutClick() {
+		fetch(`${AUTH_URL}/logout`, {
+			method: 'get',
+			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res) {
+					setIsAuth(false);
+					localStorage.removeItem('username');
+					localStorage.removeItem('avatar');
+				}
+			});
 	}
 
 	return (
@@ -50,35 +83,58 @@ const Header = () => {
 					<Search />
 
 					<div className="header__toolbar_aside">
-						<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
+						<IconButton aria-label="display language select" color="inherit">
 							<LanguageIcon />
 						</IconButton>
-						<Select
-							id="select"
-							open={isLngOpen}
-							onChange={changeLanguageHandler}
-							onClose={handleLngClose}
-							onOpen={handleLngOpen}
-							value={currLng}
-						>
-							<MenuItem value="en">EN</MenuItem>
-							<MenuItem value="de">DE</MenuItem>
-							<MenuItem value="ru">RU</MenuItem>
-						</Select>
-
-						{auth && (
-							<IconButton
-								aria-label="account of current user"
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								color="inherit"
-							>
-								<AccountCircleIcon />
-							</IconButton>
-						)}
+						<div className="selectWrapper">
+							<select className="select" onChange={changeLanguageHandler} value={currLng}>
+								<option value="en">EN</option>
+								<option value="de">DE</option>
+								<option value="ru">RU</option>
+							</select>
+						</div>
+						<div>
+							{isAuth ? (
+								<IconButton
+									onClick={handleLoginOpen}
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									color="inherit"
+								>
+									<AccountCircleIcon />
+								</IconButton>
+							) : (
+								<>
+									<IconButton
+										onClick={handleRegisterOpen}
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										color="inherit"
+									>
+										<PersonAdd />
+									</IconButton>
+									<IconButton
+										onClick={handleLoginOpen}
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										color="inherit"
+									>
+										<AccountCircleIcon />
+									</IconButton>
+								</>
+							)}
+						</div>
 					</div>
 				</Toolbar>
 			</Container>
+			<RegisterForm isOpen={isRegisterOpen} handleClose={handleRegisterClose} />
+			<LoginForm
+				isOpen={isLoginOpen}
+				handleClose={handleLoginClose}
+				setIsAuth={setIsAuth}
+				isAuth={isAuth}
+				handleLogoutClick={handleLogoutClick}
+			/>
 		</AppBar>
 	);
 };

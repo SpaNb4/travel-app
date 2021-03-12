@@ -9,13 +9,11 @@ import './index.scss';
 import App from './App';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<Router>
-				<ScrollToTop />
-				<App />
-			</Router>
-		</Provider>
-	</React.StrictMode>,
+	<Provider store={store}>
+		<Router>
+			<ScrollToTop />
+			<App />
+		</Router>
+	</Provider>,
 	document.getElementById('root')
 );

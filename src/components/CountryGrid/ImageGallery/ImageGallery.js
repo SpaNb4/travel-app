@@ -23,7 +23,11 @@ function ImageGallery({ places }) {
 		) : null;
 	};
 
-	return <Gallery renderCustomControls={renderCustomControls} ref={refImg} items={images} />;
+	return (
+		<div className={classes.ImageGallery}>
+			<Gallery renderCustomControls={renderCustomControls} ref={refImg} items={images} />
+		</div>
+	);
 }
 
 ImageGallery.propTypes = {
