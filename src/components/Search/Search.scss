@@ -2,6 +2,8 @@
 @import '../../assets/scss/variables';
 
 .form.MuiPaper-root {
+	display: flex;
+	flex-wrap: nowrap;
 	position: relative;
 	font-size: 10px;
 	min-width: 240px;
@@ -30,13 +32,12 @@
 	}
 
 	@include resolution(big-mobile) {
-		margin: 0 2.4rem;
-		width: auto;
+		margin: 1rem auto;
 	}
 }
 
 .form__input.MuiFormControl-root {
 	color: 'inherit';
-	padding: .5rem 1rem;
-	max-width: 60%;
+	padding: .5rem  0 .5rem 1rem;
+	min-width: 60%;
 }

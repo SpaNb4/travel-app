@@ -1,21 +1,65 @@
-.header.MuiAppBar-root {
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/variables';
+
+.header.header {
   font-size: 10px;
-  padding: 0 2.4rem;
+  padding: 1rem 2.4rem;
 }
 
-.header__container.MuiContainer-root {
-  max-width: 100%;
-  padding: 0;
+.header__link.link_home {
+  display: inline-block;
+  position: relative;
+  flex-basis: 10%;
+  padding: .25rem;
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  text-align: center;
+
+  @include resolution(big-mobile) {
+    flex-basis: 100%;
+  }
+
+  & .logo__img {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    transform: translateZ(0);
+
+    @include resolution(big-mobile) {
+      width: 40%;
+      padding: 1rem 0;
+    }
+  }
+
+  &:hover {
+    & .logo__img {
+      box-shadow: 0 0 10px $color-black;
+    }
+  }
 }
 
-.header__toolbar.MuiToolbar-root {
+.header__container.header__container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  
+  @include resolution(big-mobile) {
+    flex-wrap: wrap;
+  }
 }
 
-.header__toolbar_aside {
+.header__toolbar_list {
+  flex-basis: 90%;
   display: flex;
   justify-content: flex-end;
-  flex-grow: 2;
+  flex-wrap: wrap-reverse;
+
+  @include resolution(big-mobile) {
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
 }

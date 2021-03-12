@@ -4,17 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import IconButton from '@material-ui/core/IconButton';
-import HomeIcon from '@material-ui/icons/Home';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Search from '../Search';
 import { updateCurrLng } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import './Header.scss';
+import logo from '../../assets/images/travel-app-logo.jpg';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -42,14 +41,12 @@ const Header = () => {
 	return (
 		<AppBar position="static" className="header">
 			<Container className="header__container">
-				<Toolbar className="header__toolbar">
-					<Link to="/">
-						<HomeIcon fontSize="large" />
-					</Link>
-
+				<Link to="/" className="header__link link_home">
+					<img alt="Travel App Logo" src={logo} className="logo__img" />
+				</Link>
+				<div className="header__toolbar_list">
 					<Search />
-
-					<div className="header__toolbar_aside">
+					<div className="locals__container">
 						<IconButton onClick={handleLngOpen} aria-label="display language select" color="inherit">
 							<LanguageIcon />
 						</IconButton>
@@ -65,19 +62,18 @@ const Header = () => {
 							<MenuItem value="de">DE</MenuItem>
 							<MenuItem value="ru">RU</MenuItem>
 						</Select>
-
-						{auth && (
-							<IconButton
-								aria-label="account of current user"
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								color="inherit"
-							>
-								<AccountCircleIcon />
-							</IconButton>
-						)}
 					</div>
-				</Toolbar>
+					{auth && (
+						<IconButton
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							color="inherit"
+						>
+							<AccountCircleIcon />
+						</IconButton>
+					)}
+				</div>
 			</Container>
 		</AppBar>
 	);
