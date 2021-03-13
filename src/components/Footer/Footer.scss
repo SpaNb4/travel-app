@@ -15,7 +15,11 @@
   flex-basis: 15%;
 
   &:nth-child(2) {
-    flex-basis: 60%;
+    flex-basis: 70%;
+
+    @include resolution(tablet) {
+      flex-basis: 100%;
+    }
   }
 
   @include resolution(tablet) {
@@ -28,6 +32,11 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  @include resolution(tablet) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .list__item.footer__list__item {
@@ -51,6 +60,11 @@
     transform: translateZ(0);
     padding: 0 .05rem;
   }
+}
+
+.footer__link.author {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .footer__link.author:hover {
