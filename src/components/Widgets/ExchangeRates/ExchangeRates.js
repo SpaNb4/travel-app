@@ -45,14 +45,14 @@ function ExchangeRates({ currency }) {
 		<div className={classes.ExchangeRates}>
 			<Typography className={classes.ExchangeTitle}>
 				<AttachMoney />
-				{t('Exchange Rates') + ` ${currency}`}
+				{t('Exchange Rates') + ` ${t(currency)}`}
 			</Typography>
 			{rates
 				? rates.map((rate, index) => {
 						return (
 							<div key={index} className={classes.CurrencyContainer}>
 								<Typography variant="inherit" className={classes.СurrencyName}>
-									{rate.currency}:
+									{t(rate.currency)}:
 								</Typography>
 								<Typography variant="inherit" className={classes.CurrencyValue}>
 									&nbsp;{rate.exchangeRate}
