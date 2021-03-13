@@ -20,10 +20,12 @@ function ImageGallery({ places }) {
 
 	const renderCustomControls = () => {
 		return refImg.current ? (
-			<div className="place__controls">
-				<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
-				<Rate rate={places[refImg.current.getCurrentIndex()].rates} />
-				<RateSelect />
+			<div className={classes.PlaceControls}>
+				<div className={classes.PlaceNameRate}>
+					<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
+					<Rate rates={places[refImg.current.getCurrentIndex()].rates} />
+				</div>
+				<RateSelect place={places[refImg.current.getCurrentIndex()]} />
 			</div>
 		) : null;
 	};

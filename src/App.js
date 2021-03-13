@@ -8,11 +8,12 @@ import Footer from './components/Footer';
 
 import Home from './containers/home/';
 import Country from './containers/country/';
-import { DEFAULT_LANGUAGE, LANG_STORAGE_KEY } from './common/constants';
+import { DEFAULT_LANGUAGE, LANG_STORAGE_KEY, USERNAME_STORAGE_KEY } from './common/constants';
 
 import { updateCurrLng } from './store/app/actions';
 import { getCurrLng } from './store/app/slices';
 import { fetchCountries } from './store/countries/actions';
+import { loginSuccess } from './store/app/actions';
 
 function App() {
 	const dispatch = useDispatch();
@@ -20,6 +21,10 @@ function App() {
 
 	useEffect(() => {
 		dispatch(updateCurrLng(localStorage.getItem(LANG_STORAGE_KEY) || DEFAULT_LANGUAGE));
+		const username = localStorage.getItem(USERNAME_STORAGE_KEY) || null;
+		if (username) {
+			dispatch(loginSuccess(username));
+		}
 		dispatch(fetchCountries(currLng));
 	}, [currLng]);
 

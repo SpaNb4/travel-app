@@ -1,6 +1,7 @@
 // Lang
 export const DEFAULT_LANGUAGE = 'en';
 export const LANG_STORAGE_KEY = 'lng';
+export const USERNAME_STORAGE_KEY = 'username';
 
 // URLs
 export const AUTH_URL = 'https://spanb4-travel-app.herokuapp.com';

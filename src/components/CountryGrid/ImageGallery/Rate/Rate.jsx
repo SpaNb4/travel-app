@@ -1,16 +1,25 @@
 import * as React from 'react';
-// import { useEffect, useState, useCallback } from 'react';
-// import { useDispatch } from 'react-redux';
-
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { PropTypes } from 'prop-types';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import './Rate.scss';
 
-const Rate = () => {
+const Rate = ({ rates }) => {
+  const rate = rates.reduce((prev, rate) => rate.rate + prev, 0) / rates.length;
   return (
     <div className="rate">
-      привет
+      <StarBorderIcon />
+      {rate.toFixed(2)}
     </div>
   )
 }
+
+Rate.propTypes = {
+  rates: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rate: PropTypes.number,
+    })
+  ).isRequired,
+};
 
 export default Rate;
