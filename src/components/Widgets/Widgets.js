@@ -10,8 +10,9 @@ import { getCurrLng } from '../../store/app/slices';
 
 const useStyles = makeStyles((theme) => ({
 	blockContainer: {
+		fontFamily: 'Roboto, sans-serif',
 		padding: theme.spacing(4),
-		background: '#54d2e9',
+		background: '#e8e8e8',
 		minHeight: 320,
 		borderRight: '1px solid #ffffff',
 		borderLeft: '1px solid #ffffff',
