@@ -55,10 +55,52 @@
   flex-basis: 90%;
   display: flex;
   justify-content: flex-end;
-  flex-wrap: wrap-reverse;
 
   @include resolution(big-mobile) {
     flex-basis: 100%;
     justify-content: space-between;
+    flex-wrap: wrap-reverse;
+  }
+}
+
+.toolbar_list__container {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @include resolution(tablet) {
+    flex-basis: 100%;
+  }
+}
+
+.lang__container,
+.auth__container {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.lang__container {
+  justify-content: center;
+
+  @include resolution(tablet) {
+    justify-content: space-around;
+  }
+}
+
+
+.selectWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .select {
+    font-size: 14px;
+  }
+
+  & .select option {
+    font-size: 14px;
   }
 }
