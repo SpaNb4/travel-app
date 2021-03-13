@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,11 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './SimpleCard.scss';
 
-import { getCurrLng } from '../../store/app/slices';
 import { useTranslation } from 'react-i18next';
 
 const SimpleCard = ({ country }) => {
-	const currLng = useSelector(getCurrLng);
 	const [t] = useTranslation();
 
 	return (
@@ -26,10 +23,10 @@ const SimpleCard = ({ country }) => {
 				/>
 				<CardContent className="simple-card__content simple-card__content_basic">
 					<Typography gutterBottom className="content__title content__title_basic">
-						{country.countryName[currLng]}
+						{country.name}
 					</Typography>
 					<Typography gutterBottom className="content__subtitle content__subtitle_basic">
-						{country.capitalName[currLng]}
+						{country.capital}
 					</Typography>
 					<CardActions>
 						<Button size="small" color="primary" variant="contained">
@@ -44,16 +41,8 @@ const SimpleCard = ({ country }) => {
 
 SimpleCard.propTypes = {
 	country: PropTypes.shape({
-		countryName: PropTypes.shape({
-			en: PropTypes.string,
-			ru: PropTypes.string,
-			de: PropTypes.string,
-		}),
-		capitalName: PropTypes.shape({
-			en: PropTypes.string,
-			ru: PropTypes.string,
-			de: PropTypes.string,
-		}),
+		name: PropTypes.string,
+		capital: PropTypes.string,
 		imageUrl: PropTypes.string,
 		id: PropTypes.string,
 	}).isRequired,
