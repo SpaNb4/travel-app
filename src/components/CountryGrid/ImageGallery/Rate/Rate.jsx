@@ -3,14 +3,14 @@ import * as React from 'react';
 // import { useDispatch } from 'react-redux';
 
 // import StarBorderIcon from '@material-ui/icons/StarBorder';
-import './RateSelect.scss';
+import './Rate.scss';
 
-const RateSelect = () => {
+const Rate = () => {
   return (
-    <div className="rating">
+    <div className="rate">
       привет
     </div>
   )
 }
 
-export default RateSelect;
+export default Rate;

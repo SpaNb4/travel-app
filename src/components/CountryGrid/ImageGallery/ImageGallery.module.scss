@@ -2,6 +2,15 @@
 	width: 100%;
 }
 
+.image-gallery-content {
+	line-height: 14px;
+}
+
 .PlaceName {
 	margin-top: 20px;
+}
+
+.place__controls {
+	display: flex;
+	flex-direction: row;
 }

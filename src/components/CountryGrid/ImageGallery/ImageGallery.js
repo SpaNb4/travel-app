@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { IMAGE_PATH } from './../../../common/constants';
 import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
+import Rate from './Rate';
 function ImageGallery({ places }) {
 	const refImg = useRef(null);
 	const [t] = useTranslation();
@@ -19,8 +20,9 @@ function ImageGallery({ places }) {
 
 	const renderCustomControls = () => {
 		return refImg.current ? (
-			<div>
+			<div className="place__controls">
 				<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
+				<Rate rate={places[refImg.current.getCurrentIndex()].rates} />
 				<RateSelect />
 			</div>
 		) : null;
@@ -39,6 +41,12 @@ ImageGallery.propTypes = {
 			name: PropTypes.string,
 			imageUrl: PropTypes.string,
 			description: PropTypes.string,
+			rates: PropTypes.arrayOf(
+				PropTypes.shape({
+					name: PropTypes.string,
+					rate: PropTypes.number,
+				})
+			),
 		})
 	).isRequired,
 };
