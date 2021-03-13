@@ -26,7 +26,7 @@ function Widgets({ country }) {
 		<Grid item className={classes.blockContainer} xs={12}>
 			<Timer timeZone={country.timeZone} lang={currLng} />
 			<ExchangeRates currency={country.currency} />
-			<Weather cityName={country.name} lang={currLng} countryCode={country.id} />
+			<Weather cityName={country.capital} lang={currLng} countryCode={country.ISOCode} />
 		</Grid>
 	);
 }

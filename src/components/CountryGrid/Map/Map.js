@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 function Map({ countryID }) {
 	const MAP_CONTAINER_ID = 'mapID';
 	const classes = useStyles();
-	console.log(countryID);
+
 	useEffect(() => {
 		const map = new L.Map(MAP_CONTAINER_ID, {
 			fullscreenControl: true,
