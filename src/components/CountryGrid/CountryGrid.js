@@ -59,8 +59,6 @@ export function CountryGrid() {
 	const loader = !country && <CircularProgress />;
 	const video = country && <Video videoUrl={country.videoUrl} />;
 
-	console.log(country);
-
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container spacing={4}>
