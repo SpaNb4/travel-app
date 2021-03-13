@@ -1,9 +1,13 @@
 .header.header {
   font-size: 10px;
-  padding: .1rem 2.4rem;
+  padding: .5rem 2.4rem;
 
   @include resolution(tablet) {
-    padding: .5rem 2.4rem;
+    padding: 1rem .5rem;
+  }
+
+  @include resolution(big-mobile) {
+    padding: .5rem;
   }
 }
 
@@ -17,7 +21,7 @@
   text-align: center;
 
   @include resolution(tablet) {
-    flex-basis: 30%;
+    flex-basis: 40%;
   }
 
   @include resolution(big-mobile) {
@@ -27,8 +31,6 @@
   & .logo__img {
     position: relative;
     display: inline-block;
-    width: 100%;
-    height: auto;
     transform: translateZ(0);
 
     @include resolution(big-mobile) {
@@ -54,7 +56,14 @@
 .header__toolbar_list {
   flex-basis: 90%;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+
+  @include resolution(tablet) {
+    flex-basis: 60%;
+    justify-content: flex-end;
+    flex-wrap: wrap-reverse;
+  }
 
   @include resolution(big-mobile) {
     flex-basis: 100%;
@@ -70,6 +79,10 @@
   flex-wrap: wrap;
 
   @include resolution(tablet) {
+    flex-basis: 80%;
+  }
+
+  @include resolution(big-mobile) {
     flex-basis: 100%;
   }
 }
@@ -84,10 +97,6 @@
 
 .lang__container {
   justify-content: center;
-
-  @include resolution(tablet) {
-    justify-content: space-around;
-  }
 }
 
 

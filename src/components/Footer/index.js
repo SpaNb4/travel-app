@@ -20,13 +20,13 @@ const Footer = () => {
 								className="footer__link author"
 								target="_blank"
 							>
-								Alesya
+								<div>Alesya</div>
 								<GitHubIcon className="footer__link github" />
 							</Link>
 						</ListItem>
 						<ListItem className="list__item footer__list__item">
 							<Link href="https://github.com/magklax" className="footer__link author" target="_blank">
-								Nadia
+								<div>Nadia</div>
 								<GitHubIcon className="footer__link github" />
 							</Link>
 						</ListItem>
@@ -36,13 +36,13 @@ const Footer = () => {
 								className="footer__link author"
 								target="_blank"
 							>
-								Iryna
+								<div>Iryna</div>
 								<GitHubIcon className="footer__link github" />
 							</Link>
 						</ListItem>
 						<ListItem className="list__item footer__list__item">
 							<Link href="https://github.com/SpaNb4" className="footer__link author" target="_blank">
-								Dmitry
+								<div>Dmitry</div>
 								<GitHubIcon className="footer__link github" />
 							</Link>
 						</ListItem>
