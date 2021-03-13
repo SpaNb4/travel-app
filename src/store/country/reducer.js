@@ -2,21 +2,18 @@ import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './actions';
 
 const initialState = {
-	countries: [],
 	loading: false,
-	searchValue: '',
+	currentId: '',
+	currentCountry: null,
 	errorMessage: '',
 };
 
 const reducer = createReducer(initialState, (builder) => {
 	builder
-		.addCase(actions.updateSearchValue, (state, action) => {
-			state.searchValue = action.payload.trim();
+		.addCase(actions.fetchCountrySuccess, (state, action) => {
+			state.currentCountry = action.payload;
 		})
-		.addCase(actions.fetchCountriesSuccess, (state, action) => {
-			state.countries = action.payload;
-		})
-		.addCase(actions.fetchCountriesFailure, (state, action) => {
+		.addCase(actions.fetchCountryFailure, (state, action) => {
 			state.errorMessage = action.payload;
 		})
 		.addCase(actions.showLoader, (state) => {
@@ -24,6 +21,9 @@ const reducer = createReducer(initialState, (builder) => {
 		})
 		.addCase(actions.hideLoader, (state) => {
 			state.loading = false;
+		})
+		.addCase(actions.getCountryId, (state, action) => {
+			state.currentId = action.payload;
 		})
 		.addDefaultCase((state) => state);
 });

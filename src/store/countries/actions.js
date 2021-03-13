@@ -8,12 +8,11 @@ export const fetchCountriesSuccess = createAction(types.FETCH_COUNTRIES_SUCCESS)
 export const fetchCountriesFailure = createAction(types.FETCH_COUNTRIES_FAILURE);
 export const showLoader = createAction(types.SHOW_LOADER);
 export const hideLoader = createAction(types.HIDE_LOADER);
-export const getCountryId = createAction(types.GET_COUNTRY_ID);
 
-export const fetchCountries = () => async (dispatch) => {
+export const fetchCountries = (currLang) => async (dispatch) => {
 	try {
 		dispatch(showLoader());
-		const response = await axios(COUNTRIES_URL);
+		const response = await axios(COUNTRIES_URL, { params: { lang: currLang } });
 		const countries = Object.values(response.data);
 		dispatch(fetchCountriesSuccess(countries));
 		dispatch(hideLoader());
