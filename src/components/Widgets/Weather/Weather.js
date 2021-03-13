@@ -22,7 +22,7 @@ function Weather({ cityName, lang, countryCode }) {
 
 	return (
 		<div className={classes.Weather}>
-			<p className={classes.City}>{t(cityName)}</p>
+			<p className={classes.City}>{cityName}</p>
 			<p className={classes.Description}>
 				{weatherData.description}
 				<img src={iconUrl} alt={weatherData.description} />

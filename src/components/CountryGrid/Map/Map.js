@@ -9,17 +9,17 @@ import { PropTypes } from 'prop-types';
 import marker from './img/marker.jpg';
 import markerShadow from './img/marker_shadow.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	blockContainer: {
-		padding: theme.spacing(4),
 		minHeight: 320,
 	},
 	map: {
 		height: 320,
+		borderRadius: '10px 10px 0 0',
 	},
 }));
 
-function Map({ country }) {
+function Map({ countryID }) {
 	const MAP_CONTAINER_ID = 'mapID';
 	const classes = useStyles();
 
@@ -39,7 +39,7 @@ function Map({ country }) {
 		}).addTo(map);
 
 		countriesJSON.features.map((elem) => {
-			if (elem.properties.name === country) {
+			if (elem.id === countryID) {
 				const defaultIcon = new L.Icon({
 					iconUrl: marker,
 					iconAnchor: [12, 41],
@@ -63,7 +63,7 @@ function Map({ country }) {
 				}).addTo(map);
 
 				geoJSONgroup.eachLayer(function (layer) {
-					if (layer.feature.properties.name === country) {
+					if (layer.feature.id === countryID) {
 						map.fitBounds(layer.getBounds());
 					}
 				});
@@ -79,7 +79,7 @@ function Map({ country }) {
 }
 
 Map.propTypes = {
-	country: PropTypes.string.isRequired,
+	countryID: PropTypes.string.isRequired,
 };
 
 export default Map;

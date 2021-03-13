@@ -125,7 +125,7 @@ function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }
 								className={classes.profileImg}
 								ref={avatarRef}
 								height="70"
-								src={`${AUTH_URL}/` + localStorage.getItem('avatar')}
+								src={localStorage.getItem('avatar')}
 							/>
 						</div>
 						<Box textAlign="center">
