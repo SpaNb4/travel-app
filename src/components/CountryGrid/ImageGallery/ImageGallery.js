@@ -6,7 +6,7 @@ import { IMAGE_PATH } from './../../../common/constants';
 import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
 import Rate from './Rate';
-function ImageGallery({ places, currLng }) {
+function ImageGallery({ places }) {
 	const [currIndex, setCurrIndex] = useState(0);
 	const galleryRef = useRef(null);
 
@@ -18,26 +18,23 @@ function ImageGallery({ places, currLng }) {
 		};
 	});
 
-	// const renderCustomControls = () => {
-	// 	return refImg.current ? (
-	// 		<div className={classes.PlaceControls}>
-	// 			<div className={classes.PlaceNameRate}>
-	// 				<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
-	// 				<Rate rates={places[refImg.current.getCurrentIndex()].rates} />
-	// 			</div>
-	// 			<RateSelect place={places[refImg.current.getCurrentIndex()]} />
-	// 		</div>
-	// 	) : null;
-	// }
 	const getImageName = (currentIndex) => {
 		setCurrIndex(currentIndex);
 	};
 
 	const imageName = places[currIndex].name;
+	const rates = places[currIndex].rates;
+	const place = places[currIndex];
 
 	return (
 		<div className={classes.ImageGallery}>
-			<h2 className={classes.PlaceName}>{imageName}</h2>
+			<div className={classes.PlaceControls}>
+				<div className={classes.PlaceNameRate}>
+					<h2 className={classes.PlaceName}>{imageName}</h2>
+					<Rate rates={rates} />
+				</div>
+				<RateSelect place={place} />
+			</div>
 			<Gallery
 				startIndex={currIndex}
 				ref={galleryRef}
@@ -62,7 +59,6 @@ ImageGallery.propTypes = {
 			),
 		})
 	).isRequired,
-	currLng: PropTypes.string.isRequired,
 };
 
 export default ImageGallery;
