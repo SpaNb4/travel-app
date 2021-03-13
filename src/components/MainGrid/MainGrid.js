@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
+import './MainGrid.scss';
 
 import GridItem from './GridItem';
 
@@ -25,11 +26,15 @@ export default function MainGrid() {
 			filteredCountries.map((country) => <GridItem key={country.id} country={country} />)) ||
 		(searchValue && !filteredCountries.length && <p>No countries found</p>) ||
 		(countries && countries.map((country) => <GridItem key={country.id} country={country} />));
-	const loader = loading && <CircularProgress />;
+	const loader = loading && (
+		<div className="container loader__container">
+			<CircularProgress />
+		</div>
+	);
 	return (
-		<Container>
-			<Grid container>
-				{loader}
+		<Container className="container main__container">
+			{loader}
+			<Grid container className="container main__container">
 				{items}
 			</Grid>
 		</Container>

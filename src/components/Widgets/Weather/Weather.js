@@ -48,4 +48,4 @@ Weather.propTypes = {
 	lang: PropTypes.string.isRequired,
 	countryCode: PropTypes.string.isRequired,
 };
-export default Weather;
+export default React.memo(Weather);

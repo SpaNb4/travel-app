@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { IMAGE_PATH } from './../../../common/constants';
 import classes from './ImageGallery.module.scss';
-
+import RateSelect from './RateSelect';
 function ImageGallery({ places }) {
 	const refImg = useRef(null);
 	const [t] = useTranslation();
@@ -19,7 +19,10 @@ function ImageGallery({ places }) {
 
 	const renderCustomControls = () => {
 		return refImg.current ? (
-			<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
+			<div>
+				<h2 className={classes.PlaceName}>{t(places[refImg.current.getCurrentIndex()].name)}</h2>
+				<RateSelect />
+			</div>
 		) : null;
 	};
 
