@@ -3,7 +3,7 @@
 	"features": [
 		{
 			"type": "Feature",
-			"id": "BLR",
+			"id": "BY",
 			"properties": {
 				"name": "Belarus"
 			},
@@ -63,7 +63,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "DEU",
+			"id": "DE",
 			"properties": { "name": "Germany" },
 			"geometry": {
 				"type": "Polygon",
@@ -135,7 +135,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "JPN",
+			"id": "JP",
 			"properties": { "name": "Japan" },
 			"geometry": {
 				"type": "MultiPolygon",
@@ -224,7 +224,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "CHN",
+			"id": "CN",
 			"properties": { "name": "China" },
 			"geometry": {
 				"type": "MultiPolygon",
@@ -484,7 +484,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "ISL",
+			"id": "IS",
 			"properties": { "name": "Iceland" },
 			"geometry": {
 				"type": "Polygon",
@@ -518,7 +518,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "GBR",
+			"id": "GB",
 			"properties": { "name": "Great Britain" },
 			"geometry": {
 				"type": "MultiPolygon",
@@ -594,7 +594,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "RUS",
+			"id": "RU",
 			"properties": { "name": "Russia" },
 			"geometry": {
 				"type": "MultiPolygon",
@@ -1256,7 +1256,7 @@
 		},
 		{
 			"type": "Feature",
-			"id": "PER",
+			"id": "PE",
 			"properties": { "name": "Peru" },
 			"geometry": {
 				"type": "Polygon",

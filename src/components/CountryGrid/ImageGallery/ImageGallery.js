@@ -15,12 +15,12 @@ function ImageGallery({ places }) {
 		return {
 			original: `${IMAGE_PATH + place.imageUrl}`,
 			thumbnail: `${IMAGE_PATH + place.imageUrl}`,
-			description: t(place.description.en),
+			description: t(place.description),
 		};
 	});
 
 	const getImageName = (currentIndex) => {
-		setImageName(places[currentIndex].name.en);
+		setImageName(places[currentIndex].name);
 		setCurrIndex(currentIndex);
 	};
 
@@ -40,17 +40,9 @@ function ImageGallery({ places }) {
 ImageGallery.propTypes = {
 	places: PropTypes.arrayOf(
 		PropTypes.shape({
-			name: PropTypes.shape({
-				en: PropTypes.string,
-				ru: PropTypes.string,
-				de: PropTypes.string,
-			}),
+			name: PropTypes.string,
 			imageUrl: PropTypes.string,
-			description: PropTypes.shape({
-				en: PropTypes.string,
-				ru: PropTypes.string,
-				de: PropTypes.string,
-			}),
+			description: PropTypes.string,
 		})
 	).isRequired,
 };

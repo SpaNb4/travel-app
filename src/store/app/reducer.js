@@ -1,9 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { updateCurrLng } from './actions';
-import { DEFAULT_LANGUAGE } from '../../common/constants';
 
 const initialState = {
-	currLng: DEFAULT_LANGUAGE,
+	currLng: '',
 };
 
 const reducer = createReducer(initialState, (builder) => {
