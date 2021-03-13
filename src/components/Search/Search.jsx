@@ -7,9 +7,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import './Search.scss';
 
-const EMPTY_LINE = /^$/;
-const WITHOUT_SPACES = /\S/;
-
 import { updateSearchValue } from '../../store/countries/actions';
 import { useTranslation } from 'react-i18next';
 
@@ -36,10 +33,8 @@ const Search = () => {
     (event) => {
       const { value } = event.target
       setSearchValue(value)
-      if (WITHOUT_SPACES.exec(value) && !EMPTY_LINE.exec(value)) {
-        setValid(true)
-        dispatch(updateSearchValue(value))
-      }
+      setValid(true)
+      dispatch(updateSearchValue(value))
     })
 
   const handleClear = useCallback(

@@ -5,6 +5,7 @@
 .simple-card {
 	&.simple-card_basic {
 		cursor: pointer;
+		overflow: hidden;
 		color: $color-white;
 		font-size: 10px;
 		color: inherit;

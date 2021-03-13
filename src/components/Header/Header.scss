@@ -73,22 +73,23 @@
 }
 
 .toolbar_list__container {
-  flex-basis: 40%;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
 
   @include resolution(tablet) {
-    flex-basis: 80%;
+    justify-content: flex-end;
+    flex-basis: 100%;
+    flex-wrap: wrap;
   }
 
   @include resolution(big-mobile) {
+    justify-content: center;
     flex-basis: 100%;
   }
 }
 
-.lang__container,
-.auth__container {
+.lang__container {
   flex-basis: 50%;
   display: flex;
   justify-content: space-around;
@@ -112,4 +113,48 @@
   & .select option {
     font-size: 14px;
   }
+}
+
+.selectWrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+
+	.select {
+		appearance: none;
+		display: block;
+		width: 100%;
+		max-width: 320px;
+		height: 40px;
+		float: right;
+		margin: 5px 0px;
+		padding: 0px 24px;
+		font-size: 16px;
+		background-image: none;
+		border: 1px solid #cccccc;
+		word-break: normal;
+		border-radius: 10px;
+		outline: none;
+		&:hover {
+			border: 2px solid lighten($color-primary, 10);
+		}
+		option {
+			font-family: 'Roboto', sans-serif;
+		}
+	}
+	&:after {
+		content: '<>';
+		font: 17px 'Consolas', monospace;
+		color: #333;
+		transform: rotate(90deg);
+		right: 11px;
+
+		padding: 0 0 2px;
+		border-bottom: 1px solid #999;
+
+		position: absolute;
+		pointer-events: none;
+	}
 }

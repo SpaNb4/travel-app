@@ -92,8 +92,25 @@ const Header = () => {
 								</select>
 							</div>
 						</div>
-						<div className="auth__container">
-							{isAuth ? (
+						{isAuth ? (
+							<IconButton
+								onClick={handleLoginOpen}
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								color="inherit"
+							>
+								<AccountCircleIcon />
+							</IconButton>
+						) : (
+							<>
+								<IconButton
+									onClick={handleRegisterOpen}
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									color="inherit"
+								>
+									<PersonAdd />
+								</IconButton>
 								<IconButton
 									onClick={handleLoginOpen}
 									aria-controls="menu-appbar"
@@ -102,27 +119,8 @@ const Header = () => {
 								>
 									<AccountCircleIcon />
 								</IconButton>
-							) : (
-								<>
-									<IconButton
-										onClick={handleRegisterOpen}
-										aria-controls="menu-appbar"
-										aria-haspopup="true"
-										color="inherit"
-									>
-										<PersonAdd />
-									</IconButton>
-									<IconButton
-										onClick={handleLoginOpen}
-										aria-controls="menu-appbar"
-										aria-haspopup="true"
-										color="inherit"
-									>
-										<AccountCircleIcon />
-									</IconButton>
-								</>
-							)}
-						</div>
+							</>
+						)}
 					</div>
 				</div>
 			</Container>
