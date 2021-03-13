@@ -1,13 +1,11 @@
-import React, { useState, useRef } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useRef, useEffect } from 'react';
 import Gallery from 'react-image-gallery';
 import { PropTypes } from 'prop-types';
-import { useTranslation } from 'react-i18next';
 import { IMAGE_PATH } from './../../../common/constants';
 import classes from './ImageGallery.module.scss';
 
-function ImageGallery({ places }) {
-	const [t] = useTranslation();
-	const [imageName, setImageName] = useState(places[0].name.en);
+function ImageGallery({ places, currLng }) {
 	const [currIndex, setCurrIndex] = useState(0);
 	const galleryRef = useRef(null);
 
@@ -15,18 +13,19 @@ function ImageGallery({ places }) {
 		return {
 			original: `${IMAGE_PATH + place.imageUrl}`,
 			thumbnail: `${IMAGE_PATH + place.imageUrl}`,
-			description: t(place.description),
+			description: place.description,
 		};
 	});
 
 	const getImageName = (currentIndex) => {
-		setImageName(places[currentIndex].name);
 		setCurrIndex(currentIndex);
 	};
 
+	const imageName = places[currIndex].name;
+
 	return (
 		<div className={classes.ImageGallery}>
-			<h2 className={classes.PlaceName}>{t(imageName)}</h2>
+			<h2 className={classes.PlaceName}>{imageName}</h2>
 			<Gallery
 				startIndex={currIndex}
 				ref={galleryRef}
@@ -45,6 +44,7 @@ ImageGallery.propTypes = {
 			description: PropTypes.string,
 		})
 	).isRequired,
+	currLng: PropTypes.string.isRequired,
 };
 
 export default ImageGallery;

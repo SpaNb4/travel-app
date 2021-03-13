@@ -34,21 +34,21 @@ export function CountryGrid() {
 
 	return (
 		<Container className={classes.columnGrid}>
-			<Grid container spacing={4}>
+			<Grid container>
 				{loader || fetchLoader}
 				{country && window.location.href.includes(country.id) && (
 					<>
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
 							<Container disableGutters className={classes.contentGrid}>
-								<Grid container spacing={4}>
+								<Grid container>
 									{overview}
-									<ImageGallery places={country.places} />
+									<ImageGallery places={country.places} currLng={currLng} />
 								</Grid>
 							</Container>
 						</Grid>
 						<Grid item xs={12} sm={4} className={classes.columnRight}>
 							<Container disableGutters className={classes.contentGrid}>
-								<Grid container spacing={4}>
+								<Grid container>
 									<Map countryID={country.ISOCode} />
 									<Widgets country={country} />
 									{video}

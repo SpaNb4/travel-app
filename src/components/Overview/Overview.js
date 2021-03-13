@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import { useTranslation } from 'react-i18next';
 import { IMAGE_PATH } from '../../common/constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,19 +24,18 @@ const useStyles = makeStyles((theme) => ({
 const Overview = ({ country }) => {
 	const url = country.imageUrl;
 	const classes = useStyles({ url });
-	const { t } = useTranslation();
 
 	return (
 		<Grid item className={classes.root} xs={12}>
 			<Typography variant="h4" gutterBottom>
-				{t(country.name)}
+				{country.name}
 			</Typography>
 			<Typography variant="subtitle1" paragraph className={classes.subtitle}>
 				<LocationCityIcon />
-				<span>{t(country.name)}</span>
+				<span>{country.capital}</span>
 			</Typography>
 			<Typography variant="body2" gutterBottom>
-				{t(country.description)}
+				{country.description}
 			</Typography>
 		</Grid>
 	);
@@ -46,6 +44,7 @@ const Overview = ({ country }) => {
 Overview.propTypes = {
 	country: PropTypes.shape({
 		name: PropTypes.string,
+		capital: PropTypes.string,
 		description: PropTypes.string,
 		imageUrl: PropTypes.string,
 	}).isRequired,
