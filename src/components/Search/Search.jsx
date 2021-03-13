@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation } from "react-router-dom";
 import { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, IconButton, TextField } from '@material-ui/core';
@@ -14,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
-	const pathname = window.location.pathname;
+  const { pathname } = useLocation();
 	const [path, setPath] = useState(pathname);
 	const [searchValue, setSearchValue] = useState('');
 	const [valid, setValid] = useState();
@@ -49,13 +50,10 @@ const Search = () => {
   
   useEffect(() => {
     setPath(pathname)
-  }, [pathname])
-
-	useEffect(() => {
-		setPath(pathname);
-	}, [pathname]);
+  }, [pathname]);
 
 	const show = path === '/';
+  
   return (
     <React.Fragment>
       { 
