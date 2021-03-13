@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
@@ -10,6 +11,8 @@ import { Input, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { AUTH_URL } from './../../../../common/constants';
+
+import { registerSuccess } from '../../../../store/app/actions';
 
 const useStyles = makeStyles((theme) => ({
 	submitBtn: {
@@ -30,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function RegisterForm({ isOpen, handleClose }) {
+	const dispatch = useDispatch();
 	const registerStatusRef = useRef(null);
 	const classes = useStyles();
 	const [t] = useTranslation();
@@ -61,6 +65,7 @@ function RegisterForm({ isOpen, handleClose }) {
 
 			fetch(`${AUTH_URL}/register`, { method: 'POST', body: formData }).then((res) => {
 				if (res.ok) {
+					dispatch(registerSuccess(formData.username));
 					registerStatusRef.current.innerHTML = t(`You have successfully registered`);
 					registerStatusRef.current.classList.add(classes.success);
 					registerStatusRef.current.classList.remove(classes.failed);

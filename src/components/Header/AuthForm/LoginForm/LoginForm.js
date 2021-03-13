@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
@@ -11,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { AUTH_URL } from './../../../../common/constants';
+
+import { loginSuccess } from '../../../../store/app/actions';
 
 const useStyles = makeStyles((theme) => ({
 	submitBtn: {
@@ -38,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }) {
+	const dispatch = useDispatch();
 	const loginStatusRef = useRef(null);
 	const avatarRef = useRef(null);
 	const classes = useStyles();
@@ -75,6 +79,7 @@ function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }
 				.then((res) => res.json())
 				.then((res) => {
 					if (res.success) {
+						dispatch(loginSuccess(res.success));
 						loginStatusRef.current.innerHTML = t(`You're logged in`);
 						loginStatusRef.current.classList.add(classes.success);
 						loginStatusRef.current.classList.remove(classes.failed);
@@ -120,7 +125,7 @@ function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }
 								className={classes.profileImg}
 								ref={avatarRef}
 								height="70"
-								src={`${AUTH_URL}/` + localStorage.getItem('avatar')}
+								src={localStorage.getItem('avatar')}
 							/>
 						</div>
 						<Box textAlign="center">

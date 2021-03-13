@@ -1,0 +1,23 @@
+.columnGrid {
+	padding: 30px;
+
+	.columnRight {
+		min-height: 320px;
+		padding-left: 20px;
+		padding-right: 20px;
+
+		@include resolution(tablet) {
+			margin-top: 20px;
+		}
+	}
+
+	.contentgrid {
+		padding: 30px;
+	}
+
+	.columnLeft {
+		background: #0000007d;
+		border-radius: 10px;
+		min-height: 320px;
+	}
+}

@@ -2,6 +2,25 @@
 	width: 100%;
 }
 
+.PlaceNameRate {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
 .PlaceName {
-	margin-top: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: normal;
+	text-align: center;
+	color: $color-white;
+}
+
+.PlaceControls {
+	display: flex;
+	flex-direction: row;
+	line-height: 24px;
+	width: 100%;
+	justify-content: space-between;
+	padding: 0 10px;
 }
