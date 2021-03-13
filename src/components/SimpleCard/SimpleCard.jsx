@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -31,11 +30,9 @@ const SimpleCard = ({ country }) => {
 					<Typography gutterBottom className="content__subtitle content__subtitle_basic">
 						{country.capitalName[currLng]}
 					</Typography>
-					<CardActions>
-						<Button size="medium" color="primary" variant="contained">
-							{t('Learn More')}
-						</Button>
-					</CardActions>
+					<Button size="medium" color="primary" variant="contained">
+						{t('Learn More')}
+					</Button>
 				</CardContent>			
 			</Card>
 		</Link>
