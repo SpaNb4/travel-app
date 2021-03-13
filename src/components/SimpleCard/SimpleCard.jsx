@@ -32,7 +32,7 @@ const SimpleCard = ({ country }) => {
 						{country.capitalName[currLng]}
 					</Typography>
 					<CardActions>
-						<Button size="small" color="primary" variant="contained">
+						<Button size="medium" color="primary" variant="contained">
 							{t('Learn More')}
 						</Button>
 					</CardActions>

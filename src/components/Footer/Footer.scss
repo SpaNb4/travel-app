@@ -1,0 +1,101 @@
+.footer.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  font-size: 10px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 1.6rem 1rem;
+}
+
+.footer__column {
+  font-size: 1.4rem;
+  padding: .5rem 0;
+  flex-basis: 15%;
+
+  &:nth-child(2) {
+    flex-basis: 70%;
+
+    @include resolution(tablet) {
+      flex-basis: 100%;
+    }
+  }
+
+  @include resolution(tablet) {
+    flex-basis: 100%;
+  }
+}
+
+.list.footer__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @include resolution(tablet) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.list__item.footer__list__item {
+  width: 25%;
+  justify-content: center;
+  flex-wrap: nowrap;
+  text-align: center;
+
+  @include resolution(big-mobile) {
+    width: 100%;
+  }
+}
+
+.footer__link.author,
+.footer__link.rsschool-logo {
+  color: $color-primary;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  & .footer__link.github {
+    transform: translateZ(0);
+    padding: 0 .05rem;
+  }
+}
+
+.footer__link.author {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.footer__link.author:hover {
+  text-decoration: none;
+
+  & .footer__link.github {
+    transform: rotate(25deg);
+  }
+}
+
+.footer__link.author:focus {
+  text-decoration: none;
+  color: $color-primary;
+
+  & .footer__link.github {
+    transform: rotate(25deg);
+  }
+}
+
+.footer__link.rsschool-logo {
+  height: 100%;
+
+  & .rsschool-logo__img {
+    transform: translateZ(0);
+  }
+  
+  &:hover,
+  &:focus {
+
+    & .rsschool-logo__img {
+      transform: rotate(10deg);
+    }
+  }
+}
