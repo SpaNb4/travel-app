@@ -6,6 +6,8 @@ import { IMAGE_PATH } from './../../../common/constants';
 import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
 import Rate from './Rate';
+import RatesList from './RatesList';
+
 function ImageGallery({ places }) {
 	const [currIndex, setCurrIndex] = useState(0);
 	const galleryRef = useRef(null);
@@ -41,6 +43,7 @@ function ImageGallery({ places }) {
 				onSlide={(currentIndex) => getImageName(currentIndex)}
 				items={images}
 			/>
+			<RatesList rates={rates} />
 		</div>
 	);
 }

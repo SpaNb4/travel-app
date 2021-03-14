@@ -21,9 +21,6 @@ const reducer = createReducer(initialState, (builder) => {
 		.addCase(actions.logout, (state) => {
 			state.username = null;
 		})
-		.addCase(actions.setRateFailure, (state, action) => {
-			state.errorMessage = action.payload;
-		})
 		.addDefaultCase((state) => state);
 });
 

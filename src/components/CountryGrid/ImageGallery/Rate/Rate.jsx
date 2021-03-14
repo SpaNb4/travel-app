@@ -5,7 +5,6 @@ import './Rate.scss';
 
 const Rate = ({ rates }) => {
   const rate = rates.reduce((prev, rate) => rate.rate + prev, 0) / rates.length;
-  console.log(rates);
   return (
     <div className="rate">
       <StarBorderIcon />
