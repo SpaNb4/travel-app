@@ -15,7 +15,7 @@ import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
 import LoginForm from './AuthForm/LoginForm/LoginForm';
 import { AUTH_URL } from './../../common/constants';
 import { PersonAdd } from '@material-ui/icons';
-import logo from '../../assets/images/travel-app-logo.png';
+import logo from '../../assets/images/travel-app-logo-v2.png';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -77,6 +77,7 @@ const Header = () => {
 			<Container className="header__container">
 				<Link to="/" className="header__link link_home">
 					<img alt="Travel App Logo" src={logo} className="logo__img" />
+					<div className="logo__text">travel app</div>
 				</Link>
 				<div className="header__toolbar_list">
 					<Search />
