@@ -4,11 +4,11 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import './Rate.scss';
 
 const Rate = ({ rates }) => {
-  const rate = rates.reduce((prev, rate) => rate.rate + prev, 0) / rates.length;
+  const rate = rates && rates.reduce((prev, rate) => rate.rate + prev, 0) / rates.length;
   return (
     <div className="rate">
       <StarBorderIcon />
-      {rate.toFixed(2)}
+      {rate && rate.toFixed(2) || 5}
     </div>
   )
 }
