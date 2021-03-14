@@ -8,7 +8,7 @@ const Rate = ({ rates }) => {
   return (
     <div className="rate">
       <StarBorderIcon />
-      {rate && rate.toFixed(2) || 5}
+      {rate && rate.toFixed(2) || 0}
     </div>
   )
 }
