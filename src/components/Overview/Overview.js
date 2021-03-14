@@ -4,14 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import { IMAGE_PATH } from '../../common/constants';
+import { GIF_PATH } from '../../common/constants';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		position: 'relative',
 		padding: theme.spacing(4),
 		color: theme.palette.primary.contrastText,
-		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, .6) url(${IMAGE_PATH}${url})`,
+		background: ({ url }) =>
+			`center / cover no-repeat rgba(0, 0, 0, .6) url(${GIF_PATH}${url.substring(0, url.length - 3)}gif)`,
 		backgroundBlendMode: 'multiply',
 		borderRadius: '10px 10px 0px 0px',
 	},
