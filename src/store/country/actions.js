@@ -40,8 +40,7 @@ export const setRate = (rate, username, currPlace) => async (dispatch) => {
 					rate: rate,
 				},
 			});
-			console.log(response);
-			dispatch(updatePlace(response.data.errors));
+			dispatch(updatePlace(response.data.success));
 		} catch (error) {
 			dispatch(setRateFailure(error));
 		}
