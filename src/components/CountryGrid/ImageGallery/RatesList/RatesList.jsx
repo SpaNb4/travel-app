@@ -4,7 +4,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import './RatesList.scss';
 
 const RatesList = ({ rates }) => {
-  const items = rates.map((rate, index) => (
+  const items = rates && rates.map((rate, index) => (
     <div key={Date.now() + rate.name + index}>
       <h3>{rate.name}</h3>
       <div className="rate">
@@ -16,7 +16,7 @@ const RatesList = ({ rates }) => {
   return (
     <div className="rate-list__container">
       <div className="rate-list">
-        {items}
+        {items || (<div>No rates yet</div>)}
       </div>
     </div>
   )
