@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Search from '../Search';
-import { updateCurrLng } from '../../store/app/actions';
+import { updateCurrLng, logout } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import './Header.scss';
 import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
@@ -67,6 +67,7 @@ const Header = () => {
 					setIsAuth(false);
 					localStorage.removeItem('username');
 					localStorage.removeItem('avatar');
+					dispatch(logout());
 				}
 			});
 	}
