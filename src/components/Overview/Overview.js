@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.primary.contrastText,
 		background: ({ url }) => {
 			const GifUrl = url.substring(0, url.length - 3);
-			return `center / cover no-repeat rgba(0, 0, 0, .6) url(${buildUrl(InternalUrls.Gif, GifUrl, 'gif')}`;
+			return `center / cover no-repeat rgba(0, 0, 0, .6) url(${buildUrl(InternalUrls.Gif, GifUrl, 'gif')})`;
 		},
 		backgroundBlendMode: 'multiply',
 		borderRadius: '10px 10px 0px 0px',
