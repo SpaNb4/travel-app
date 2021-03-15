@@ -22,10 +22,11 @@
 		padding: 0px 24px;
 		font-size: 16px;
 		background-image: none;
-		border: 1px solid $color-text-secondary;
+		border: 2px solid $color-text-secondary;
 		word-break: normal;
 		border-radius: 10px;
 		outline: none;
+		cursor: pointer;
 
 		&:hover {
 			border: 2px solid lighten($color-primary, 10);
@@ -34,6 +35,7 @@
 			font-family: 'Roboto', sans-serif;
 		}
 	}
+
 	&:after {
 		content: '<>';
 		position: absolute;

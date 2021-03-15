@@ -135,29 +135,30 @@ const Header = () => {
 	);
 
 	const renderDesktopMenu = (
-		<ul className={classes.desktopMenu}>
+		<>
 			<Search />
 
-			{!isAuth && (
+			<ul className={classes.desktopMenu}>
+				{!isAuth && (
+					<IconButton
+						onClick={handleRegisterOpen}
+						aria-controls="register-button"
+						aria-haspopup="true"
+						className={classes.roundButton}
+					>
+						<PersonAddIcon />
+					</IconButton>
+				)}
 				<IconButton
-					onClick={handleRegisterOpen}
-					aria-controls="register-button"
+					onClick={handleLoginOpen}
+					aria-controls="login-button"
 					aria-haspopup="true"
 					className={classes.roundButton}
 				>
-					<PersonAddIcon />
+					<AccountCircleIcon />
 				</IconButton>
-			)}
-
-			<IconButton
-				onClick={handleLoginOpen}
-				aria-controls="login-button"
-				aria-haspopup="true"
-				className={classes.roundButton}
-			>
-				<AccountCircleIcon />
-			</IconButton>
-		</ul>
+			</ul>
+		</>
 	);
 
 	return (
