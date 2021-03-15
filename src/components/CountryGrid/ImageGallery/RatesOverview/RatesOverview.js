@@ -2,10 +2,10 @@ import React from 'react';
 import classes from './RatesOverview.module.scss';
 import { PropTypes } from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { getAverageRate } from '../Rate/Rate';
 
-function RatesOverview({ rates }) {
-	const [t] = useTranslation();
-	let chartData = [];
+export function getRateCount(rates) {
+	const chartData = [];
 
 	rates.forEach((elem) => {
 		chartData[elem.rate] = chartData[elem.rate] + 1 || 1;
@@ -17,9 +17,23 @@ function RatesOverview({ rates }) {
 		}
 	}
 
+	const filtered = chartData.filter((el) => {
+		return el !== null;
+	});
+
+	return filtered;
+}
+
+export function getBarWidth(elem, rates) {
+	return Number(((elem / rates.length) * 100).toFixed(2));
+}
+
+function RatesOverview({ rates }) {
+	const [t] = useTranslation();
+	const chartData = getRateCount(rates);
 	chartData.reverse();
 
-	const rate = rates && rates.reduce((prev, rate) => rate.rate + prev, 0) / rates.length;
+	const rate = rates && getAverageRate(rates);
 	let starCount = 6;
 	const colors = ['#4CAF50', '#2196F3', '#00bcd4', '#ff9800', '#f44336'];
 
@@ -44,7 +58,7 @@ function RatesOverview({ rates }) {
 			<div className={classes.row}>
 				{chartData.map((elem, index) => {
 					starCount--;
-					const width = ((elem / rates.length) * 100).toFixed(2);
+					const width = getBarWidth(elem, rates);
 					return (
 						<div key={index} className={classes.StarLine}>
 							<div className={classes.StarLineLeft}>
