@@ -42,7 +42,7 @@
 		left: 0;
 		width: 100%;
 		height: auto;
-		transition: 0.3s;
+		transition: .3s;
 		&:hover {
 			transform: scale(1.1);
 		}
@@ -63,7 +63,7 @@
 
 	&::after {
 		content: '';
-		border-radius: 0.4rem;
+		border-radius: .4rem;
 		display: block;
 		position: absolute;
 		top: 0;
@@ -71,7 +71,7 @@
 		height: 100%;
 		z-index: -1;
 		background: $color-black;
-		opacity: 0.5;
+		opacity: .5;
 	}
 
 	& .content__title.content__title_basic {
@@ -79,7 +79,7 @@
 		text-transform: uppercase;
 		font-weight: 500;
 
-		@include resolution(big-mobile) {
+		@include resolution(tablet) {
 			font-size: 1.4rem;
 		}
 	}

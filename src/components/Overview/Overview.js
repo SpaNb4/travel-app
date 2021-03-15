@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative',
 		padding: theme.spacing(4),
 		color: theme.palette.primary.contrastText,
-		background: ({ url }) => `center / cover no-repeat rgba(0, 0, 0, .6) url(${GIF_PATH}${url})`,
+		background: ({ url }) =>
+			`center / cover no-repeat rgba(0, 0, 0, .6) url(${GIF_PATH}${url.substring(0, url.length - 3)}gif)`,
 		backgroundBlendMode: 'multiply',
 		borderRadius: '10px 10px 0px 0px',
 	},
@@ -22,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Overview = ({ country }) => {
-	const FILE_EXT_LENGTH = 3;
-	const url = country.imageUrl.substring(0, country.imageUrl.length - FILE_EXT_LENGTH) + 'gif';
+	const url = country.imageUrl;
 	const classes = useStyles({ url });
 
 	return (
