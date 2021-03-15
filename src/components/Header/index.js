@@ -8,14 +8,14 @@ import IconButton from '@material-ui/core/IconButton';
 import LanguageIcon from '@material-ui/icons/Language';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Search from '../Search';
-import { updateCurrLng } from '../../store/app/actions';
+import { updateCurrLng, logout } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import './Header.scss';
 import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
 import LoginForm from './AuthForm/LoginForm/LoginForm';
-import { AUTH_URL } from './../../common/constants';
+import { LocalStorageKeys, ExternalUrls } from '../../common/constants';
 import { PersonAdd } from '@material-ui/icons';
-import logo from '../../assets/images/travel-app-logo.png';
+import logo from '../../assets/images/travel-app-logo-v2.png';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Header = () => {
 	const [isAuth, setIsAuth] = useState(false);
 
 	useEffect(() => {
-		if (localStorage.getItem('username')) {
+		if (localStorage.getItem(LocalStorageKeys.Username)) {
 			setIsAuth(true);
 		}
 	}, []);
@@ -35,7 +35,7 @@ const Header = () => {
 	}, [currLng]);
 
 	function changeLanguageHandler(event) {
-		localStorage.setItem('lng', event.target.value);
+		localStorage.setItem(LocalStorageKeys.Language, event.target.value);
 		dispatch(updateCurrLng(event.target.value));
 	}
 
@@ -56,7 +56,7 @@ const Header = () => {
 	}
 
 	function handleLogoutClick() {
-		fetch(`${AUTH_URL}/logout`, {
+		fetch(`${ExternalUrls.Auth}/logout`, {
 			method: 'get',
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
@@ -65,8 +65,9 @@ const Header = () => {
 			.then((res) => {
 				if (res) {
 					setIsAuth(false);
-					localStorage.removeItem('username');
-					localStorage.removeItem('avatar');
+					localStorage.removeItem(LocalStorageKeys.Username);
+					localStorage.removeItem(LocalStorageKeys.Avatar);
+					dispatch(logout());
 				}
 			});
 	}
@@ -76,6 +77,7 @@ const Header = () => {
 			<Container className="header__container">
 				<Link to="/" className="header__link link_home">
 					<img alt="Travel App Logo" src={logo} className="logo__img" />
+					<div className="logo__text">travel app</div>
 				</Link>
 				<div className="header__toolbar_list">
 					<Search />

@@ -1,11 +1,22 @@
-// Lang
+// DEFAULTS
 export const DEFAULT_LANGUAGE = 'en';
-export const LANG_STORAGE_KEY = 'lng';
-export const USERNAME_STORAGE_KEY = 'username';
+export const NUMBER_OF_OPTIONS = 4;
+
+// LOCAL STORAGE KEYs
+export const LocalStorageKeys = {
+	Language: 'lng',
+	Username: 'username',
+	Avatar: 'avatar',
+};
 
 // URLs
-export const AUTH_URL = 'https://spanb4-travel-app.herokuapp.com';
-export const COUNTRIES_URL = 'https://rs-travel-backend.herokuapp.com/countries';
-export const PLACES_URL = 'https://rs-travel-backend.herokuapp.com/places';
+export const ExternalUrls = {
+	Auth: 'https://spanb4-travel-app.herokuapp.com',
+	Countries: 'https://rs-travel-backend.herokuapp.com/countries',
+	Places: 'https://rs-travel-backend.herokuapp.com/places',
+};
 
-export const IMAGE_PATH = '/images/';
+export const InternalUrls = {
+	Image: '/images/',
+	Gif: '/gifs/',
+};

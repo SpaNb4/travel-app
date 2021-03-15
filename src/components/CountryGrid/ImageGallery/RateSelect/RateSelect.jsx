@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './RateSelect.scss';
 
 import { getUsername, getCurrLng } from '../../../../store/app/slices';
-import { setRate } from '../../../../store/app/actions';
-import { fetchCountry } from '../../../../store/country/actions';
+import { setRate } from '../../../../store/country/actions';
 import { getCurrentId } from '../../../../store/country/slices';
 
 const RATES = [
@@ -35,7 +34,6 @@ const RateSelect = ({ place }) => {
   useEffect(() => {
     if (rateValue && username) {
       dispatch(setRate(rateValue, username, place));
-      dispatch(fetchCountry(currentId, currLng));
     }
   }, [rateValue, username, place, currentId, currLng]);
 

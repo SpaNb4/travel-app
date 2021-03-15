@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './SimpleCard.scss';
+import { buildUrl } from '../../common/helpers';
+import { InternalUrls } from '../../common/constants';
 
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +19,7 @@ const SimpleCard = ({ country }) => {
 			<Card className="simple-card simple-card_basic">
 				<img
 					className="simple-card__img simple-card__img_basic"
-					src={`/images/${country.imageUrl}`}
+					src={buildUrl(InternalUrls.Image, country.imageUrl)}
 					alt="country image"
 				/>
 				<CardContent className="simple-card__content simple-card__content_basic">

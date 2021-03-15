@@ -1,0 +1,14 @@
+.rate-list__container {
+  max-height: 150px;
+  overflow-y: scroll;
+  margin: 0 0 0 10px;
+}
+
+.rate-list {
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    display: flex;
+  }
+}
