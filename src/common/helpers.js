@@ -1,62 +1,33 @@
-import { v4 as uuidv4 } from 'uuid';
+import { NUMBER_OF_OPTIONS } from './constants';
+import { Question, AnswerOption } from './models';
+import remove from 'lodash/remove';
+import shuffle from 'lodash/shuffle';
+import random from 'lodash/random';
 
-/**
- * Returns mutated object, where all nested objects have a unique id
- * @param {data} data - An object with nested objects
- */
-export const extendWithIds = (data) =>
-	Object.fromEntries(
-		Object.entries(data).map(([key, value]) => [
-			key,
-			{
-				...value,
-				id: uuidv4(),
-			},
-		])
-	);
-
-const NUMBER_OF_OPTIONS = 4;
-
-function getRandomInt(max) {
-	return Math.floor(Math.random() * max);
+export function buildUrl(...args) {
+	return args.join('');
 }
 
-function shuffleArray(array) {
-	const copy = [...array];
-	for (let i = 0; i < copy.length; i += 1) {
-		const j = Math.floor(Math.random() * copy.length);
-		[copy[i], copy[j]] = [copy[j], copy[i]];
+function getIncorrectAnswerOptions(places, answerOptions) {
+	let restPlaces = [...places];
+	for (let i = 0; i < answerOptions.length; i += 1) {
+		restPlaces = remove(restPlaces, function (place) {
+			return place.name !== answerOptions[i].answer;
+		});
 	}
-	return copy;
+	return restPlaces;
 }
 
-/**
- * Returns an array of objects:
- * {
- * 	answerOptions: [
- *			{ answer: 'New York', isCorrect: false },
- * 		{ answer: 'London', isCorrect: false },
- * 		{ answer: 'Paris', isCorrect: true },
- * 		{ answer: 'Dublin', isCorrect: false },
- *		],
- * }
- */
 export const createQuestions = (places) => {
-	const questionsWithCorrectAnswer = places.map((place) => ({
-		answerOptions: [{ answer: place.name, isCorrect: true, imgUrl: place.imageUrl }],
-	}));
-	const questions = questionsWithCorrectAnswer.map((quiz) => {
-		const finalQuiz = { ...quiz };
-		for (let i = finalQuiz.answerOptions.length; i < NUMBER_OF_OPTIONS; i += 1) {
-			const incorrectPlaces = places.filter((place) => {
-				for (let i = 0; i < finalQuiz.answerOptions.length; i += 1) {
-					return place.name !== finalQuiz.answerOptions[i].answer;
-				}
-			});
-			const incorrectPlace = incorrectPlaces[getRandomInt(incorrectPlaces.length)];
-			finalQuiz.answerOptions.push({ answer: incorrectPlace.name, isCorrect: false });
+	const questions = places.map((place) => new Question([new AnswerOption(place.name, place.imageUrl)]));
+
+	return questions.map((question) => {
+		const { answerOptions } = question;
+		for (let i = 1; i < NUMBER_OF_OPTIONS; i += 1) {
+			const incorrectPlaces = getIncorrectAnswerOptions(places, answerOptions);
+			const incorrectPlace = incorrectPlaces[random(incorrectPlaces.length - 1)];
+			answerOptions.push(new AnswerOption(incorrectPlace.name));
 		}
-		return { answerOptions: shuffleArray(finalQuiz.answerOptions) };
+		return new Question(shuffle(answerOptions));
 	});
-	return questions;
 };

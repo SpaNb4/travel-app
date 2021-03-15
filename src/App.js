@@ -9,7 +9,7 @@ import bg from './assets/images/bg.jpg';
 
 import Home from './containers/home/';
 import Country from './containers/country/';
-import { DEFAULT_LANGUAGE, LANG_STORAGE_KEY, USERNAME_STORAGE_KEY } from './common/constants';
+import { LocalStorageKeys, DEFAULT_LANGUAGE } from './common/constants';
 
 import { updateCurrLng } from './store/app/actions';
 import { getCurrLng } from './store/app/slices';
@@ -21,8 +21,8 @@ function App() {
 	const currLng = useSelector(getCurrLng);
 
 	useEffect(() => {
-		dispatch(updateCurrLng(localStorage.getItem(LANG_STORAGE_KEY) || DEFAULT_LANGUAGE));
-		const username = localStorage.getItem(USERNAME_STORAGE_KEY) || null;
+		dispatch(updateCurrLng(localStorage.getItem(LocalStorageKeys.Language) || DEFAULT_LANGUAGE));
+		const username = localStorage.getItem(LocalStorageKeys.Username) || null;
 		if (username) {
 			dispatch(loginSuccess(username));
 		}

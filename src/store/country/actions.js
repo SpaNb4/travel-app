@@ -1,8 +1,7 @@
 import * as types from './action-types';
 import { createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { COUNTRIES_URL } from '../../common/constants';
-import { PLACES_URL } from '../../common/constants';
+import { ExternalUrls } from '../../common/constants';
 
 export const fetchCountrySuccess = createAction(types.FETCH_COUNTRY_SUCCESS);
 export const fetchCountryFailure = createAction(types.FETCH_COUNTRY_FAILURE);
@@ -15,10 +14,9 @@ export const updatePlace = createAction(types.UPDATE_PLACE);
 export const fetchCountry = (currentId, currLang) => async (dispatch) => {
 	try {
 		dispatch(showLoader());
-		const response = await axios(`${COUNTRIES_URL}/${currentId}`, {
+		const { data: country } = await axios(`${ExternalUrls.Countries}/${currentId}`, {
 			params: { countryId: currentId, lang: currLang },
 		});
-		const country = response.data;
 		dispatch(fetchCountrySuccess(country));
 		dispatch(hideLoader());
 	} catch (error) {
@@ -28,22 +26,17 @@ export const fetchCountry = (currentId, currLang) => async (dispatch) => {
 
 export const setRate = (rate, username, currPlace) => async (dispatch) => {
 	try {
-		const response = await axios(`${PLACES_URL}`);
-		const places = response.data;
+		const { data: places } = await axios(`${ExternalUrls.Places}`);
 		const place = places.filter((place) => place.imageUrl === currPlace.imageUrl);
-		try {
-			const response = await axios({
-				method: 'post',
-				url: `${PLACES_URL}/${place[0].id}`,
-				data: {
-					name: username,
-					rate: rate,
-				},
-			});
-			dispatch(updatePlace(response.data.success));
-		} catch (error) {
-			dispatch(setRateFailure(error));
-		}
+		const { data } = await axios({
+			method: 'post',
+			url: `${ExternalUrls.Places}/${place[0].id}`,
+			data: {
+				name: username,
+				rate: rate,
+			},
+		});
+		dispatch(updatePlace(data.success));
 	} catch (error) {
 		dispatch(setRateFailure(error));
 	}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
@@ -19,32 +18,6 @@ import Quiz from '../Quiz';
 import classes from './CountryGrid.module.scss';
 import { useTranslation } from 'react-i18next';
 
-function rand() {
-	return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-	const top = 50 + rand();
-	const left = 50 + rand();
-
-	return {
-		top: `${top}%`,
-		left: `${left}%`,
-		transform: `translate(-${top}%, -${left}%)`,
-	};
-}
-
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		position: 'absolute',
-		width: 400,
-		backgroundColor: theme.palette.background.paper,
-		border: '2px solid #000',
-		boxShadow: theme.shadows[5],
-		padding: theme.spacing(2, 4, 3),
-	},
-}));
-
 export function CountryGrid() {
 	const [t] = useTranslation();
 	const dispatch = useDispatch();
@@ -52,9 +25,6 @@ export function CountryGrid() {
 	const currLng = useSelector(getCurrLng);
 	const country = useSelector(getCurrentCountry);
 	const loading = useSelector(getCountryLoading);
-
-	const modalClasses = useStyles();
-	const [modalStyle] = React.useState(getModalStyle);
 	const [isOpen, setOpen] = useState(false);
 
 	useEffect(() => {
@@ -63,35 +33,30 @@ export function CountryGrid() {
 		}
 	}, [currentId, currLng]);
 
-	const handleModalOpen = () => {
+	const openModalWindow = () => {
 		setOpen(true);
 	};
 
-	const handleModalClose = () => {
+	const closeModalWindow = () => {
 		setOpen(false);
 	};
-
-	const overview = country && <Overview country={country} />;
-	const fetchLoader = loading && <CircularProgress />;
-	const loader = !country && <CircularProgress />;
-	const video = country && <Video videoUrl={country.videoUrl} />;
 
 	return (
 		<Container className={classes.columnGrid}>
 			<Grid container>
-				{loader || fetchLoader}
+				{(!country || loading) && <CircularProgress />}
 				{country && window.location.href.includes(country.id) && (
 					<>
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
 							<Container disableGutters className={classes.contentGrid}>
 								<Grid container>
-									{overview}
+									{country && <Overview country={country} />}
 									<ImageGallery places={country.places} currLng={currLng} />
-									<Button variant="contained" color="primary" onClick={handleModalOpen}>
+									<Button variant="contained" color="primary" onClick={openModalWindow}>
 										{t('Take Quiz')}
 									</Button>
-									<Modal open={isOpen} onClose={handleModalClose}>
-										<div style={modalStyle} className={modalClasses.paper}>
+									<Modal open={isOpen} onClose={closeModalWindow} className="quiz-modal">
+										<div className="quiz-paper">
 											<Quiz />
 										</div>
 									</Modal>
@@ -103,7 +68,7 @@ export function CountryGrid() {
 								<Grid container>
 									<Map countryID={country.ISOCode} />
 									<Widgets country={country} />
-									{video}
+									{country && <Video videoUrl={country.videoUrl} />}
 								</Grid>
 							</Container>
 						</Grid>
