@@ -1,68 +1,49 @@
 .header {
-	// padding: 0.5rem 2.4rem;
-
-	// @include resolution(tablet) {
-	// 	padding: 1rem 0.5rem;
-	// }
-
-	// @include resolution(big-mobile) {
-	// 	padding: 0.5rem;
-	// }
-
-	&__home {
-		display: inline-flex;
-		justify-content: flex-start;
-		align-items: center;
-		position: relative;
-		flex-basis: 30%;
-		text-align: center;
-		text-decoration: none;
-
-		@include resolution(tablet) {
-			flex-basis: 15%;
-			justify-content: center;
-		}
-
-		@include resolution(big-mobile) {
-			flex-basis: 80%;
-		}
-	}
+	padding: 10px 0;
 }
 
 .lang {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100px;
+	margin-right: 5%;
+	margin-left: auto;
 
 	&__select {
-		position: relative;
+		appearance: none;
 		display: block;
 		width: 100%;
-		padding: 10px 20px;
+		max-width: 320px;
+		height: 40px;
+		float: right;
+		margin: 5px 0px;
+		padding: 0px 24px;
 		font-size: 16px;
-		border: 1px solid $color-silver;
+		background-image: none;
+		border: 1px solid $color-text-secondary;
 		word-break: normal;
 		border-radius: 10px;
 		outline: none;
-		appearance: none;
-		cursor: pointer;
 
-		&:after {
-			content: '<>';
-			font: 17px 'Consolas', monospace;
-			color: $color-mine-shaft;
-			transform: rotate(90deg);
-			right: 11px;
-
-			padding: 0 0 2px;
-			border-bottom: 1px solid $color-silver;
-
-			position: absolute;
-			pointer-events: none;
+		&:hover {
+			border: 2px solid lighten($color-primary, 10);
 		}
-
 		option {
-			font-family: inherit;
+			font-family: 'Roboto', sans-serif;
 		}
+	}
+	&:after {
+		content: '<>';
+		position: absolute;
+		right: 11px;
+		padding: 0 0 2px;
+		font-family: 'Consolas', monospace;
+		font-size: 17px;
+		color: $color-mine-shaft;
+		transform: rotate(90deg);
+		border-bottom: 1px solid $color-text-secondary;
+		pointer-events: none;
 	}
 }

@@ -1,11 +1,11 @@
 @import '~leaflet/dist/leaflet';
 @import '~leaflet-fullscreen/dist/leaflet.fullscreen';
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
-@import url('https://fonts.googleapis.com/css2?family=Englebert&display=swap');
 
 body {
 	margin: 0;
-	font-family: 'Roboto', 'Arial,' sans-serif;
+	font-family: $font-primary;
+	color: $color-text-secondary;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

@@ -2,32 +2,30 @@ import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Search from '../Search';
 import { updateCurrLng, logout } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
-import './Header.scss';
 import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
 import LoginForm from './AuthForm/LoginForm/LoginForm';
 import { AUTH_URL } from './../../common/constants';
 import logo from '../../assets/images/travel-app-logo-v2.png';
+import './Header.scss';
 
 const useStyles = makeStyles((theme) => ({
 	desktopMenu: {
 		display: 'none',
 		[theme.breakpoints.up('sm')]: {
 			display: 'flex',
+			justifyContent: 'space-between',
 		},
 	},
 	mobileMenuTrigger: {
@@ -36,27 +34,33 @@ const useStyles = makeStyles((theme) => ({
 			display: 'none',
 		},
 	},
+	roundButton: {
+		margin: '0 10px',
+	},
+	button: {
+		color: theme.palette.text.secondary,
+	},
 }));
 
-const UserBar = () => {
+const Header = () => {
+	const classes = useStyles();
 	const dispatch = useDispatch();
+	const currLng = useSelector(getCurrLng);
+
 	const [isAuth, setIsAuth] = useState(false);
-	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+	const handleMobileMenuClose = () => {
+		setMobileMoreAnchorEl(null);
+	};
+
+	const handleMobileMenuOpen = (event) => {
+		setMobileMoreAnchorEl(event.currentTarget);
+	};
+
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-	useEffect(() => {
-		if (localStorage.getItem('username')) {
-			setIsAuth(true);
-		}
-	}, []);
-
-	function handleRegisterOpen() {
-		setIsRegisterOpen(true);
-	}
-
-	function handleRegisterClose() {
-		setIsRegisterOpen(false);
-	}
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
 	function handleLoginOpen() {
 		setIsLoginOpen(true);
@@ -65,6 +69,29 @@ const UserBar = () => {
 	function handleLoginClose() {
 		setIsLoginOpen(false);
 	}
+
+	function handleRegisterClose() {
+		setIsRegisterOpen(false);
+	}
+
+	function handleRegisterOpen() {
+		setIsRegisterOpen(true);
+	}
+
+	useEffect(() => {
+		i18n.changeLanguage(currLng);
+	}, [currLng]);
+
+	function changeLanguageHandler(event) {
+		localStorage.setItem('lng', event.target.value);
+		dispatch(updateCurrLng(event.target.value));
+	}
+
+	useEffect(() => {
+		if (localStorage.getItem('username')) {
+			setIsAuth(true);
+		}
+	}, []);
 
 	function handleLogoutClick() {
 		fetch(`${AUTH_URL}/logout`, {
@@ -82,101 +109,63 @@ const UserBar = () => {
 				}
 			});
 	}
-	return (
-		<>
-			{!isAuth && (
-				<MenuItem>
-					<IconButton
-						onClick={handleRegisterOpen}
-						aria-controls="register-button"
-						aria-haspopup="true"
-						variant="outlined"
-					>
-						<PersonAddIcon />
-					</IconButton>
-				</MenuItem>
-			)}
+
+	const renderMobileMenu = (
+		<Menu
+			anchorEl={mobileMoreAnchorEl}
+			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+			open={isMobileMenuOpen}
+			onClose={handleMobileMenuClose}
+		>
 			<MenuItem>
-				<IconButton
-					onClick={handleLoginOpen}
-					aria-controls="login-button"
-					aria-haspopup="true"
-					variant="outlined"
-				>
-					<AccountCircleIcon />
-				</IconButton>
+				<Search />
 			</MenuItem>
 
-			<RegisterForm isOpen={isRegisterOpen} handleClose={handleRegisterClose} />
-			<LoginForm
-				isOpen={isLoginOpen}
-				handleClose={handleLoginClose}
-				setIsAuth={setIsAuth}
-				isAuth={isAuth}
-				handleLogoutClick={handleLogoutClick}
-			/>
-		</>
+			{!isAuth && (
+				<MenuItem onClick={handleRegisterOpen} className={classes.button}>
+					Signup
+				</MenuItem>
+			)}
+
+			<MenuItem onClick={handleLoginOpen} className={classes.button}>
+				Login
+			</MenuItem>
+		</Menu>
 	);
-};
 
-const Header = () => {
-	const classes = useStyles();
-	const dispatch = useDispatch();
-	const currLng = useSelector(getCurrLng);
+	const renderDesktopMenu = (
+		<ul className={classes.desktopMenu}>
+			<Search />
 
-	useEffect(() => {
-		i18n.changeLanguage(currLng);
-	}, [currLng]);
+			{!isAuth && (
+				<IconButton
+					onClick={handleRegisterOpen}
+					aria-controls="register-button"
+					aria-haspopup="true"
+					className={classes.roundButton}
+				>
+					<PersonAddIcon />
+				</IconButton>
+			)}
 
-	function changeLanguageHandler(event) {
-		localStorage.setItem('lng', event.target.value);
-		dispatch(updateCurrLng(event.target.value));
-	}
-
-	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
-	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-	const handleMobileMenuClose = () => {
-		setMobileMoreAnchorEl(null);
-	};
-
-	const handleMobileMenuOpen = (event) => {
-		setMobileMoreAnchorEl(event.currentTarget);
-	};
+			<IconButton
+				onClick={handleLoginOpen}
+				aria-controls="login-button"
+				aria-haspopup="true"
+				className={classes.roundButton}
+			>
+				<AccountCircleIcon />
+			</IconButton>
+		</ul>
+	);
 
 	return (
-		<AppBar position="static" className="header">
-			<Toolbar>
-				<Link to="/" className="header__home">
+		<AppBar position="sticky" className="header" color="inherit">
+			<Toolbar className="header__wrapper">
+				<Link to="/">
 					<img alt="Travel App Logo" src={logo} />
 				</Link>
-
-				<Search />
-
-				<ul className={classes.desktopMenu}>
-					<UserBar />
-				</ul>
-
-				<IconButton
-					aria-label="show more"
-					aria-haspopup="true"
-					onClick={handleMobileMenuOpen}
-					className={classes.mobileMenuTrigger}
-					variant="outlined"
-				>
-					<MoreIcon />
-				</IconButton>
-
-				<Menu
-					anchorEl={mobileMoreAnchorEl}
-					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-					transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-					open={isMobileMenuOpen}
-					onClose={handleMobileMenuClose}
-				>
-					<UserBar />
-				</Menu>
 
 				<div className="lang">
 					<select className="lang__select" onChange={changeLanguageHandler} value={currLng}>
@@ -185,7 +174,29 @@ const Header = () => {
 						<option value="ru">RU</option>
 					</select>
 				</div>
+
+				<IconButton
+					aria-label="show more"
+					aria-haspopup="true"
+					onClick={handleMobileMenuOpen}
+					className={classes.mobileMenuTrigger}
+				>
+					<MoreIcon />
+				</IconButton>
+
+				{renderMobileMenu}
+				{renderDesktopMenu}
 			</Toolbar>
+
+			<RegisterForm isOpen={isRegisterOpen} handleClose={handleRegisterClose} />
+
+			<LoginForm
+				isOpen={isLoginOpen}
+				handleClose={handleLoginClose}
+				setIsAuth={setIsAuth}
+				isAuth={isAuth}
+				handleLogoutClick={handleLogoutClick}
+			/>
 		</AppBar>
 	);
 };

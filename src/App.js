@@ -18,13 +18,18 @@ import { fetchCountries } from './store/countries/actions';
 import { loginSuccess } from './store/app/actions';
 
 const theme = createMuiTheme({
+	breakpoints: {
+		values: {
+			sm: 769,
+		},
+	},
 	palette: {
 		primary: {
 			main: '#32c7e3',
 		},
-		secondary: {
-			main: '#ffa500',
-		},
+	},
+	typography: {
+		fontFamily: 'Arial',
 	},
 });
 
