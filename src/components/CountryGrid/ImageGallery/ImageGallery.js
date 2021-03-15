@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Gallery from 'react-image-gallery';
 import { PropTypes } from 'prop-types';
-import { InternalUrls } from './../../../common/constants';
+import { InternalUrls } from '../../../common/constants';
 import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
 import Rate from './Rate';
