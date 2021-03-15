@@ -8,25 +8,27 @@ function makeWeatherIconURL(iconName) {
 	return `${assetsBaseURL}/${iconName}.${iconExtension}`;
 }
 
-export function retrieveWeather(cityName, lang, countryCode) {
-	const url = `${baseURL}?q=${cityName},${countryCode}&units=${units}&appid=${apiKey}&lang=${lang}`;
+export default {
+	retrieveWeather(cityName, lang, countryCode) {
+		const url = `${baseURL}?q=${cityName},${countryCode}&units=${units}&appid=${apiKey}&lang=${lang}`;
 
-	return fetch(url)
-		.then((res) => (res.ok ? res.json() : null))
-		.then((json) => {
-			if (json !== null) {
-				const weather = json.weather[0];
+		return fetch(url)
+			.then((res) => (res.ok ? res.json() : null))
+			.then((json) => {
+				if (json !== null) {
+					const weather = json.weather[0];
 
-				return {
-					name: json.name,
-					temp: json.main.temp,
-					tempMax: json.main.temp_max,
-					tempMin: json.main.temp_min,
-					windSpeed: json.wind.speed,
-					iconURL: makeWeatherIconURL(weather.icon),
-					description: weather.description,
-				};
-			}
-			return {};
-		});
-}
+					return {
+						name: json.name,
+						temp: json.main.temp,
+						tempMax: json.main.temp_max,
+						tempMin: json.main.temp_min,
+						windSpeed: json.wind.speed,
+						iconURL: makeWeatherIconURL(weather.icon),
+						description: weather.description,
+					};
+				}
+				return {};
+			});
+	},
+};
