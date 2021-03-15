@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { retrieveWeather } from './WeatherProvider';
+import WeatherProvider from './WeatherProvider';
 import classes from './Weather.module.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -8,10 +8,9 @@ function Weather({ cityName, lang, countryCode }) {
 	const [weatherData, setWeatherData] = useState();
 	const [t] = useTranslation();
 
-	useEffect(() => {
-		retrieveWeather(cityName, lang, countryCode).then((weatherData) => {
-			setWeatherData(weatherData);
-		});
+	useEffect(async () => {
+		const weatherData = await WeatherProvider.retrieveWeather(cityName, lang, countryCode);
+		setWeatherData(weatherData);
 	}, [lang]);
 
 	if (!weatherData) return <div>{t('Loading')}</div>;
