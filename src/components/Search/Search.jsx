@@ -1,6 +1,4 @@
-import * as React from 'react';
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -11,8 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
-	const { pathname } = useLocation();
-	const [path, setPath] = useState(pathname);
 	const [searchValue, setSearchValue] = useState('');
 	const [valid, setValid] = useState();
 	const [t] = useTranslation();
@@ -40,36 +36,26 @@ const Search = () => {
 		dispatch(updateSearchValue(''));
 	});
 
-	useEffect(() => {
-		setPath(pathname);
-	}, [pathname]);
-
-	const show = path === '/';
-
 	return (
-		<>
-			{show && (
-				<Paper component="form" className="form">
-					<InputBase
-						type="text"
-						autoFocus={true}
-						autoComplete="off"
-						placeholder={t('Search country')}
-						name="searchValue"
-						onChange={handleChange}
-						value={searchValue}
-					/>
+		<Paper component="form" className="form">
+			<InputBase
+				type="text"
+				autoFocus={true}
+				autoComplete="off"
+				placeholder={t('Search country')}
+				name="searchValue"
+				onChange={handleChange}
+				value={searchValue}
+			/>
 
-					<IconButton onClick={handleClear}>
-						<ClearIcon />
-					</IconButton>
+			<IconButton onClick={handleClear}>
+				<ClearIcon />
+			</IconButton>
 
-					<IconButton type="submit" onClick={handleSubmit}>
-						<SearchIcon />
-					</IconButton>
-				</Paper>
-			)}
-		</>
+			<IconButton type="submit" onClick={handleSubmit}>
+				<SearchIcon />
+			</IconButton>
+		</Paper>
 	);
 };
 

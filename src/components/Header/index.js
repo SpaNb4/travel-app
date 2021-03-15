@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import i18n from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -25,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 		display: 'none',
 		[theme.breakpoints.up('sm')]: {
 			display: 'flex',
-			justifyContent: 'space-between',
 		},
 	},
 	mobileMenuTrigger: {
@@ -40,16 +40,25 @@ const useStyles = makeStyles((theme) => ({
 	button: {
 		color: theme.palette.text.secondary,
 	},
+	desktopSearch: {
+		display: 'none',
+		[theme.breakpoints.up('sm')]: {
+			display: 'flex',
+		},
+	},
 }));
 
 const Header = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const { pathname } = useLocation();
+	const [path, setPath] = useState(pathname);
 	const currLng = useSelector(getCurrLng);
-
+	const [t] = useTranslation();
 	const [isAuth, setIsAuth] = useState(false);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+	const show = path === '/';
 
 	const handleMobileMenuClose = () => {
 		setMobileMoreAnchorEl(null);
@@ -78,14 +87,18 @@ const Header = () => {
 		setIsRegisterOpen(true);
 	}
 
-	useEffect(() => {
-		i18n.changeLanguage(currLng);
-	}, [currLng]);
-
 	function changeLanguageHandler(event) {
 		localStorage.setItem('lng', event.target.value);
 		dispatch(updateCurrLng(event.target.value));
 	}
+
+	useEffect(() => {
+		setPath(pathname);
+	}, [pathname]);
+
+	useEffect(() => {
+		i18n.changeLanguage(currLng);
+	}, [currLng]);
 
 	useEffect(() => {
 		if (localStorage.getItem('username')) {
@@ -118,47 +131,46 @@ const Header = () => {
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-			<MenuItem>
-				<Search />
-			</MenuItem>
+			{show && (
+				<MenuItem>
+					<Search />
+				</MenuItem>
+			)}
 
 			{!isAuth && (
 				<MenuItem onClick={handleRegisterOpen} className={classes.button}>
-					Signup
+					{t('Signup')}
 				</MenuItem>
 			)}
 
 			<MenuItem onClick={handleLoginOpen} className={classes.button}>
-				Login
+				{t('Login')}
 			</MenuItem>
 		</Menu>
 	);
 
 	const renderDesktopMenu = (
-		<>
-			<Search />
-
-			<ul className={classes.desktopMenu}>
-				{!isAuth && (
-					<IconButton
-						onClick={handleRegisterOpen}
-						aria-controls="register-button"
-						aria-haspopup="true"
-						className={classes.roundButton}
-					>
-						<PersonAddIcon />
-					</IconButton>
-				)}
+		<ul className={classes.desktopMenu}>
+			{show && <Search />}
+			{!isAuth && (
 				<IconButton
-					onClick={handleLoginOpen}
-					aria-controls="login-button"
+					onClick={handleRegisterOpen}
+					aria-controls="register-button"
 					aria-haspopup="true"
 					className={classes.roundButton}
 				>
-					<AccountCircleIcon />
+					<PersonAddIcon />
 				</IconButton>
-			</ul>
-		</>
+			)}
+			<IconButton
+				onClick={handleLoginOpen}
+				aria-controls="login-button"
+				aria-haspopup="true"
+				className={classes.roundButton}
+			>
+				<AccountCircleIcon />
+			</IconButton>
+		</ul>
 	);
 
 	return (
