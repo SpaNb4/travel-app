@@ -1,5 +1,6 @@
 .columnGrid {
 	padding: 30px  0;
+	margin-bottom: auto;
 
 	.columnRight {
 		@include resolution(tablet) {

@@ -6,27 +6,19 @@
 
 .PlaceNameRate {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 }
 
 .PlaceName {
 	font-weight: normal;
-	text-align: center;
 	margin: 0;
 }
 
 .PlaceControls {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	gap: 20px;
 	line-height: 24px;
 	width: 100%;
-	justify-content: space-between;
-	padding: 30px 10px;
+	padding: 20px 10px;
 	flex-wrap: wrap;
-
-	@include resolution(big-mobile) {
-		justify-content: center;
-	}
 }
