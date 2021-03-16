@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -22,6 +23,7 @@ import { useTranslation } from 'react-i18next';
 export function CountryGrid() {
 	const [t] = useTranslation();
 	const dispatch = useDispatch();
+	const location = useLocation();
 	const currentId = useSelector(getCurrentId);
 	const currLng = useSelector(getCurrLng);
 	const country = useSelector(getCurrentCountry);
@@ -29,7 +31,7 @@ export function CountryGrid() {
 	const [isOpen, setOpen] = useState(false);
 
 	useEffect(() => {
-		if (currentId) {
+		if (currentId && location.pathname.includes(currentId)) {
 			dispatch(fetchCountry(currentId, currLng));
 		}
 	}, [currentId, currLng]);
@@ -51,7 +53,7 @@ export function CountryGrid() {
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
 							<Grid container>
 								{country && <Overview country={country} />}
-								<ImageGallery places={country.places} currLng={currLng} />
+								<ImageGallery places={country.places} />
 
 								<Grid item xs={12} className={classes.Quiz}>
 									<Typography variant="h5" color="textPrimary" gutterBottom paragraph>
