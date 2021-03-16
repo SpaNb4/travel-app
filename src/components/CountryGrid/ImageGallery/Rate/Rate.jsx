@@ -13,7 +13,7 @@ const Rate = ({ rates }) => {
 	return (
 		<div className="rate">
 			<StarBorderIcon />
-			{(rate && rate.toFixed(2)) || 0}
+			{rate.toFixed(2) || '0'}
 		</div>
 	);
 };

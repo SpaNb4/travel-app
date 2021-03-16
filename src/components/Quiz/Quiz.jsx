@@ -6,8 +6,8 @@ import './Quiz.scss';
 import { useTranslation } from 'react-i18next';
 
 import { getPlaces } from '../../store/country/slices';
-import { createQuestions } from '../../common/helpers';
-import { IMAGE_PATH } from '../../common/constants';
+import { createQuestions, buildUrl } from '../../common/helpers';
+import { InternalUrls } from '../../common/constants';
 
 const Quiz = () => {
   const [t] = useTranslation();
@@ -35,9 +35,18 @@ const Quiz = () => {
 		}
 	};
 
-  console.log(questions);
+  const imageUrl = questions && questions[currentQuestion].answerOptions.find((option) => option.isCorrect).image;
 
-  const imgUrl = questions && questions[currentQuestion].answerOptions.find((option) => option.isCorrect).imgUrl;
+  const answerButtons = questions && questions[currentQuestion].answerOptions.map((answerOption, index) => (
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => handleAnswerClick(answerOption.isCorrect)}
+      key={answerOption.answer + index}
+    >
+      {answerOption.answer}
+    </Button>
+  ))
 
 	return (
 		<div className="quiz">
@@ -57,22 +66,11 @@ const Quiz = () => {
               </h3>
               <h3 className="question">{t('What is the name of this place?')}</h3>
               <div className="question-image">
-                <img src={`${IMAGE_PATH}${imgUrl}`} alt="place image" />
+                <img src={buildUrl(InternalUrls.Image, imageUrl)} alt="place image" />
               </div>
             </div>
             <div className="answers">
-              {
-                questions[currentQuestion].answerOptions.map((answerOption, index) => (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => handleAnswerClick(answerOption.isCorrect)}
-                    key={answerOption.answer + index}
-                  >
-										{answerOption.answer}
-									</Button>
-                ))
-              }
+              {answerButtons}
             </div>
           </React.Fragment>
         )
