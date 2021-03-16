@@ -1,10 +1,5 @@
 .RatesOverview {
-	margin-top: 40px;
 	padding: 20px;
-
-	h3 {
-		color: $color-white;
-	}
 
 	p {
 		font-size: 18px;
@@ -20,12 +15,16 @@
 
 	.Heading {
 		font-size: 25px;
+		color: $color-white;
+		margin: 0;
 	}
 
 	.HeadingWrapper {
 		display: flex;
-		gap: 30px;
+		flex-wrap: wrap;
+		gap: 10px;
 		align-items: center;
+		margin-bottom: 10px;
 	}
 
 	.StarsWrapper {
@@ -82,7 +81,7 @@
 	.BarContainer {
 		width: 80%;
 		border-radius: 10px;
-		height: 18px;
+		height: 16px;
 		background-color: #f1f1f1c2;
 	}
 }

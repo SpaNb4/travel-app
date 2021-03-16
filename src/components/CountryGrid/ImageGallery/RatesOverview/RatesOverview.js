@@ -40,9 +40,9 @@ function RatesOverview({ rates }) {
 	return (
 		<div className={classes.RatesOverview}>
 			<div className={classes.HeadingWrapper}>
-				<h3 className={classes.Heading}>{t('User Rating')}</h3>
+				<h5 className={classes.Heading}>{t('User Rating')}</h5>
 				<div className={classes.StarsWrapper}>
-					{chartData.map((elem, index) => {
+					{chartData.map((_, index) => {
 						if (index < rate.toFixed(0)) {
 							return <span key={index} className={classes.StarChecked}></span>;
 						} else {

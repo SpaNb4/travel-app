@@ -146,7 +146,7 @@ const Header = () => {
 			)}
 
 			<MenuItem onClick={handleLoginOpen} className={classes.button}>
-				{t('Login')}
+				{isAuth ? t('Profile') : t('Login')}
 			</MenuItem>
 		</Menu>
 	);

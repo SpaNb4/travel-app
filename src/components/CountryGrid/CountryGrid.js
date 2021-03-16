@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Map from './Map/Map';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCurrLng } from '../../store/app/slices';
@@ -42,35 +43,45 @@ export function CountryGrid() {
 	};
 
 	return (
-		<Container className={classes.columnGrid}>
-			<Grid container>
+		<Container maxWidth="md" className={classes.columnGrid}>
+			<Grid container spacing={4}>
 				{(!country || loading) && <CircularProgress />}
 				{country && window.location.href.includes(country.id) && (
 					<>
 						<Grid item xs={12} sm={8} className={classes.columnLeft}>
-							<Container disableGutters className={classes.contentGrid}>
-								<Grid container>
-									{country && <Overview country={country} />}
-									<ImageGallery places={country.places} currLng={currLng} />
-									<Button variant="contained" color="primary" onClick={openModalWindow}>
+							<Grid container>
+								{country && <Overview country={country} />}
+								<ImageGallery places={country.places} currLng={currLng} />
+
+								<Grid item xs={12} className={classes.Quiz}>
+									<Typography variant="h5" color="textPrimary" gutterBottom paragraph>
+										Hey! Would you like check your knowlodge about {country.name}?
+									</Typography>
+									<Button
+										variant="contained"
+										color="secondary"
+										onClick={openModalWindow}
+										aria-label="take quiz"
+										size="large"
+										className={classes.QuizButton}
+									>
 										{t('Take Quiz')}
 									</Button>
-									<Modal open={isOpen} onClose={closeModalWindow} className="quiz-modal">
-										<div className="quiz-paper">
-											<Quiz />
-										</div>
-									</Modal>
 								</Grid>
-							</Container>
+
+								<Modal open={isOpen} onClose={closeModalWindow} className="quiz-modal">
+									<div className="quiz-paper">
+										<Quiz />
+									</div>
+								</Modal>
+							</Grid>
 						</Grid>
 						<Grid item xs={12} sm={4} className={classes.columnRight}>
-							<Container disableGutters className={classes.contentGrid}>
-								<Grid container>
-									<Map countryID={country.ISOCode} />
-									<Widgets country={country} />
-									{country && <Video videoUrl={country.videoUrl} />}
-								</Grid>
-							</Container>
+							<Grid container>
+								<Map countryID={country.ISOCode} />
+								<Widgets country={country} />
+								{country && <Video videoUrl={country.videoUrl} />}
+							</Grid>
 						</Grid>
 					</>
 				)}

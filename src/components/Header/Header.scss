@@ -32,7 +32,7 @@
 			border: 2px solid lighten($color-primary, 10);
 		}
 		option {
-			font-family: 'Roboto', sans-serif;
+			font-family: $font-primary;
 		}
 	}
 

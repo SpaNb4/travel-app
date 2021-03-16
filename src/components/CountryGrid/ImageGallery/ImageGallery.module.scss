@@ -1,5 +1,7 @@
 .ImageGallery {
 	width: 100%;
+	background-color: $color-mine-shaft;
+	color: $color-white;
 }
 
 .PlaceNameRate {
@@ -12,7 +14,6 @@
 	font-weight: normal;
 	text-align: center;
 	margin: 0;
-	color: $color-white;
 }
 
 .PlaceControls {

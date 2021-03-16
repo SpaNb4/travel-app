@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PropTypes } from 'prop-types';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarsIcon from '@material-ui/icons/Stars';
 import './Rate.scss';
 
 export function getAverageRate(rates) {
@@ -12,7 +12,8 @@ const Rate = ({ rates }) => {
 
 	return (
 		<div className="rate">
-			<StarBorderIcon />
+			<StarsIcon color="secondary" />
+			&nbsp;
 			{rate.toFixed(2) || '0'}
 		</div>
 	);

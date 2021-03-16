@@ -20,16 +20,23 @@ import { loginSuccess } from './store/app/actions';
 const theme = createMuiTheme({
 	breakpoints: {
 		values: {
+			xs: 0,
 			sm: 769,
+			md: 960,
+			lg: 1280,
+			xl: 1920,
 		},
 	},
 	palette: {
 		primary: {
 			main: '#32c7e3',
 		},
+		secondary: {
+			main: '#fcd93a',
+		},
 	},
 	typography: {
-		fontFamily: 'Arial',
+		fontFamily: 'Roboto',
 	},
 });
 

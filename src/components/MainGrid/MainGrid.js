@@ -32,9 +32,9 @@ export default function MainGrid() {
 		</div>
 	);
 	return (
-		<Container className="container main__container">
+		<Container maxWidth="md" className="main-grid">
 			{loader}
-			<Grid container className="container main__container">
+			<Grid container spacing={4}>
 				{items}
 			</Grid>
 		</Container>
