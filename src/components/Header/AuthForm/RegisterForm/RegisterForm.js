@@ -10,7 +10,7 @@ import { PropTypes } from 'prop-types';
 import { Input, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import { AUTH_URL } from './../../../../common/constants';
+import { ExternalUrls } from '../../../../common/constants';
 
 import { registerSuccess } from '../../../../store/app/actions';
 
@@ -63,7 +63,7 @@ function RegisterForm({ isOpen, handleClose }) {
 			formData.append('password', values.password);
 			formData.append('profileImage', values.photo);
 
-			fetch(`${AUTH_URL}/register`, { method: 'POST', body: formData }).then((res) => {
+			fetch(`${ExternalUrls.Auth}/register`, { method: 'POST', body: formData }).then((res) => {
 				if (res.ok) {
 					dispatch(registerSuccess(formData.username));
 					registerStatusRef.current.innerHTML = t(`You have successfully registered`);

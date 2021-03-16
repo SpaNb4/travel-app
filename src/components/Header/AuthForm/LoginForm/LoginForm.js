@@ -11,7 +11,7 @@ import { Box, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { AUTH_URL } from './../../../../common/constants';
+import { LocalStorageKeys, ExternalUrls } from '../../../../common/constants';
 
 import { loginSuccess } from '../../../../store/app/actions';
 
@@ -65,7 +65,7 @@ function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values) => {
-			fetch(`${AUTH_URL}/login`, {
+			fetch(`${ExternalUrls.Auth}/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -86,19 +86,19 @@ function LoginForm({ isOpen, handleClose, setIsAuth, isAuth, handleLogoutClick }
 
 						localStorage.setItem('username', res.success);
 
-						fetch(`${AUTH_URL}/getavatar`, {
+						fetch(`${ExternalUrls.Auth}/getavatar`, {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',
 							},
 							body: JSON.stringify({
-								username: localStorage.getItem('username'),
+								username: localStorage.getItem(LocalStorageKeys.Username),
 							}),
 						})
 							.then((res) => res.json())
 							.then((res) => {
 								if (res.username) {
-									localStorage.setItem('avatar', res.username);
+									localStorage.setItem(LocalStorageKeys.Avatar, res.username);
 									setIsAuth(true);
 								}
 							});

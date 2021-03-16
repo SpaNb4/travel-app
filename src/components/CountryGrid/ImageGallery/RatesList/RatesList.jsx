@@ -4,12 +4,12 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import './RatesList.scss';
 
 const RatesList = ({ rates }) => {
-  const items = rates && rates.map((rate, index) => (
-    <div key={Date.now() + rate.name + index}>
-      <h3>{rate.name}</h3>
+  const items = rates && rates.map((obj, index) => (
+    <div key={index}>
+      <h3>{obj.name}</h3>
       <div className="rate">
         <StarBorderIcon />
-        {rate.rate}
+        {obj.rate}
       </div>
     </div>
   ))

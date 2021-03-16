@@ -17,7 +17,7 @@ import { updateCurrLng, logout } from '../../store/app/actions';
 import { getCurrLng } from '../../store/app/slices';
 import RegisterForm from './AuthForm/RegisterForm/RegisterForm';
 import LoginForm from './AuthForm/LoginForm/LoginForm';
-import { AUTH_URL } from './../../common/constants';
+import { LocalStorageKeys, ExternalUrls } from '../../common/constants';
 import logo from '../../assets/images/travel-app-logo-v2.png';
 import './Header.scss';
 
@@ -52,24 +52,45 @@ const Header = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const { pathname } = useLocation();
-	const [path, setPath] = useState(pathname);
 	const currLng = useSelector(getCurrLng);
 	const [t] = useTranslation();
+
+	const [path, setPath] = useState(pathname);
 	const [isAuth, setIsAuth] = useState(false);
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
 	const show = path === '/';
 
-	const handleMobileMenuClose = () => {
-		setMobileMoreAnchorEl(null);
-	};
+	useEffect(() => {
+		if (localStorage.getItem(LocalStorageKeys.Username)) {
+			setIsAuth(true);
+		}
+	}, []);
 
-	const handleMobileMenuOpen = (event) => {
-		setMobileMoreAnchorEl(event.currentTarget);
-	};
+	useEffect(() => {
+		i18n.changeLanguage(currLng);
+	}, [currLng]);
 
-	const [isLoginOpen, setIsLoginOpen] = useState(false);
-	const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+	useEffect(() => {
+		setPath(pathname);
+	}, [pathname]);
+
+	function changeLanguageHandler(event) {
+		localStorage.setItem(LocalStorageKeys.Language, event.target.value);
+		dispatch(updateCurrLng(event.target.value));
+	}
+
+	function handleRegisterOpen() {
+		setIsRegisterOpen(true);
+	}
+
+	function handleRegisterClose() {
+		setIsRegisterOpen(false);
+	}
 
 	function handleLoginOpen() {
 		setIsLoginOpen(true);
@@ -79,35 +100,8 @@ const Header = () => {
 		setIsLoginOpen(false);
 	}
 
-	function handleRegisterClose() {
-		setIsRegisterOpen(false);
-	}
-
-	function handleRegisterOpen() {
-		setIsRegisterOpen(true);
-	}
-
-	function changeLanguageHandler(event) {
-		localStorage.setItem('lng', event.target.value);
-		dispatch(updateCurrLng(event.target.value));
-	}
-
-	useEffect(() => {
-		setPath(pathname);
-	}, [pathname]);
-
-	useEffect(() => {
-		i18n.changeLanguage(currLng);
-	}, [currLng]);
-
-	useEffect(() => {
-		if (localStorage.getItem('username')) {
-			setIsAuth(true);
-		}
-	}, []);
-
 	function handleLogoutClick() {
-		fetch(`${AUTH_URL}/logout`, {
+		fetch(`${ExternalUrls.Auth}/logout`, {
 			method: 'get',
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
@@ -116,11 +110,19 @@ const Header = () => {
 			.then((res) => {
 				if (res) {
 					setIsAuth(false);
-					localStorage.removeItem('username');
-					localStorage.removeItem('avatar');
+					localStorage.removeItem(LocalStorageKeys.Username);
+					localStorage.removeItem(LocalStorageKeys.Avatar);
 					dispatch(logout());
 				}
 			});
+	}
+
+	function handleMobileMenuOpen(evt) {
+		setMobileMoreAnchorEl(evt.currentTarget);
+	}
+
+	function handleMobileMenuClose() {
+		setMobileMoreAnchorEl(null);
 	}
 
 	const renderMobileMenu = (
@@ -139,7 +141,7 @@ const Header = () => {
 
 			{!isAuth && (
 				<MenuItem onClick={handleRegisterOpen} className={classes.button}>
-					{t('Signup')}
+					{t('Sign up')}
 				</MenuItem>
 			)}
 

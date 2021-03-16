@@ -2,11 +2,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Gallery from 'react-image-gallery';
 import { PropTypes } from 'prop-types';
-import { IMAGE_PATH } from './../../../common/constants';
+import { InternalUrls } from '../../../common/constants';
 import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
 import Rate from './Rate';
 import RatesList from './RatesList';
+import RatesOverview from './RatesOverview/RatesOverview';
 
 function ImageGallery({ places }) {
 	const [currIndex, setCurrIndex] = useState(0);
@@ -14,8 +15,8 @@ function ImageGallery({ places }) {
 
 	const images = places.map((place) => {
 		return {
-			original: `${IMAGE_PATH + place.imageUrl}`,
-			thumbnail: `${IMAGE_PATH + place.imageUrl}`,
+			original: `${InternalUrls.Image + place.imageUrl}`,
+			thumbnail: `${InternalUrls.Image + place.imageUrl}`,
 			description: place.description,
 		};
 	});
@@ -44,6 +45,7 @@ function ImageGallery({ places }) {
 				items={images}
 			/>
 			<RatesList rates={rates} />
+			<RatesOverview rates={rates} />
 		</div>
 	);
 }

@@ -16,6 +16,7 @@
 		"i18next-locize-backend": "^4.1.9",
 		"leaflet": "^1.7.1",
 		"leaflet-fullscreen": "^1.0.2",
+		"lodash": "^4.17.21",
 		"money": "^0.2.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
