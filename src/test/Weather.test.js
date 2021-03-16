@@ -105,6 +105,44 @@ it('check that weather is loaded whith empty description', async () => {
 	await act(async () => {
 		render(<Weather cityName="" lang="" countryCode="" />, container);
 	});
-	expect(container.textContent).toBe('Current: -5°High: 35°Low: -25.9°Wind Speed: 3 mi/hr');
+	expect(container.textContent).toMatch('Current: -5°High: 35°Low: -25.9°Wind Speed: 3 mi/hr');
+	WeatherProvider.retrieveWeather.mockRestore();
+});
+
+it('check that weather is not empty', async () => {
+	jest.spyOn(WeatherProvider, 'retrieveWeather').mockImplementation(() => {
+		return Promise.resolve({
+			name: '',
+			temp: 0.9,
+			tempMax: 0.71,
+			tempMin: -22.3,
+			windSpeed: 0,
+			iconURL: '',
+			description: 'rain ',
+		});
+	});
+	await act(async () => {
+		render(<Weather cityName="" lang="" countryCode="" />, container);
+	});
+	expect(container.textContent).not.toBe('');
+	WeatherProvider.retrieveWeather.mockRestore();
+});
+
+it('check that weather has lenght 59', async () => {
+	jest.spyOn(WeatherProvider, 'retrieveWeather').mockImplementation(() => {
+		return Promise.resolve({
+			name: '',
+			temp: 0.9,
+			tempMax: 0.71,
+			tempMin: -22.3,
+			windSpeed: 0,
+			iconURL: '',
+			description: 'rain ',
+		});
+	});
+	await act(async () => {
+		render(<Weather cityName="" lang="" countryCode="" />, container);
+	});
+	expect(container.textContent).toHaveLength(59);
 	WeatherProvider.retrieveWeather.mockRestore();
 });
