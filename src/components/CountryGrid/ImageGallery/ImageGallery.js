@@ -7,6 +7,7 @@ import classes from './ImageGallery.module.scss';
 import RateSelect from './RateSelect';
 import Rate from './Rate';
 import RatesList from './RatesList';
+import RatesOverview from './RatesOverview/RatesOverview';
 
 function ImageGallery({ places }) {
 	const [currIndex, setCurrIndex] = useState(0);
@@ -44,6 +45,7 @@ function ImageGallery({ places }) {
 				items={images}
 			/>
 			<RatesList rates={rates} />
+			<RatesOverview rates={rates} />
 		</div>
 	);
 }
