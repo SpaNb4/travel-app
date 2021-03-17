@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import classes from './App.module.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,6 +16,29 @@ import { updateCurrLng } from './store/app/actions';
 import { getCurrLng } from './store/app/slices';
 import { fetchCountries } from './store/countries/actions';
 import { loginSuccess } from './store/app/actions';
+
+const theme = createMuiTheme({
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 769,
+			md: 960,
+			lg: 1280,
+			xl: 1920,
+		},
+	},
+	palette: {
+		primary: {
+			main: '#32c7e3',
+		},
+		secondary: {
+			main: '#fcd93a',
+		},
+	},
+	typography: {
+		fontFamily: 'Roboto',
+	},
+});
 
 function App() {
 	const dispatch = useDispatch();
@@ -30,16 +54,18 @@ function App() {
 	}, [currLng]);
 
 	return (
-		<div className={classes.App} style={{ backgroundImage: `url(${bg})` }}>
-			<Header />
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route exact path="/country/:id" component={Country} />
-			</Switch>
-			<Footer />
-		</div>
+		<ThemeProvider theme={theme}>
+			<div className={classes.App} style={{ backgroundImage: `url(${bg})` }}>
+				<Header />
+				<Switch>
+					<Route exact path="/">
+						<Home />
+					</Route>
+					<Route exact path="/country/:id" component={Country} />
+				</Switch>
+				<Footer />
+			</div>
+		</ThemeProvider>
 	);
 }
 

@@ -1,88 +1,62 @@
-import * as React from 'react';
-import { useLocation } from "react-router-dom";
-import { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Paper, IconButton, TextField } from '@material-ui/core';
+import { Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import './Search.scss';
-
 import { updateSearchValue } from '../../store/countries/actions';
 import { useTranslation } from 'react-i18next';
 
 const Search = () => {
 	const dispatch = useDispatch();
-  const { pathname } = useLocation();
-	const [path, setPath] = useState(pathname);
 	const [searchValue, setSearchValue] = useState('');
 	const [valid, setValid] = useState();
 	const [t] = useTranslation();
 
-  const handleSubmit = useCallback(
-    (event) => {
-      event.preventDefault()
-      event.stopPropagation()
-      if (valid) {
-        dispatch(updateSearchValue(searchValue))
-      }
-    },
-    [valid, searchValue]
-  )
+	const handleSubmit = useCallback(
+		(event) => {
+			event.preventDefault();
+			event.stopPropagation();
+			if (valid) {
+				dispatch(updateSearchValue(searchValue));
+			}
+		},
+		[valid, searchValue]
+	);
 
-  const handleChange = useCallback(
-    (event) => {
-      const { value } = event.target
-      setSearchValue(value)
-      setValid(true)
-      dispatch(updateSearchValue(value))
-    })
+	const handleChange = useCallback((event) => {
+		const { value } = event.target;
+		setSearchValue(value);
+		setValid(true);
+		dispatch(updateSearchValue(value));
+	});
 
-  const handleClear = useCallback(
-    () => {
-      setSearchValue('')
-      dispatch(updateSearchValue(''))
-    })
-  
-  useEffect(() => {
-    setPath(pathname)
-  }, [pathname]);
+	const handleClear = useCallback(() => {
+		setSearchValue('');
+		dispatch(updateSearchValue(''));
+	});
 
-	const show = path === '/';
-  
-  return (
-    <React.Fragment>
-      { 
-        show && (
-          <Paper
-            component="form"
-            className="form"
-          >
-            <TextField
-              type="text"
-              autoFocus={true}
-              autoComplete="off"
-              placeholder={t('Search country')}
-              name="searchValue"
-              onChange={handleChange}
-              value={searchValue}
-              className="form__input"
-            />
-            <IconButton
-              onClick={handleClear}
-            >
-              <ClearIcon />
-            </IconButton>
-            <IconButton
-              type="submit"
-              onClick={handleSubmit}
-            >
-              <SearchIcon />
-            </IconButton>
-          </Paper>
-        )
-      }
-    </React.Fragment>
-  )
-}
+	return (
+		<Paper component="form" className="form">
+			<InputBase
+				type="text"
+				autoFocus={true}
+				autoComplete="off"
+				placeholder={t('Search country')}
+				name="searchValue"
+				onChange={handleChange}
+				value={searchValue}
+			/>
+
+			<IconButton onClick={handleClear}>
+				<ClearIcon />
+			</IconButton>
+
+			<IconButton type="submit" onClick={handleSubmit}>
+				<SearchIcon />
+			</IconButton>
+		</Paper>
+	);
+};
 
 export default Search;

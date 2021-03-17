@@ -1,31 +1,25 @@
 .ImageGallery {
 	width: 100%;
+	background-color: $color-mine-shaft;
+	color: $color-white;
 }
 
 .PlaceNameRate {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 }
 
 .PlaceName {
 	font-weight: normal;
-	text-align: center;
 	margin: 0;
-	color: $color-white;
 }
 
 .PlaceControls {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	align-items: flex-start;
 	gap: 20px;
 	line-height: 24px;
 	width: 100%;
-	justify-content: space-between;
-	padding: 30px 10px;
+	padding: 20px 10px;
 	flex-wrap: wrap;
-
-	@include resolution(big-mobile) {
-		justify-content: center;
-	}
 }

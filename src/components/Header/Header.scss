@@ -1,156 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Englebert&display=swap');
-
-.header.header {
-  font-size: 10px;
-  padding: .5rem 2.4rem;
-
-  @include resolution(tablet) {
-    padding: 1rem .5rem;
-  }
-
-  @include resolution(big-mobile) {
-    padding: .5rem;
-  }
+.header {
+	padding: 10px 0;
 }
 
-.header__link.link_home {
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  flex-basis: 30%;
-  padding: .25rem;
-  border: 1px solid transparent;
-  border-radius: .5rem;
-  text-align: center;
-  text-decoration: none;
-
-  @include resolution(tablet) {
-    flex-basis: 15%;
-    justify-content: center;
-  }
-
-  @include resolution(big-mobile) {
-    flex-basis: 80%;
-  }
-
-  &:hover {
-    & .logo__text {
-      text-shadow: 0 0 10px $color-white;
-    }
-  }
-
-  & .logo__img {
-    position: relative;
-    display: inline-block;
-    transform: translateZ(0);
-
-    @include resolution(big-mobile) {
-      padding: .15rem 0;
-    }
-  }
-
-  & .logo__text {
-    font-size: 1.4rem;
-    font-family: Englebert, Roboto sans-serif;
-    color: $color-white;
-    position: relative;
-    display: block;
-    transform: translateZ(0);
-    padding: 0 0 0 10px;
-
-    @include resolution(tablet) {
-      display: none;
-    }
-
-    @include resolution(big-mobile) {
-      display: block;
-    }
-  }
-}
-
-.header__container.header__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0;
-  text-align: center;
-  
-  @include resolution(big-mobile) {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-.header__toolbar_list {
-  flex-basis: 70%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  @include resolution(tablet) {
-    flex-basis: 85%;
-    justify-content: flex-end;
-  }
-
-  @include resolution(big-mobile) {
-    flex-basis: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap-reverse;
-  }
-}
-
-.toolbar_list__container {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
-
-  @include resolution(tablet) {
-    justify-content: flex-end;
-    flex-basis: 30%;
-  }
-
-  @include resolution(big-mobile) {
-    justify-content: center;
-    flex-basis: 100%;
-  }
-}
-
-.lang__container {
-  flex-basis: 50%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-}
-
-.lang__container {
-  justify-content: center;
-}
-
-
-.selectWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & .select {
-    font-size: 14px;
-  }
-
-  & .select option {
-    font-size: 14px;
-  }
-}
-
-.selectWrapper {
+.lang {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100px;
+	margin-right: 5%;
+	margin-left: auto;
 
-	.select {
+	&__select {
 		appearance: none;
 		display: block;
 		width: 100%;
@@ -161,28 +22,30 @@
 		padding: 0px 24px;
 		font-size: 16px;
 		background-image: none;
-		border: 1px solid #cccccc;
+		border: 2px solid $color-text-secondary;
 		word-break: normal;
 		border-radius: 10px;
 		outline: none;
+		cursor: pointer;
+
 		&:hover {
 			border: 2px solid lighten($color-primary, 10);
 		}
 		option {
-			font-family: 'Roboto', sans-serif;
+			font-family: $font-primary;
 		}
 	}
+
 	&:after {
 		content: '<>';
-		font: 17px 'Consolas', monospace;
-		color: #333;
-		transform: rotate(90deg);
-		right: 11px;
-
-		padding: 0 0 2px;
-		border-bottom: 1px solid #999;
-
 		position: absolute;
+		right: 11px;
+		padding: 0 0 2px;
+		font-family: 'Consolas', monospace;
+		font-size: 17px;
+		color: $color-mine-shaft;
+		transform: rotate(90deg);
+		border-bottom: 1px solid $color-text-secondary;
 		pointer-events: none;
 	}
 }

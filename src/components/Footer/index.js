@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,51 +8,82 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import logo from './../../assets/images/logo_rs.png';
 import './Footer.scss';
 
+const useStyles = makeStyles(() => ({
+	item: {
+		justifyContent: 'center',
+		maxWidth: 100,
+	},
+}));
+
 const Footer = () => {
+	const classes = useStyles();
+
 	return (
-		<footer>
-			<Container className="footer footer__container">
-				<div className="footer__column">&copy; {new Date().getFullYear()}</div>
-				<div className="footer__column">
-					<List className="list footer__list">
-						<ListItem className="list__item footer__list__item">
+		<footer className="footer">
+			<Container className={classes.container}>
+				<div className="footer__wrapper">
+					<List className="footer__list">
+						<ListItem disableGutters className={classes.item}>
 							<Link
 								href="https://github.com/AlesyaKuptsova"
 								className="footer__link author"
 								target="_blank"
+								color="initial"
+								underline="none"
 							>
-								<div>Alesya</div>
-								<GitHubIcon className="footer__link github" />
+								<GitHubIcon className="footer__icon" />
+								<span>Alesya</span>
 							</Link>
 						</ListItem>
-						<ListItem className="list__item footer__list__item">
-							<Link href="https://github.com/magklax" className="footer__link author" target="_blank">
-								<div>Nadia</div>
-								<GitHubIcon className="footer__link github" />
+						<ListItem disableGutters className={classes.item}>
+							<Link
+								href="https://github.com/magklax"
+								className="footer__link author"
+								target="_blank"
+								color="initial"
+								underline="none"
+							>
+								<GitHubIcon className="footer__icon" />
+								<span>Nadia</span>
 							</Link>
 						</ListItem>
-						<ListItem className="list__item footer__list__item">
+						<ListItem disableGutters className={classes.item}>
 							<Link
 								href="https://github.com/kovalenkoiryna15"
 								className="footer__link author"
 								target="_blank"
+								color="initial"
+								underline="none"
 							>
-								<div>Iryna</div>
-								<GitHubIcon className="footer__link github" />
+								<GitHubIcon className="footer__icon" />
+								<span>Iryna</span>
 							</Link>
 						</ListItem>
-						<ListItem className="list__item footer__list__item">
-							<Link href="https://github.com/SpaNb4" className="footer__link author" target="_blank">
-								<div>Dmitry</div>
-								<GitHubIcon className="footer__link github" />
+						<ListItem disableGutters className={classes.item}>
+							<Link
+								href="https://github.com/SpaNb4"
+								className="footer__link author"
+								target="_blank"
+								color="initial"
+								underline="none"
+							>
+								<GitHubIcon className="footer__icon" />
+								<span>Dmitry</span>
 							</Link>
 						</ListItem>
 					</List>
-				</div>
-				<div className="footer__column">
-					<Link href="https://rs.school/js/" className="footer__link rsschool-logo" target="_blank">
-						<img src={logo} alt="rs school logo" width={100} height={50} className="rsschool-logo__img" />
-					</Link>
+					<div className="footer__copyright">
+						<p className="footer__date">&copy; {new Date().getFullYear()}</p>
+						<Link href="https://rs.school/js/" className="footer__logo" target="_blank">
+							<img
+								src={logo}
+								alt="rs school logo"
+								width={100}
+								height={50}
+								className="rsschool-logo__img"
+							/>
+						</Link>
+					</div>
 				</div>
 			</Container>
 		</footer>

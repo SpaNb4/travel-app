@@ -33,7 +33,7 @@ function ImageGallery({ places }) {
 		<div className={classes.ImageGallery}>
 			<div className={classes.PlaceControls}>
 				<div className={classes.PlaceNameRate}>
-					<h2 className={classes.PlaceName}>{imageName}</h2>
+					<h3 className={classes.PlaceName}>{imageName}</h3>
 					<Rate rates={rates} />
 				</div>
 				<RateSelect place={place} />

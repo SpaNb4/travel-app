@@ -15,26 +15,25 @@ const SimpleCard = ({ country }) => {
 	const [t] = useTranslation();
 
 	return (
-		<Link to={`/country/${country.id}`} className="link_simple-card">
-			<Card className="simple-card simple-card_basic">
+		<Card className="simple-card">
+			<Link to={`/country/${country.id}`} className="simple-card__link">
 				<img
-					className="simple-card__img simple-card__img_basic"
 					src={buildUrl(InternalUrls.Image, country.imageUrl)}
 					alt="country image"
 				/>
-				<CardContent className="simple-card__content simple-card__content_basic">
-					<Typography gutterBottom className="content__title content__title_basic">
+				<CardContent className="simple-card__content">
+					<Typography variant="h5" gutterBottom>
 						{country.name}
 					</Typography>
-					<Typography gutterBottom className="content__subtitle content__subtitle_basic">
+					<Typography gutterBottom>
 						{country.capital}
 					</Typography>
-					<Button size="medium" color="primary" variant="contained">
+					<Button size="medium" color="secondary" variant="outlined">
 						{t('Learn More')}
 					</Button>
-				</CardContent>			
-			</Card>
-		</Link>
+				</CardContent>
+			</Link>
+		</Card>
 	);
 };
 
@@ -45,6 +44,6 @@ SimpleCard.propTypes = {
 		imageUrl: PropTypes.string,
 		id: PropTypes.string,
 	}).isRequired,
-}
+};
 
 export default SimpleCard;

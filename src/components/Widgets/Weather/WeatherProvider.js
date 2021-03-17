@@ -1,6 +1,6 @@
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
-const assetsBaseURL = 'http://openweathermap.org/img/w';
+const assetsBaseURL = 'https://openweathermap.org/img/w';
 const iconExtension = 'png';
 const units = 'metric';
 
