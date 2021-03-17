@@ -1,0 +1,18 @@
+.columnGrid {
+	padding: 30px  0;
+	margin-bottom: auto;
+
+	.columnRight {
+		@include resolution(tablet) {
+			margin-top: 20px;
+		}
+	}
+}
+
+.Quiz {
+	padding: 25px 10%;
+	background-color: $color-white;
+	text-align: center;
+	border-radius: 0 0 10px 10px;
+	font-weight: 800;
+}

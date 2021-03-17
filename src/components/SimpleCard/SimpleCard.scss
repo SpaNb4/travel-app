@@ -1,0 +1,30 @@
+.simple-card {
+	&:hover {
+		box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+			0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	}
+
+	&__link {
+		position: relative;
+		line-height: 0;
+		vertical-align: top;
+		color: $color-white;
+		background-color: transparent;
+
+		&:hover .simple-card__content {
+			transform: scaleY(1);
+		}
+	}
+
+	&__content {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		transform: scaleY(0);
+		background-color: $color-mine-shaft;
+		transition: transform 0.5s;
+		transform-origin: 100% 100%;
+		z-index: 1;
+	}
+}

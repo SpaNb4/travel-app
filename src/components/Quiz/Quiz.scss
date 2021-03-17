@@ -1,0 +1,68 @@
+.quiz-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-paper {
+  width: 400px;
+  background-color: $color-white;
+  border: 2px solid $color-black;
+  padding: 12px;
+
+  @include resolution(big-mobile) {
+    width: 270px;
+  }
+}
+
+.questions > h3 {
+
+  @include resolution(big-mobile) {
+    margin: 5px 0;
+  }
+}
+
+.question-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+
+  & > img {
+    width: 100%;
+    height: auto;
+
+    @include resolution(tablet) {
+      width: 70%;
+    }
+
+    @include resolution(big-mobile) {
+      width: 100%;
+    }
+  }
+
+  @include resolution(tablet) {
+    margin: 7px 0;
+  }
+
+  @include resolution(big-mobile) {
+    margin: 5px 0;
+  }
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+
+  & > button {
+    margin: 12px 0;
+
+    @include resolution(tablet) {
+      margin: 4px 0;
+    }
+
+    @include resolution(big-mobile) {
+      margin: 3px 0;
+    }
+  }
+}

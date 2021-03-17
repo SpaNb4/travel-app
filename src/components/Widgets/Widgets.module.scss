@@ -1,0 +1,11 @@
+.Widgets {
+	padding: 32px;
+	background: #e8e8e8;
+	min-height: 320px;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+
+	@include resolution(tablet) {
+		padding: 20px 10px;
+	}
+}

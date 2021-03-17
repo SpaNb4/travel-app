@@ -1,0 +1,77 @@
+.footer {
+	position: relative;
+	margin: 0;
+	background-color: $color-mine-shaft;
+	color: $color-silver;
+
+	&__wrapper {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+
+		grid-gap: 20px;
+
+		@include resolution(mobile) {
+			grid-template-columns: 1fr;
+		}
+
+		@include resolution(big-mobile) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+
+		@include resolution(mobile) {
+			justify-content: center;
+		}
+
+		@include resolution(big-mobile) {
+			justify-content: center;
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		font-size: 12px;
+		color: $color-silver;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+	}
+
+	&__icon {
+		margin-bottom: 5px;
+	}
+
+	&__copyright {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		@include resolution(mobile) {
+			justify-content: space-between;
+		}
+
+		@include resolution(big-mobile) {
+			justify-content: space-between;
+		}
+	}
+
+  &__date {
+    margin-right: 15px;
+  }
+
+	&__logo {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+	}
+}

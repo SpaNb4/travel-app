@@ -1,0 +1,21 @@
+.ExchangeRates {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+	padding-bottom: 25px;
+	border-bottom: 1px solid;
+
+	.ExchangeTitle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		text-align: center;
+	}
+
+	.CurrencyContainer {
+		margin-top: 10px;
+		text-align: center;
+	}
+}

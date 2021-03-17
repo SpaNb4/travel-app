@@ -1,0 +1,25 @@
+.ImageGallery {
+	width: 100%;
+	background-color: $color-mine-shaft;
+	color: $color-white;
+}
+
+.PlaceNameRate {
+	display: flex;
+}
+
+.PlaceName {
+	font-weight: normal;
+	margin: 0;
+}
+
+.PlaceControls {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+	line-height: 24px;
+	width: 100%;
+	padding: 20px 10px;
+	flex-wrap: wrap;
+}
