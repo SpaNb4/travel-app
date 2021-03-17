@@ -57,7 +57,7 @@ export function CountryGrid() {
 
 								<Grid item xs={12} className={classes.Quiz}>
 									<Typography variant="h5" color="textPrimary" gutterBottom paragraph>
-										{t('Hey! Would you like check your knowledge about') + ' ' + t(country.name)}?
+										{`${t('Hey! Would you like check your knowledge about')} ${country.name}`}?
 									</Typography>
 									<Button
 										variant="contained"
