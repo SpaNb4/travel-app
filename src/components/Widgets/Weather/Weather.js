@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { PropTypes } from 'prop-types';
 import WeatherProvider from './WeatherProvider';
 import classes from './Weather.module.scss';
@@ -7,10 +7,22 @@ import { useTranslation } from 'react-i18next';
 function Weather({ cityName, lang, countryCode }) {
 	const [weatherData, setWeatherData] = useState();
 	const [t] = useTranslation();
+	const mountedRef = useRef(false);
+
+	useEffect(() => {
+		mountedRef.current = true;
+
+		return () => {
+			mountedRef.current = false;
+		};
+	}, []);
 
 	useEffect(async () => {
 		const weatherData = await WeatherProvider.retrieveWeather(cityName, lang, countryCode);
-		setWeatherData(weatherData);
+
+		if (mountedRef.current) {
+			setWeatherData(weatherData);
+		}
 	}, [lang]);
 
 	if (!weatherData) return <div>{t('Loading')}</div>;
