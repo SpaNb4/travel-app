@@ -46,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
 			display: 'flex',
 		},
 	},
+	PopupMenu: {
+		[theme.breakpoints.up('sm')]: {
+			display: 'none',
+		},
+	},
 }));
 
 const Header = () => {
@@ -53,6 +58,7 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const { pathname } = useLocation();
 	const currLng = useSelector(getCurrLng);
+	const [searchValue, setSearchValue] = useState('');
 	const [t] = useTranslation();
 
 	const [path, setPath] = useState(pathname);
@@ -127,6 +133,7 @@ const Header = () => {
 
 	const renderMobileMenu = (
 		<Menu
+			className={classes.PopupMenu}
 			anchorEl={mobileMoreAnchorEl}
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -135,7 +142,7 @@ const Header = () => {
 		>
 			{show && (
 				<MenuItem>
-					<Search />
+					<Search searchValue={searchValue} setSearchValue={setSearchValue} />
 				</MenuItem>
 			)}
 
@@ -153,7 +160,7 @@ const Header = () => {
 
 	const renderDesktopMenu = (
 		<ul className={classes.desktopMenu}>
-			{show && <Search />}
+			{show && <Search searchValue={searchValue} setSearchValue={setSearchValue} />}
 			{!isAuth && (
 				<IconButton
 					onClick={handleRegisterOpen}

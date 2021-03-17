@@ -6,10 +6,11 @@ import ClearIcon from '@material-ui/icons/Clear';
 import './Search.scss';
 import { updateSearchValue } from '../../store/countries/actions';
 import { useTranslation } from 'react-i18next';
+import { PropTypes } from 'prop-types';
 
-const Search = () => {
+const Search = ({ searchValue, setSearchValue }) => {
 	const dispatch = useDispatch();
-	const [searchValue, setSearchValue] = useState('');
+
 	const [valid, setValid] = useState();
 	const [t] = useTranslation();
 
@@ -60,3 +61,8 @@ const Search = () => {
 };
 
 export default Search;
+
+Search.propTypes = {
+	searchValue: PropTypes.string.isRequired,
+	setSearchValue: PropTypes.func.isRequired,
+};
