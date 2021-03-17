@@ -141,7 +141,7 @@ const Header = () => {
 			onClose={handleMobileMenuClose}
 		>
 			{show && (
-				<MenuItem>
+				<MenuItem onKeyDown={(e) => e.stopPropagation()}>
 					<Search searchValue={searchValue} setSearchValue={setSearchValue} />
 				</MenuItem>
 			)}
